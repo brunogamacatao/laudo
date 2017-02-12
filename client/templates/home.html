@@ -1,0 +1,104 @@
+<form>
+  <div class="form-group">
+    <label>Nome</label>
+    <input type="text" class="form-control" placeholder="nome" ng-model="laudo.nome">
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>Data Início Sintomas</label>
+        <input type="date" class="form-control" ng-model="laudo.dataInicioSintomas">
+      </div>
+    </div> <!-- div data início sintomas -->
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>Data Coleta</label>
+        <input type="date" class="form-control" ng-model="laudo.dataColeta">
+      </div>
+    </div> <!-- div data coleta -->
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>Data Resultado</label>
+        <input type="date" class="form-control" ng-model="laudo.dataResultado">
+      </div>
+    </div> <!-- div data resultado -->
+  </div> <!-- row das datas -->
+  <div class="form-group">
+    <label>Material Coletado</label>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" ng-model="laudo.materialColetado.sa"> SANGUE - SA
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" ng-model="laudo.materialColetado.ur"> URINA - UR
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" ng-model="laudo.materialColetado.la"> LÍQUIDO AMNIÓTICO - LA
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" ng-model="laudo.materialColetado.lcr"> LÍQUIDO CEFALORRAQUIDIANO - LCR
+      </label>
+    </div>
+  </div> <!-- checkboxes do material coletado -->
+  <div class="form-group">
+    <label>Metodologia</label>
+    <textarea class="form-control" rows="3" ng-model="laudo.metodologia"></textarea>
+  </div> <!-- metodologia -->
+  <div class="form-group">
+    <label>Resultado</label>
+    <div class="radio">
+      <label>
+        <input type="radio" name="resultado" ng-model="laudo.resultado" value="INDETECTAVEL"> INDETECTÁVEL
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio" name="resultado" ng-model="laudo.resultado" value="DETECTAVEL"> DETECTÁVEL - Amplificação do ácido nucléico observada até o ciclo 38 de detecção.
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio" name="resultado" ng-model="laudo.resultado" value="INDETERMINADO"> INDETERMINADO - Amplificação residual do ácido nucléico observada após o ciclo 38.
+      </label>
+    </div>
+  </div> <!-- radios do resultado -->
+  <div class="form-group">
+    <label>Conclusão</label>
+    <p>
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.zikv.positivo"/> ZIKV</label> 
+      identificado em amostra de 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.zikv.sg"/> SG</label> 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.zikv.ur"/> UR</label> 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.zikv.la"/> LA</label> 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.zikv.lcr"/> LCR</label> 
+    </p>
+    <p>
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.chikv.positivo"/> CHIKV</label> 
+      identificado em amostra de 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.chikv.sg"/> SG</label> 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.chikv.ur"/> UR</label> 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.chikv.la"/> LA</label> 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.chikv.lcr"/> LCR</label>
+    </p>
+  </div> <!-- conclusão -->
+  <div class="form-group">
+    <label>Observações</label>
+    <p>
+      <small>(1) No caso de NÃO estar detectável na amostra, deve-se levar em consideração o
+      tipo de material coletado e o tempo transcorrido entre o ínicio do sintomas observados e a data da coleta da amostra para realização do exame.</small>
+    </p>
+    <p>
+      <small>(2) Amostra com detecção indeterminada para o ácido nucléico sugerimos a realização de nova coleta.</small>
+    </p>
+  </div>
+  <div class="row text-center">
+    <button type="button" class="btn btn-primary" ng-click="emitir()">Emitir Laudo</button>
+    <button type="button" class="btn btn-default" ng-click="limpar()">Limpar Formulário</button>
+  </div>
+</form>

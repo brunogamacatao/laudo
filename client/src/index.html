@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Laudo de Diagnóstico Molecular para os Vírus da Zika (ZIKV)</title>
+  </head>
+  <body ng-app="ipesq" ng-cloak>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Diagnóstico Molecular ZIKV</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Novo Laudo</a></li>
+            <li><a href="#about">Consultar Laudos</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <ui-view>
+        <!-- Aqui virão os templates providos pelo ui-router -->
+      </ui-view>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">&copy; IPESQ 2017 - Todos os direitos reservados</p>
+      </div>
+    </footer>    
+  </body>
+</html>
