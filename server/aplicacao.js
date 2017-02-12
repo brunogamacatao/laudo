@@ -1,5 +1,6 @@
 // Imports gerais
 var express      = require('express');
+var compression  = require('compression');
 var path         = require('path');
 var favicon      = require('serve-favicon');
 var logger       = require('morgan');
@@ -51,12 +52,16 @@ Aplicacao.prototype.setupMiddleware = function() {
   this.app.use(bodyParser.json());
   this.app.use(bodyParser.urlencoded({ extended: false }));
   this.app.use(cookieParser());
+
+  // Em seguida, são chamadas as rotas da aplicação
+  this.setupRoutes();
+
+  // Recursos estáticos
+  this.app.use(compression()); // Ligar a compressão gzip
   this.app.use(express.static(path.join(__dirname, constantes.STATICS_PATH)));
   this.app.use(express.static(path.join(__dirname, constantes.TEMPLATES_PATH)));
   this.app.use(express.static(path.join(__dirname, constantes.ASSETS_PATH)));
 
-  // Em seguida, são chamadas as rotas da aplicação
-  this.setupRoutes();
 
   // Caso nenhuma rota atenda a requisição, as funções de erro são executadas
   this.app.use(this.pageForFoundErrorHandler.bind(this));

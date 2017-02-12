@@ -26,6 +26,7 @@
     "bootstrap": "^3.3.7",
     "bootstrap-webpack": "^0.0.5",
     "brfs": "^1.4.3",
+    "compression": "^1.6.2",
     "connect-livereload": "^0.6.0",
     "cookie-parser": "~1.4.3",
     "copy-webpack-plugin": "^4.0.1",
