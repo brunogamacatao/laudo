@@ -10,8 +10,8 @@ module.exports = {
     filename: 'app.bundle.js'
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin(),
     new ExtractTextPlugin('style.css'),
+    new webpack.optimize.UglifyJsPlugin(),
     new HtmlPlugin({
       template: 'client/src/index.html'
     }),
@@ -20,7 +20,6 @@ module.exports = {
       $: 'jquery',
       jquery: 'jquery'
     }),    
-    new webpack.IgnorePlugin(/^(fsevents)$/),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurrenceOrderPlugin()
   ],
@@ -34,7 +33,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style', 'css')
+        loaders: ['style', 'css']
       },
       {test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff'},
       {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream'},

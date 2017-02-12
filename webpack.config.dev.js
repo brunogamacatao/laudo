@@ -1,7 +1,6 @@
 const webpack = require('webpack'); //to access built-in plugins
 const HtmlPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -21,8 +20,7 @@ module.exports = {
       jQuery: 'jquery',
       $: 'jquery',
       jquery: 'jquery'
-    }),
-    new webpack.IgnorePlugin(/^(fsevents)$/)
+    })
   ],
   module: {
     loaders: [

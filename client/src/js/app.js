@@ -10,15 +10,15 @@ import 'angular-ui-router';
 import 'angular-messages';
 import 'angular-sanitize';
 
-// Importa o bootstrap
+// Importa o jQuery
 import 'jquery';
-import 'bootstrap-webpack';
 
 // Importa o livereload
 import LiveReload from './util/livereload';
 
 // Importa as folhas de estilo
-import '../css/style.css';
+require('bootstrap-webpack');
+require('../css/style.css');
 
 // Importa os componentes
 import './controllers';
