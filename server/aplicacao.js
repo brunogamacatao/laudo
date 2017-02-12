@@ -34,8 +34,7 @@ Aplicacao.prototype.inDevelopment = function() {
  */
 Aplicacao.prototype.setupRoutes = function() {
   // Rotas
-  this.app.use('/posts', require('./routes/posts'));
-  this.app.use('/users', require('./routes/users'));
+  this.app.use('/laudos', require('./routes/laudos'));
 };
 
 /**
