@@ -21,8 +21,11 @@ var Aplicacao = function() {
 };
 
 Aplicacao.prototype.inDevelopment = function() {
-  var env = process.argv[2] || 'dev';
-  return env === 'dev';
+  if (process.env.NODE_ENV && process.env.NODE_ENV === 'production') {
+    return false;
+  }
+
+  return true;
 };
 
 /**
