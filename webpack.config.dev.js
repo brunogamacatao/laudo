@@ -5,7 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  entry: './client/src/js/app.js',
+  entry: ['promise-polyfill', 'whatwg-fetch', './client/src/js/app.js'],
   output: {
     path: path.join(__dirname, 'client/dist'),
     filename: 'app.bundle.js',

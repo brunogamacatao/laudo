@@ -1,3 +1,7 @@
+// Importa polyfills para browsers antigos
+import 'promise-polyfill';
+import 'whatwg-fetch';
+
 // Importa o angular
 import angular from 'angular';
 

@@ -37,3 +37,43 @@ body > .container {
 code {
   font-size: 80%;
 }
+
+.modal-dialog {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.modal-content {
+  height: auto;
+  min-height: 100%;
+  border-radius: 0;
+  box-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.close-button {
+  overflow: hidden;
+}
+
+.close-button button.close {
+  font-size: 30px;
+  line-height: 30px;
+  padding: 7px 4px 7px 13px;
+  @include text-shadow(none);
+  @include opacity(.7);
+  color:#fff;
+}
+
+.close-button button.close span {
+  display: block;
+}
+
+iframe {
+  display: block;
+  margin: 0 auto;
+  min-width: 800px;
+  min-height: 600px;
+}

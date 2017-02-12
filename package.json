@@ -53,6 +53,7 @@
     "optimist": "^0.6.1",
     "path": "^0.12.7",
     "pdfkit": "^0.8.0",
+    "promise-polyfill": "^6.0.2",
     "serve-favicon": "~2.3.0",
     "style-loader": "^0.13.1",
     "supertest": "^3.0.0",
@@ -61,7 +62,8 @@
     "webpack": "^1.14.0",
     "webpack-dashboard": "^0.2.1",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "^2.10.0"
+    "webpack-hot-middleware": "^2.10.0",
+    "whatwg-fetch": "^2.0.2"
   },
   "description": "Aplicativo para a emissão de laudos para diagnóstico molecular para os vírus da Zika",
   "main": "server/index.js",
