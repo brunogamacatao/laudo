@@ -19,7 +19,10 @@ module.exports = {
       jQuery: 'jquery',
       $: 'jquery',
       jquery: 'jquery'
-    })    
+    }),    
+    new webpack.IgnorePlugin(/^(fsevents)$/),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin()
   ],
   module: {
     loaders: [

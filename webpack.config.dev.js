@@ -21,7 +21,8 @@ module.exports = {
       jQuery: 'jquery',
       $: 'jquery',
       jquery: 'jquery'
-    })
+    }),
+    new webpack.IgnorePlugin(/^(fsevents)$/)
   ],
   module: {
     loaders: [
