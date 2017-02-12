@@ -27,6 +27,7 @@ class PrintToPdf {
    * @param date Objeto date que será formatado
    */
   formatDate(date) {
+    if (!date) return 'Não consta';
     return this.pad(date.getDate()) + '/' +  // dia
            this.pad(date.getMonth()) + '/' + // mês
            date.getFullYear();          // ano
@@ -77,7 +78,13 @@ class PrintToPdf {
   }
 
   layoutReport(doc) {
-    doc.font('fonts/Roboto-Regular.ttf');
+    const RIGHT_MARGIN = 72;
+    const font = 'fonts/Roboto-Regular.ttf';
+    const TITLE_FONT_SIZE = 12;
+    const FONT_SIZE = 10;
+    const OFFSET = 0;
+
+    doc.font(font);
 
     // Add content
     doc.fontSize(20);
@@ -85,14 +92,69 @@ class PrintToPdf {
 
     doc.moveDown();
 
-    doc.fontSize(12);
+    doc.fontSize(TITLE_FONT_SIZE);
     doc.text('NOME: ', {continued: true}).text(this.laudo.nome);
 
-    doc.fontSize(8);
-    doc.text('DATA INÍCIO SINTOMAS: 15/02/1982', 72, 170);
-    doc.text('DATA COLETA: 15/02/1982', 250, 170);
-    doc.text('DATA RESULTADO: 15/02/1982', 400, 170);
+    doc.fontSize(FONT_SIZE);
+    doc.text('DATA INÍCIO SINTOMAS: ' + this.formatDate(this.laudo.dataInicioSintomas), RIGHT_MARGIN, 170);
+    doc.text('DATA COLETA: ' + this.formatDate(this.laudo.dataColeta), 260, 170);
+    doc.text('DATA RESULTADO: ' + this.formatDate(this.laudo.dataResultado), 400, 170);
     doc.moveDown();
+
+    let caption = 'MATEIAL COLETADO:';
+    let margin = OFFSET + RIGHT_MARGIN + doc.font(font).fontSize(TITLE_FONT_SIZE).widthOfString(caption);
+
+    doc.fontSize(TITLE_FONT_SIZE);
+    doc.text(caption, RIGHT_MARGIN, doc.y);
+    doc.moveDown(0.5);
+
+    doc.fontSize(FONT_SIZE);
+    doc.text('(' + (this.laudo.materialColetado.sa  ? 'X' : ' ') + ') SANGUE- SG', margin);
+    doc.text('(' + (this.laudo.materialColetado.ur  ? 'X' : ' ') + ') URINA-UR', margin);
+    doc.text('(' + (this.laudo.materialColetado.la  ? 'X' : ' ') + ') LÍQUIDO AMNIÓTICO-LA', margin);
+    doc.text('(' + (this.laudo.materialColetado.lcr ? 'X' : ' ') + ') LÍQUIDO CEFALORRAQUIDIANO-LCR', margin);
+    doc.moveDown();
+
+    caption = 'METODOLOGIA:';
+    margin = OFFSET + RIGHT_MARGIN + doc.font(font).fontSize(TITLE_FONT_SIZE).widthOfString(caption);
+
+    doc.fontSize(TITLE_FONT_SIZE);
+    doc.text(caption, RIGHT_MARGIN, doc.y);
+    doc.moveDown(0.5);
+
+    doc.fontSize(FONT_SIZE);
+    doc.text(this.laudo.metodologia, margin);
+    doc.moveDown();
+
+    caption = 'RESULTADO:';
+    margin = OFFSET + RIGHT_MARGIN + doc.font(font).fontSize(TITLE_FONT_SIZE).widthOfString(caption);
+
+    doc.fontSize(TITLE_FONT_SIZE);
+    doc.text(caption, RIGHT_MARGIN, doc.y);
+    doc.moveDown(0.5);
+
+    doc.fontSize(FONT_SIZE);
+    doc.text('(' + (this.laudo.resultado === 'INDETECTAVEL'  ? 'X' : ' ') + ') INDETECTÁVEL', margin);
+    doc.text('(' + (this.laudo.resultado === 'DETECTAVEL'    ? 'X' : ' ') + ') DETECTÁVEL – Amplificação do ácido nucléico observada até o ciclo 38 de detecção.', margin);
+    doc.text('(' + (this.laudo.resultado === 'INDETERMINADO' ? 'X' : ' ') + ') INDETERMINADO – Amplificação residual do ácido nucléico observada após o ciclo 38.', margin);
+    doc.moveDown();
+
+    doc.fontSize(TITLE_FONT_SIZE);
+    doc.text('CONCLUSÃO: ' + ((this.laudo.conclusao.zikv.positivo || this.laudo.conclusao.chikv.positivo) ? 'DETECTÁVEL' : 'INDETECTÁVEL'), RIGHT_MARGIN, doc.y);
+    doc.moveDown(0.5);
+
+    doc.fontSize(FONT_SIZE);
+    doc.text('(' + (this.laudo.conclusao.zikv.positivo  ? 'X' : ' ') + ') ZIKV  Identificado em amostra de (' + (this.laudo.conclusao.zikv.sg  ? 'X' : ' ') + ')SG (' + (this.laudo.conclusao.zikv.ur  ? 'X' : ' ') + ')UR (' + (this.laudo.conclusao.zikv.la  ? 'X' : ' ') + ')LA (' + (this.laudo.conclusao.zikv.lcr  ? 'X' : ' ') + ')LCR', 120);
+    doc.text('(' + (this.laudo.conclusao.chikv.positivo ? 'X' : ' ') + ') CHIKV Identificado em amostra de (' + (this.laudo.conclusao.chikv.sg ? 'X' : ' ') + ')SG (' + (this.laudo.conclusao.chikv.ur ? 'X' : ' ') + ')UR (' + (this.laudo.conclusao.chikv.la ? 'X' : ' ') + ')LA (' + (this.laudo.conclusao.chikv.lcr ? 'X' : ' ') + ')LCR', 120);
+    doc.moveDown();
+
+    doc.fontSize(TITLE_FONT_SIZE);
+    doc.text('OBSERVAÇÕES: ', RIGHT_MARGIN, doc.y);
+    doc.moveDown(0.5);
+
+    doc.fontSize(FONT_SIZE);
+    doc.text('(1) No caso de NÃO estar detectável na amostra, deve-se levar em consideração o tipo de material coletado e o tempo transcorrido entre o ínicio do sintomas observados e a data da coleta da amostra para realização do exame.');
+    doc.text('(2) Amostra com detecção indeterminada para o ácido nucléico sugerimos a realização de nova coleta.');
 
     // Finish the document
     doc.end();
