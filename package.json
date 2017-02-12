@@ -35,13 +35,7 @@
     "nvd3": "^1.8.5",
     "open": "0.0.5",
     "serve-favicon": "~2.3.0",
-    "url-loader": "^0.5.7"
-  },
-  "description": "Aplicativo para a emissão de laudos para diagnóstico molecular para os vírus da Zika",
-  "main": "server/index.js",
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
+    "url-loader": "^0.5.7",
     "babel-cli": "^6.18.0",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
@@ -62,6 +56,12 @@
     "webpack": "^1.14.0",
     "webpack-dashboard": "^0.2.1",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "^2.10.0"
+    "webpack-hot-middleware": "^2.10.0"    
+  },
+  "description": "Aplicativo para a emissão de laudos para diagnóstico molecular para os vírus da Zika",
+  "main": "server/index.js",
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
   }
 }
