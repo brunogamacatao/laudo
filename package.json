@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "webpack-dashboard -- nodemon --watch server server/index.js",
-    "build": "webpack --progress --colors --config webpack.config.js",
+    "heroku-postbuild": "webpack --progress --colors --config webpack.config.js",
     "test": "mocha test --recursive"
   },
   "dependencies": {
