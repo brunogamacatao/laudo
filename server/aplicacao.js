@@ -8,6 +8,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var constantes   = require('./config/constantes');
 
+// Autenticação
+var passport      = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
 /**
  * Criação de uma classe responsável por configurar e inicar a aplicação.
  */ 
@@ -15,6 +19,7 @@ var Aplicacao = function() {
   this.app = express();
 
   this.setupMiddleware();
+  this.setupAuthentication();
 
   if (this.inDevelopment()) {
     this.setupLiveReload();
@@ -34,6 +39,7 @@ Aplicacao.prototype.inDevelopment = function() {
  */
 Aplicacao.prototype.setupRoutes = function() {
   // Rotas
+  this.app.use('/user', require('./routes/user'));
   this.app.use('/laudos', require('./routes/laudos'));
 };
 
@@ -52,6 +58,17 @@ Aplicacao.prototype.setupMiddleware = function() {
   this.app.use(bodyParser.urlencoded({ extended: false }));
   this.app.use(cookieParser());
 
+  // Configuração da segurança
+  var expressSession = require('express-session');
+  var sessionParams = {
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false
+  };
+  this.app.use(expressSession(sessionParams));
+  this.app.use(passport.initialize());
+  this.app.use(passport.session());
+
   // Em seguida, são chamadas as rotas da aplicação
   this.setupRoutes();
 
@@ -65,6 +82,16 @@ Aplicacao.prototype.setupMiddleware = function() {
   // Caso nenhuma rota atenda a requisição, as funções de erro são executadas
   this.app.use(this.pageForFoundErrorHandler.bind(this));
   this.app.use(this.generalErrorHandler.bind(this));
+};
+
+/**
+ * Configuração da autenticação da aplicação
+ */
+Aplicacao.prototype.setupAuthentication = function() {
+  var User = require('./models/user');
+  passport.use(new LocalStrategy(User.authenticate()));
+  passport.serializeUser(User.serializeUser());
+  passport.deserializeUser(User.deserializeUser());
 };
 
 /**

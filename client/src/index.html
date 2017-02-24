@@ -6,15 +6,16 @@
   <body ng-app="ipesq" ng-cloak>
 
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top" ng-controller="NavbarController">
       <div class="container">
         <div class="navbar-header">
           <a class="navbar-brand" href="#">Diagnóstico Molecular ZIKV</a>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
+        <div id="navbar" class="collapse navbar-collapse" ng-if="isLoggedIn">
           <ul class="nav navbar-nav">
             <li class="active"><a ui-sref="index">Novo Laudo</a></li>
             <li><a ui-sref="lista">Consultar Laudos</a></li>
+            <li><a ui-sref="logout">Sair</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

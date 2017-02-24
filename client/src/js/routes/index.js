@@ -1,7 +1,21 @@
 function setupRoutes($stateProvider, $urlRouterProvider) {
   $stateProvider
-    .state('index', {
+    .state('login', {
       url: '/',
+      templateUrl: 'login.html',
+      controller: 'LoginController'
+    })
+    .state('logout', {
+      url: '/logout',
+      controller: 'LogoutController'
+    })
+    .state('register', {
+      url: '/register',
+      templateUrl: 'register.html',
+      controller: 'RegisterController'
+    })
+    .state('index', {
+      url: '/main',
       templateUrl: 'home.html',
       controller: 'MainController'
     })

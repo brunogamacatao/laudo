@@ -23,13 +23,14 @@ require('../css/style.css');
 // Importa os componentes
 import './controllers';
 import './directives';
+import './services';
 import setupRoutes from './routes';
 
 // Inicia o live reload (sempre que o código mudar, o browser é recarregado)
 LiveReload.start();
 
 const app = angular.module('ipesq', 
-  ['ui.router', 'ngSanitize', 'ipesq.controllers', 'ipesq.directives']);
+  ['ui.router', 'ngSanitize', 'ipesq.controllers', 'ipesq.directives', 'ipesq.services']);
 
 // Configuração das rotas
 app.config(
