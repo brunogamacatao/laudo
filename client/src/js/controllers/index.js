@@ -147,13 +147,11 @@ controllers.controller('RegisterController',
       // call register from service
       AuthService.register($scope.registerForm.username, $scope.registerForm.password)
         // handle success
-        .then(function () {
+        .then(function success() {
           $state.go('login');
           $scope.disabled = false;
           $scope.registerForm = {};
-        })
-        // handle error
-        .catch(function () {
+        }, function error() {
           $scope.error = true;
           $scope.errorMessage = "Something went wrong!";
           $scope.disabled = false;
