@@ -11,7 +11,13 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin('style.css'),
-    //new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      mangle: {
+        except: ['filepickerDirective']
+      },
+      comments: false,
+
+    }),
     new HtmlPlugin({
       template: 'client/src/index.html'
     }),
