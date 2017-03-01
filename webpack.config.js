@@ -12,9 +12,7 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin('style.css'),
     new webpack.optimize.UglifyJsPlugin({
-      mangle: {
-        except: ['filepickerDirective']
-      },
+      mangle: false,
       comments: false,
 
     }),
