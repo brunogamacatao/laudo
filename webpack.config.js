@@ -11,7 +11,7 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin('style.css'),
-    new webpack.optimize.UglifyJsPlugin(),
+    //new webpack.optimize.UglifyJsPlugin(),
     new HtmlPlugin({
       template: 'client/src/index.html'
     }),
