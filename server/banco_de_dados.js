@@ -14,7 +14,8 @@ var BancoDeDados = function(callback) {
 };
 
 BancoDeDados.prototype.registraModelos = function() {
-  require('./models/Laudos');
+  require('./models/user');
+  require('./models/laudo');
 };
 
 module.exports = BancoDeDados;

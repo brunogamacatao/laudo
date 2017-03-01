@@ -42,7 +42,11 @@ var LaudoSchema = new mongoose.Schema({
   conclusao: ConclusaoSchema,
   assinatura: String,
   createdAt: Date,
-  updatedAt: Date
+  updatedAt: Date,
+  owner: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User'
+  }
 });
 
 LaudoSchema.pre('save', function(next) {

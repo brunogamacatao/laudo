@@ -5,17 +5,24 @@ var mongoose = require('mongoose');
 var Laudo = mongoose.model('Laudo');
 
 router.get('/', function(req, res, next) {
-  Laudo.find(function(err, posts){
+  var filter = null;
+
+  if (!req.user.admin) {
+    filter = {'owner': req.user};
+  }
+
+  Laudo.find(filter).sort('-updatedAt').populate('owner').exec(function(err, posts){
     if (err) {
       return next(err);
     }
 
     res.json(posts);
-  }).sort('-updatedAt');
+  });
 });
 
 router.post('/', function(req, res, next) {
   var laudo = new Laudo(req.body);
+  laudo.owner = req.user;
 
   laudo.save(function(err, post){
     if(err) {

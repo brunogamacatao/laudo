@@ -5,6 +5,7 @@
       <th>RESULTADO</th>
       <th>DATA COLETA</th>
       <th>DATA RESULTADO</th>
+      <th>RESPONSÁVEL</th>
       <th>&nbsp;</th>
     </tr>
   </thead>
@@ -14,6 +15,7 @@
       <td>{{laudo.resultado}}</td>
       <td>{{laudo.dataColeta | date: 'dd/MM/yyyy'}}</td>
       <td>{{laudo.dataResultado | date: 'dd/MM/yyyy'}}</td>
+      <td>{{laudo.owner.nome}}</td>
       <td>
         <button class="btn btn-primary" ng-click="detalhe(laudo)"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
         <button class="btn btn-danger" ng-click="excluir(laudo)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>

@@ -118,7 +118,7 @@ controllers.controller('LoginController',
         .catch(function () {
           $rootScope.$emit('logout');
           $scope.error = true;
-          $scope.errorMessage = "Invalid username and/or password";
+          $scope.errorMessage = "Nome de usuario ou senha invalidos";
           $scope.disabled = false;
           $scope.loginForm = {};
         });
@@ -154,15 +154,18 @@ controllers.controller('RegisterController',
       $scope.disabled = true;
 
       // call register from service
-      AuthService.register($scope.registerForm.username, $scope.registerForm.password)
+      AuthService.register($scope.registerForm.nome, 
+                           $scope.registerForm.admin, 
+                           $scope.registerForm.username, 
+                           $scope.registerForm.password)
         // handle success
         .then(function success() {
-          $state.go('login');
+          $state.transitionTo('login');
           $scope.disabled = false;
           $scope.registerForm = {};
         }, function error() {
           $scope.error = true;
-          $scope.errorMessage = "Something went wrong!";
+          $scope.errorMessage = "Ops, algo deu errado!";
           $scope.disabled = false;
           $scope.registerForm = {};
         });

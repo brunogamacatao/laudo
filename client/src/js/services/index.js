@@ -84,17 +84,18 @@ services.factory('AuthService',
 
     }
 
-    function register(username, password) {
+    function register(nome, admin, username, password) {
 
       // create a new instance of deferred
       var deferred = $q.defer();
 
       // send a post request to the server
       $http.post('/user/register',
-        {username: username, password: password})
+        {nome: nome, admin: admin || false, username: username, password: password})
         // handle success
         .then(function success(data, status) {
-          if(status === 200 && data.status){
+          console.log(data);
+          if(data.status === 200 && data.statusText === 'OK'){
             deferred.resolve();
           } else {
             deferred.reject();
