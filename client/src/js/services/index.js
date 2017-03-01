@@ -12,6 +12,7 @@ services.factory('AuthService',
 
     // return available functions for use in the controllers
     return ({
+      setUserStatus: setUserStatus,
       isLoggedIn: isLoggedIn,
       getUserStatus: getUserStatus,
       login: login,
@@ -27,18 +28,12 @@ services.factory('AuthService',
       }
     }
 
+    function setUserStatus(status) {
+      user = status;
+    }
+
     function getUserStatus() {
-      return $http.get('/user/status')
-      // handle success
-      .then(function success(data) {
-        if(data.status){
-          user = true;
-        } else {
-          user = false;
-        }
-      }, function error(data) {
-        user = false;
-      });
+      return $http.get('/user/status');
     }
 
     function login(username, password) {

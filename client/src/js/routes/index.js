@@ -3,31 +3,37 @@ function setupRoutes($stateProvider, $urlRouterProvider) {
     .state('login', {
       url: '/',
       templateUrl: 'login.html',
-      controller: 'LoginController'
+      controller: 'LoginController',
+      authenticate: false
     })
     .state('logout', {
       url: '/logout',
-      controller: 'LogoutController'
+      controller: 'LogoutController',
+      authenticate: false
     })
     .state('register', {
       url: '/register',
       templateUrl: 'register.html',
-      controller: 'RegisterController'
+      controller: 'RegisterController',
+      authenticate: false
     })
     .state('index', {
       url: '/main',
       templateUrl: 'home.html',
-      controller: 'MainController'
+      controller: 'MainController',
+      authenticate: true
     })
     .state('editar', {
       url: '/editar/:id',
       templateUrl: 'home.html',
-      controller: 'MainController'
+      controller: 'MainController',
+      authenticate: true
     })
     .state('lista', {
       url: '/lista',
       templateUrl: 'lista.html',
-      controller: 'ListaController'
+      controller: 'ListaController',
+      authenticate: true
     });
 
   $urlRouterProvider.otherwise('/');

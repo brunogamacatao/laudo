@@ -50,3 +50,25 @@ app.config(
     }
   ]
 );
+
+app.run(['$rootScope', '$state', 'AuthService', function ($rootScope, $state, AuthService) {
+  $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
+    if (toState.authenticate) {
+      function handleLogout() {
+        AuthService.setUserStatus(false);
+        $rootScope.$emit('logout');
+        $state.transitionTo('login');
+        event.preventDefault();        
+      }
+
+      AuthService.getUserStatus().then(function success(data) {
+        if (data.data.status) {
+          AuthService.setUserStatus(true);
+          $rootScope.$emit('login');
+        } else {
+          handleLogout();
+        }
+      }, handleLogout);
+    }
+  });
+}]);

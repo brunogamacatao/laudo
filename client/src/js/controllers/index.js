@@ -6,11 +6,14 @@ import '../services';
 const controllers = angular.module('ipesq.controllers', ['ipesq.services']);
 
 // Cria os controladores
-controllers.controller('MainController', ['$scope', '$http', '$stateParams', function($scope, $http, $stateParams) {
+controllers.controller('MainController', ['$rootScope', '$scope', '$http', '$stateParams', function($rootScope, $scope, $http, $stateParams) {
+  $rootScope.currentMenu = 'novo';
+
   function novoLaudo() {
     return {
       dataResultado: new Date(),
       materialColetado: {},
+      sintomas: {},
       resultado: null,
       conclusao: {
         zikv: {},
@@ -67,7 +70,8 @@ controllers.controller('MainController', ['$scope', '$http', '$stateParams', fun
   };
 }]);
 
-controllers.controller('ListaController', ['$scope', '$http', '$state', function($scope, $http, $state) {
+controllers.controller('ListaController', ['$rootScope', '$scope', '$http', '$state', function($rootScope, $scope, $http, $state) {
+  $rootScope.currentMenu = 'lista';
   $scope.laudos = [];
 
   function carregaLaudos() {

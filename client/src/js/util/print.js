@@ -81,15 +81,15 @@ class PrintToPdf {
   layoutReport(doc) {
     const RIGHT_MARGIN = 72;
     const font = 'fonts/Roboto-Regular.ttf';
-    const TITLE_FONT_SIZE = 12;
-    const FONT_SIZE = 10;
+    const TITLE_FONT_SIZE = 11;
+    const FONT_SIZE = 9;
     const OFFSET = 0;
     const SIGNATURE_WIDTH = 100;
 
     doc.font(font);
 
     // Add content
-    doc.fontSize(20);
+    doc.fontSize(16);
     doc.text('Laudo de Diagnóstico Molecular para os Vírus da Zika (ZIKV)', {align: 'center'});
 
     doc.moveDown();
@@ -98,9 +98,9 @@ class PrintToPdf {
     doc.text('NOME: ', {continued: true}).text(this.laudo.nome);
 
     doc.fontSize(FONT_SIZE);
-    doc.text('DATA INÍCIO SINTOMAS: ' + this.formatDate(this.laudo.dataInicioSintomas), RIGHT_MARGIN, 170);
-    doc.text('DATA COLETA: ' + this.formatDate(this.laudo.dataColeta), 260, 170);
-    doc.text('DATA RESULTADO: ' + this.formatDate(this.laudo.dataResultado), 400, 170);
+    doc.text('DATA INÍCIO SINTOMAS: ' + this.formatDate(this.laudo.dataInicioSintomas), RIGHT_MARGIN, 130);
+    doc.text('DATA COLETA: ' + this.formatDate(this.laudo.dataColeta), 260, 130);
+    doc.text('DATA RESULTADO: ' + this.formatDate(this.laudo.dataResultado), 400, 130);
     doc.moveDown();
 
     let caption = 'MATEIAL COLETADO:';
@@ -115,6 +115,23 @@ class PrintToPdf {
     doc.text('(' + (this.laudo.materialColetado.ur  ? 'X' : ' ') + ') URINA-UR', margin);
     doc.text('(' + (this.laudo.materialColetado.la  ? 'X' : ' ') + ') LÍQUIDO AMNIÓTICO-LA', margin);
     doc.text('(' + (this.laudo.materialColetado.lcr ? 'X' : ' ') + ') LÍQUIDO CEFALORRAQUIDIANO-LCR', margin);
+    doc.moveDown();
+
+    caption = 'SINTOMAS:';
+    margin = OFFSET + RIGHT_MARGIN + doc.font(font).fontSize(TITLE_FONT_SIZE).widthOfString(caption);
+
+    doc.fontSize(TITLE_FONT_SIZE);
+    doc.text(caption, RIGHT_MARGIN, doc.y);
+    doc.moveDown(0.5);
+
+    doc.fontSize(FONT_SIZE);
+    doc.text('(' + (this.laudo.sintomas.febre           ? 'X' : ' ') + ') Febre', margin);
+    doc.text('(' + (this.laudo.sintomas.dorDeCabeca     ? 'X' : ' ') + ') Dor de cabeça', margin);
+    doc.text('(' + (this.laudo.sintomas.exantema        ? 'X' : ' ') + ') Enxatema', margin);
+    doc.text('(' + (this.laudo.sintomas.conjuntivite    ? 'X' : ' ') + ') Conjuntivite', margin);
+    doc.text('(' + (this.laudo.sintomas.dorCorpo        ? 'X' : ' ') + ') Dor pelo corpo', margin);
+    doc.text('(' + (this.laudo.sintomas.dorRetroOrbital ? 'X' : ' ') + ') Dor retro-orbital', margin);
+    doc.text('(' + (this.laudo.sintomas.dorArticulacoes ? 'X' : ' ') + ') Dor nas articulações', margin);
     doc.moveDown();
 
     caption = 'METODOLOGIA:';

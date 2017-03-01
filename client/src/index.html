@@ -13,8 +13,12 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse" ng-if="isLoggedIn">
           <ul class="nav navbar-nav">
-            <li class="active"><a ui-sref="index">Novo Laudo</a></li>
-            <li><a ui-sref="lista">Consultar Laudos</a></li>
+            <li ng-class="{'active': currentMenu == 'novo'}">
+              <a ui-sref="index">Novo Laudo</a>
+            </li>
+            <li ng-class="{'active': currentMenu == 'lista'}">
+              <a ui-sref="lista">Consultar Laudos</a>
+            </li>
             <li><a ui-sref="logout">Sair</a></li>
           </ul>
         </div><!--/.nav-collapse -->

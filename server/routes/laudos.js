@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
     }
 
     res.json(posts);
-  });
+  }).sort('-updatedAt');
 });
 
 router.post('/', function(req, res, next) {
