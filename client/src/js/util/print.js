@@ -1,6 +1,7 @@
 import PDFDocument from 'pdfkit';
 import blobStream from 'blob-stream';
 import fontkit from 'fontkit';
+import 'buffer';
 
 class PrintToPdf {
   constructor(laudo) {
@@ -83,6 +84,7 @@ class PrintToPdf {
     const TITLE_FONT_SIZE = 12;
     const FONT_SIZE = 10;
     const OFFSET = 0;
+    const SIGNATURE_WIDTH = 100;
 
     doc.font(font);
 
@@ -148,16 +150,39 @@ class PrintToPdf {
     doc.text('(' + (this.laudo.conclusao.chikv.positivo ? 'X' : ' ') + ') CHIKV Identificado em amostra de (' + (this.laudo.conclusao.chikv.sg ? 'X' : ' ') + ')SG (' + (this.laudo.conclusao.chikv.ur ? 'X' : ' ') + ')UR (' + (this.laudo.conclusao.chikv.la ? 'X' : ' ') + ')LA (' + (this.laudo.conclusao.chikv.lcr ? 'X' : ' ') + ')LCR', 120);
     doc.moveDown();
 
-    doc.fontSize(TITLE_FONT_SIZE);
-    doc.text('OBSERVAÇÕES: ', RIGHT_MARGIN, doc.y);
-    doc.moveDown(0.5);
+    function finalizaDocumento() {
+      doc.fontSize(TITLE_FONT_SIZE);
+      doc.text('OBSERVAÇÕES: ', RIGHT_MARGIN, doc.y);
+      doc.moveDown(0.5);
 
-    doc.fontSize(FONT_SIZE);
-    doc.text('(1) No caso de NÃO estar detectável na amostra, deve-se levar em consideração o tipo de material coletado e o tempo transcorrido entre o ínicio do sintomas observados e a data da coleta da amostra para realização do exame.');
-    doc.text('(2) Amostra com detecção indeterminada para o ácido nucléico sugerimos a realização de nova coleta.');
+      doc.fontSize(FONT_SIZE);
+      doc.text('(1) No caso de NÃO estar detectável na amostra, deve-se levar em consideração o tipo de material coletado e o tempo transcorrido entre o ínicio do sintomas observados e a data da coleta da amostra para realização do exame.');
+      doc.text('(2) Amostra com detecção indeterminada para o ácido nucléico sugerimos a realização de nova coleta.');
 
-    // Finish the document
-    doc.end();
+      // Finish the document
+      doc.end();
+    }
+
+    if (this.laudo.assinatura) {
+      var xhr = new XMLHttpRequest;
+
+      xhr.onload = function() {
+        doc.fontSize(TITLE_FONT_SIZE);
+        doc.text('ASSINATURA: ', RIGHT_MARGIN, doc.y);
+
+        let sigX = (doc.page.width - SIGNATURE_WIDTH) / 2;
+        doc.image(new Buffer(xhr.response), sigX, doc.y, {width: SIGNATURE_WIDTH});
+
+        finalizaDocumento();
+      };
+
+      xhr.responseType = 'arraybuffer';
+      xhr.open('GET', this.laudo.assinatura, true);
+      xhr.send();
+    } else {
+      finalizaDocumento();
+    }
+
 
     return doc;
   }

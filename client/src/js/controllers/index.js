@@ -60,6 +60,11 @@ controllers.controller('MainController', ['$scope', '$http', '$stateParams', fun
   $scope.limpar = function() {
     $scope.laudo = novoLaudo();
   };
+
+  $scope.onUploadedAssinatura = function(blob) {
+    console.log(blob);
+    $scope.laudo.assinatura = blob.url;
+  };
 }]);
 
 controllers.controller('ListaController', ['$scope', '$http', '$state', function($scope, $http, $state) {

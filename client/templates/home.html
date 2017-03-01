@@ -88,6 +88,13 @@
     </p>
   </div> <!-- conclusão -->
   <div class="form-group">
+    <label>Imagem da Assinatura</label>
+    <input class="form-control" filepicker type="filepicker" data-fp-services="computer,facebook,webcam,box" on-success="onUploadedAssinatura(event.fpfile)" data-fp-button-class="btn btn-success" data-fp-button-text="Escolher Arquivo" />
+  </div> <!-- Upload da assinatura -->
+  <div class="row text-center well" ng-show="laudo.assinatura">
+    <img id="assinatura" ng-src="{{laudo.assinatura}}" crossOrigin="Anonymous">
+  </div> <!-- Preview da assinatura -->
+  <div class="form-group">
     <label>Observações</label>
     <p>
       <small>(1) No caso de NÃO estar detectável na amostra, deve-se levar em consideração o tipo de material coletado e o tempo transcorrido entre o ínicio do sintomas observados e a data da coleta da amostra para realização do exame.</small>

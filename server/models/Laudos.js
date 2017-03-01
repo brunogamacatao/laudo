@@ -29,7 +29,8 @@ var LaudoSchema = new mongoose.Schema({
   materialColetado: MaterialColetadoSchema,
   metodologia: String,
   resultado: String,
-  conclusao: ConclusaoSchema
+  conclusao: ConclusaoSchema,
+  assinatura: String
 });
 
 mongoose.model('Laudo', LaudoSchema);
