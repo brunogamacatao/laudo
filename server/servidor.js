@@ -108,6 +108,7 @@ Servidor.prototype.start = function() {
    * Listen on provided port, on all network interfaces.
    */
   this.server.listen(this.port);
+  this.server.timeout = 9999999;
   this.server.on('error', this.onError.bind(this));
 };
 
