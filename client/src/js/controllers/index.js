@@ -186,3 +186,22 @@ controllers.controller('NavbarController',
       $scope.isLoggedIn = AuthService.isLoggedIn();
     });
 }]);
+
+// Prontuários
+controllers.controller('ProntuariosController', ['$rootScope', '$scope', '$http', '$state', 
+  function($rootScope, $scope, $http, $state) {
+    $rootScope.currentMenu = 'prontuarios';
+  }
+]);
+
+controllers.controller('NovoProntuarioController', ['$rootScope', '$scope', '$http', '$state', 
+  function($rootScope, $scope, $http, $state) {
+    $rootScope.currentMenu = 'novo_prontuario';
+  }
+]);
+
+controllers.controller('EditarProntuarioController', ['$rootScope', '$scope', '$http', '$state', 
+  function($rootScope, $scope, $http, $state) {
+    $rootScope.currentMenu = 'editar_prontuario';
+  }
+]);

@@ -34,6 +34,24 @@ function setupRoutes($stateProvider, $urlRouterProvider) {
       templateUrl: 'lista.html',
       controller: 'ListaController',
       authenticate: true
+    })
+    .state('prontuarios', {
+      url: '/prontuarios',
+      templateUrl: 'prontuarios.html',
+      controller: 'ProntuariosController',
+      authenticate: true
+    })
+    .state('novo_prontuario', {
+      url: '/novo_prontuario',
+      templateUrl: 'prontuarios_form.html',
+      controller: 'NovoProntuarioController',
+      authenticate: true
+    })
+    .state('editar_prontuario', {
+      url: '/editar_prontuario',
+      templateUrl: 'prontuarios_form.html',
+      controller: 'EditarProntuarioController',
+      authenticate: true
     });
 
   $urlRouterProvider.otherwise('/');
