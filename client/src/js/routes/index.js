@@ -48,7 +48,7 @@ function setupRoutes($stateProvider, $urlRouterProvider) {
       authenticate: true
     })
     .state('editar_prontuario', {
-      url: '/editar_prontuario',
+      url: '/editar_prontuario/:id',
       templateUrl: 'prontuarios_form.html',
       controller: 'EditarProntuarioController',
       authenticate: true

@@ -191,18 +191,46 @@ controllers.controller('NavbarController',
 controllers.controller('ProntuariosController', ['$rootScope', '$scope', '$http', '$state', 'Prontuario',
   function($rootScope, $scope, $http, $state, Prontuario) {
     $rootScope.currentMenu = 'prontuarios';
+
+    $scope.filtro = '';
+    $scope.ordem = '';
     $scope.prontuarios = Prontuario.query();
+    $scope.pFiltrados = [];
+
+    $scope.ordena = function(campo) {
+      $scope.ordem = campo;
+    };
+
+    $scope.detalhe = function(prontuario) {
+      $state.go('editar_prontuario', {id: prontuario._id});
+    };
   }
 ]);
 
 controllers.controller('NovoProntuarioController', ['$rootScope', '$scope', '$http', '$state', 
   function($rootScope, $scope, $http, $state) {
     $rootScope.currentMenu = 'novo_prontuario';
+
+    $scope.prontuario = {};
+
+    $scope.salvar = function() {
+      new Prontuario($scope.prontuario).$save(function() {
+        $state.go('prontuarios');
+      });
+    };
   }
 ]);
 
-controllers.controller('EditarProntuarioController', ['$rootScope', '$scope', '$http', '$state', 
-  function($rootScope, $scope, $http, $state) {
+controllers.controller('EditarProntuarioController', ['$rootScope', '$scope', '$http', '$state', '$stateParams', 'Prontuario',
+  function($rootScope, $scope, $http, $state, $stateParams, Prontuario) {
     $rootScope.currentMenu = 'editar_prontuario';
+
+    $scope.prontuario = Prontuario.get({id: $stateParams.id});
+
+    $scope.salvar = function() {
+      new Prontuario($scope.prontuario).$save(function() {
+        $state.go('prontuarios');
+      });
+    };
   }
 ]);
