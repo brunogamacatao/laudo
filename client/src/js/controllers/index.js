@@ -188,9 +188,10 @@ controllers.controller('NavbarController',
 }]);
 
 // Prontuários
-controllers.controller('ProntuariosController', ['$rootScope', '$scope', '$http', '$state', 
-  function($rootScope, $scope, $http, $state) {
+controllers.controller('ProntuariosController', ['$rootScope', '$scope', '$http', '$state', 'Prontuario',
+  function($rootScope, $scope, $http, $state, Prontuario) {
     $rootScope.currentMenu = 'prontuarios';
+    $scope.prontuarios = Prontuario.query();
   }
 ]);
 

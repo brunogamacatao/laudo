@@ -1,1 +1,25 @@
-<h1>Prontuários</h1>
+<table class="table table-bordered table-hover table-striped">
+  <thead>
+    <tr>
+      <th>NOME DA MÃE</th>
+      <th>NOME DO FILHO</th>
+      <th>CIDADE</th>
+      <th>MÁ FORMAÇÃO</th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="prontuario in prontuarios">
+      <td>{{prontuario.mae.nome}}</td>
+      <td>{{prontuario.crianca.nome}}</td>
+      <td>{{prontuario.mae.cidade}}</td>
+      <td>{{prontuario.crianca.maFormacao}}</td>
+      <td>
+        <button class="btn btn-primary" ng-click="detalhe(prontuario)"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div ng-if="prontuarios.length === 0">
+  <h3>Aguarde, carregando ...</h3>
+</div>

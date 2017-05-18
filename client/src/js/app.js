@@ -9,6 +9,7 @@ import angular from 'angular';
 import 'angular-ui-router';
 import 'angular-messages';
 import 'angular-sanitize';
+import 'angular-resource';
 
 // Importa o jQuery
 import 'jquery';
@@ -34,7 +35,7 @@ import setupRoutes from './routes';
 LiveReload.start();
 
 const app = angular.module('ipesq', 
-  ['ui.router', 'ngSanitize', 'angular-filepicker', 
+  ['ui.router', 'ngResource', 'ngSanitize', 'angular-filepicker', 
   'ipesq.controllers', 'ipesq.directives', 'ipesq.services']);
 
 // Configuração das rotas

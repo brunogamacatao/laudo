@@ -110,3 +110,7 @@ services.factory('AuthService',
     }
 
 }]);
+
+services.factory('Prontuario', ['$resource', function($resource) {
+  return $resource('/prontuarios/:id');
+}]);
