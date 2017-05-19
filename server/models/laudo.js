@@ -43,9 +43,9 @@ var LaudoSchema = new mongoose.Schema({
   assinatura: String,
   createdAt: Date,
   updatedAt: Date,
-  owner: {
+  prontuario: {
     type: mongoose.Schema.ObjectId,
-    ref: 'User'
+    ref: 'Prontuario'
   }
 });
 

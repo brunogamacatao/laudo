@@ -6,8 +6,15 @@ import '../services';
 const controllers = angular.module('ipesq.controllers', ['ipesq.services']);
 
 // Cria os controladores
-controllers.controller('MainController', ['$rootScope', '$scope', '$http', '$stateParams', function($rootScope, $scope, $http, $stateParams) {
+controllers.controller('MainController', ['$rootScope', 
+  function($rootScope) {
+    $rootScope.currentMenu = 'index';
+  }
+]);
+
+controllers.controller('LaudosController', ['$rootScope', '$scope', '$http', '$stateParams', function($rootScope, $scope, $http, $stateParams) {
   $rootScope.currentMenu = 'novo';
+  $scope.id_prontuario = $stateParams.id_prontuario;
 
   function novoLaudo() {
     return {
@@ -22,8 +29,8 @@ controllers.controller('MainController', ['$rootScope', '$scope', '$http', '$sta
     };
   }
 
-  if ($stateParams.id) {
-    $http.get('/laudos/' + $stateParams.id).then(function(retorno) {
+  if ($stateParams.id_laudo) {
+    $http.get('/prontuarios/' + $stateParams.id_prontuario + '/laudos/' + $stateParams.id_laudo).then(function(retorno) {
       // Conversão das datas
       if (retorno.data.dataInicioSintomas) {
         retorno.data.dataInicioSintomas = new Date(retorno.data.dataInicioSintomas);
@@ -38,7 +45,7 @@ controllers.controller('MainController', ['$rootScope', '$scope', '$http', '$sta
       }
 
       $scope.laudo = retorno.data;
-
+      console.log($scope.laudo);
     });
   } else {
     $scope.laudo = novoLaudo();
@@ -51,7 +58,7 @@ controllers.controller('MainController', ['$rootScope', '$scope', '$http', '$sta
       new PrintToPdf($scope.laudo).print();
     } else {
       console.log('Salvando ...');
-      $http.post('/laudos', $scope.laudo).then(function() {
+      $http.post('/prontuarios/' + $scope.id_prontuario + '/laudos', $scope.laudo).then(function() {
         console.log('Pronto');
         new PrintToPdf($scope.laudo).print();
       }, function(error) {
@@ -70,12 +77,13 @@ controllers.controller('MainController', ['$rootScope', '$scope', '$http', '$sta
   };
 }]);
 
-controllers.controller('ListaController', ['$rootScope', '$scope', '$http', '$state', function($rootScope, $scope, $http, $state) {
+controllers.controller('ListaController', ['$rootScope', '$scope', '$http', '$state', '$stateParams', function($rootScope, $scope, $http, $state, $stateParams) {
   $rootScope.currentMenu = 'lista';
+  $scope.id_prontuario = $stateParams.id_prontuario;
   $scope.laudos = [];
 
   function carregaLaudos() {
-    $http.get('/laudos').then(function(retorno) {
+    $http.get('/prontuarios/' + $scope.id_prontuario + '/laudos').then(function(retorno) {
       $scope.laudos = retorno.data;
     }, function(error) {
       console.log('Deu erro');
@@ -85,11 +93,11 @@ controllers.controller('ListaController', ['$rootScope', '$scope', '$http', '$st
   carregaLaudos();
 
   $scope.detalhe = function(laudo) {
-    $state.go('editar', {id: laudo._id});
+    $state.go('editar_laudo', {id_laudo: laudo._id, id_prontuario: $scope.id_prontuario});
   };
 
   $scope.excluir = function(laudo) {
-    $http.get('/laudos/' + laudo._id + '/delete').then(function(retorno) {
+    $http.get('/prontuarios/' + $scope.id_prontuario + '/laudos/' + laudo._id + '/delete').then(function(retorno) {
       carregaLaudos();
     });
   };

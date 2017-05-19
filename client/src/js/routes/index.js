@@ -1,5 +1,6 @@
 function setupRoutes($stateProvider, $urlRouterProvider) {
   $stateProvider
+    // Estados do login
     .state('login', {
       url: '/',
       templateUrl: 'login.html',
@@ -17,24 +18,33 @@ function setupRoutes($stateProvider, $urlRouterProvider) {
       controller: 'RegisterController',
       authenticate: false
     })
+    // Página principal
     .state('index', {
       url: '/main',
       templateUrl: 'home.html',
       controller: 'MainController',
       authenticate: true
     })
-    .state('editar', {
-      url: '/editar/:id',
-      templateUrl: 'home.html',
-      controller: 'MainController',
+    // Estados dos laudos
+    .state('novo_laudo', {
+      url: '/prontuarios/:id_prontuario/novo_laudo',
+      templateUrl: 'laudos_form.html',
+      controller: 'LaudosController',
       authenticate: true
     })
-    .state('lista', {
-      url: '/lista',
-      templateUrl: 'lista.html',
+    .state('editar_laudo', {
+      url: '/prontuarios/:id_prontuario/editar_laudo/:id_laudo',
+      templateUrl: 'laudos_form.html',
+      controller: 'LaudosController',
+      authenticate: true
+    })
+    .state('listar_laudos', {
+      url: '/prontuarios/:id_prontuario/laudos',
+      templateUrl: 'laudos.html',
       controller: 'ListaController',
       authenticate: true
     })
+    // Estados dos prontuários
     .state('prontuarios', {
       url: '/prontuarios',
       templateUrl: 'prontuarios.html',
@@ -48,7 +58,7 @@ function setupRoutes($stateProvider, $urlRouterProvider) {
       authenticate: true
     })
     .state('editar_prontuario', {
-      url: '/editar_prontuario/:id',
+      url: '/prontuarios/:id',
       templateUrl: 'prontuarios_form.html',
       controller: 'EditarProntuarioController',
       authenticate: true

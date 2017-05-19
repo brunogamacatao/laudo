@@ -1,3 +1,9 @@
+<ul class="nav nav-tabs" ng-if="prontuario._id">
+  <li role="presentation" class="active"><a href="#">Prontuário</a></li>
+  <li role="presentation"><a ui-sref="novo_laudo({id_prontuario: prontuario._id})">Novo Laudo</a></li>
+  <li role="presentation"><a ui-sref="listar_laudos({id_prontuario: prontuario._id})">Laudos</a></li>
+</ul>
+
 <form ng-submit="salvar()">
   <div class="panel panel-default">
     <div class="panel-heading">

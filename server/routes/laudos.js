@@ -3,6 +3,7 @@ var router = express.Router();
 
 var mongoose = require('mongoose');
 var Laudo = mongoose.model('Laudo');
+var Prontuario = mongoose.model('Prontuario');
 
 router.get('/', function(req, res, next) {
   var filter = null;
@@ -32,6 +33,24 @@ router.post('/', function(req, res, next) {
     res.json(laudo);
   });
 });
+
+router.param('prontuarioId', function(req, res, next, id) {
+  var query = Prontuario.findById(id);
+
+  query.exec(function (err, prontuario){
+    if (err) { 
+      return next(err); 
+    }
+
+    if (!prontuario) { 
+      return next(new Error('Não foi possível encontrar o prontuário')); 
+    }
+
+    req.prontuario = prontuario;
+    return next();
+  });
+});
+
 
 router.param('laudoId', function(req, res, next, id) {
   var query = Laudo.findById(id);
