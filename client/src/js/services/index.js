@@ -112,5 +112,7 @@ services.factory('AuthService',
 }]);
 
 services.factory('Prontuario', ['$resource', function($resource) {
-  return $resource('/prontuarios/:id');
+  return $resource('/prontuarios/:id', null, {
+    'update': { method:'PUT' }
+  });
 }]);

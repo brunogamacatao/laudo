@@ -1,14 +1,10 @@
 <ul class="nav nav-tabs">
   <li role="presentation"><a ui-sref="editar_prontuario({id: id_prontuario})">Prontuário</a></li>
-  <li role="presentation" class="active"><a href="#">Novo Laudo</a></li>
+  <li role="presentation" class="active"><a ui-sref="novo_laudo({id_prontuario: id_prontuario})">Novo Laudo</a></li>
   <li role="presentation"><a ui-sref="listar_laudos({id_prontuario: id_prontuario})">Laudos</a></li>
 </ul>
 
 <form id="formulario">
-  <div class="form-group">
-    <label>Nome</label>
-    <input type="text" class="form-control" placeholder="nome" ng-model="laudo.nome">
-  </div>
   <div class="row">
     <div class="col-md-4">
       <div class="form-group">

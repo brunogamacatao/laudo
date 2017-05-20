@@ -12,7 +12,7 @@ controllers.controller('MainController', ['$rootScope',
   }
 ]);
 
-controllers.controller('LaudosController', ['$rootScope', '$scope', '$http', '$stateParams', function($rootScope, $scope, $http, $stateParams) {
+controllers.controller('LaudosController', ['$rootScope', '$scope', '$http', '$stateParams', 'Prontuario', function($rootScope, $scope, $http, $stateParams, Prontuario) {
   $rootScope.currentMenu = 'novo';
   $scope.id_prontuario = $stateParams.id_prontuario;
 
@@ -27,6 +27,12 @@ controllers.controller('LaudosController', ['$rootScope', '$scope', '$http', '$s
         chikv: {}
       }
     };
+  }
+
+  function carregaProntuario() {
+    Prontuario.get({id: $scope.id_prontuario}, function(prontuario) {
+      $scope.laudo.nome = prontuario.mae.nome;
+    });
   }
 
   if ($stateParams.id_laudo) {
@@ -45,11 +51,13 @@ controllers.controller('LaudosController', ['$rootScope', '$scope', '$http', '$s
       }
 
       $scope.laudo = retorno.data;
-      console.log($scope.laudo);
+      carregaProntuario();
     });
   } else {
     $scope.laudo = novoLaudo();
+    carregaProntuario();
   }
+
 
   $scope.emitir = function() {
 
@@ -69,6 +77,7 @@ controllers.controller('LaudosController', ['$rootScope', '$scope', '$http', '$s
 
   $scope.limpar = function() {
     $scope.laudo = novoLaudo();
+    carregaProntuario();
   };
 
   $scope.onUploadedAssinatura = function(blob) {
@@ -97,7 +106,13 @@ controllers.controller('ListaController', ['$rootScope', '$scope', '$http', '$st
   };
 
   $scope.excluir = function(laudo) {
-    $http.get('/prontuarios/' + $scope.id_prontuario + '/laudos/' + laudo._id + '/delete').then(function(retorno) {
+    $scope.laudoParaExcluir = laudo;
+    $('#modal_excluir_laudo').modal('show');
+  };
+
+  $scope.confirmaExcluir = function() {
+    $('#modal_excluir_laudo').modal('hide');
+    $http.delete('/prontuarios/' + $scope.id_prontuario + '/laudos/' + $scope.laudoParaExcluir._id).then(function(retorno) {
       carregaLaudos();
     });
   };
@@ -212,11 +227,17 @@ controllers.controller('ProntuariosController', ['$rootScope', '$scope', '$http'
     $scope.detalhe = function(prontuario) {
       $state.go('editar_prontuario', {id: prontuario._id});
     };
+
+    $scope.excluir = function(laudo) {
+      $http.delete('/prontuarios/' + $scope.id_prontuario).then(function(retorno) {
+        $scope.prontuarios = Prontuario.query();
+      });
+    };
   }
 ]);
 
-controllers.controller('NovoProntuarioController', ['$rootScope', '$scope', '$http', '$state', 
-  function($rootScope, $scope, $http, $state) {
+controllers.controller('NovoProntuarioController', ['$rootScope', '$scope', '$http', '$state', 'Prontuario',
+  function($rootScope, $scope, $http, $state, Prontuario) {
     $rootScope.currentMenu = 'novo_prontuario';
 
     $scope.prontuario = {};
@@ -236,7 +257,7 @@ controllers.controller('EditarProntuarioController', ['$rootScope', '$scope', '$
     $scope.prontuario = Prontuario.get({id: $stateParams.id});
 
     $scope.salvar = function() {
-      new Prontuario($scope.prontuario).$save(function() {
+      Prontuario.update({id: $stateParams.id}, $scope.prontuario).$promise.then(function() {
         $state.go('prontuarios');
       });
     };

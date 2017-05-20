@@ -36,8 +36,9 @@
       <td>{{prontuario.crianca.nome}}</td>
       <td>{{prontuario.mae.cidade}}</td>
       <td>{{prontuario.crianca.maFormacao}}</td>
-      <td>
-        <button class="btn btn-primary" ng-click="detalhe(prontuario)"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+      <td style="min-width: 80px">
+        <button class="btn btn-primary btn-xs" ng-click="detalhe(prontuario)"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+        <button class="btn btn-danger btn-xs" ng-click="excluir(prontuario)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
       </td>
     </tr>
   </tbody>

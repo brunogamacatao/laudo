@@ -20,7 +20,20 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   var prontuario = new Prontuario(req.body);
 
+  prontuario.owner = req.user;
+
   prontuario.save(function(err, post){
+    if(err) {
+      return next(err);
+    }
+
+    res.json(prontuario);
+  });
+});
+
+// Atualiza um prontuário
+router.put('/:prontuarioId', function(req, res, next) {
+  Prontuario.update({_id: req.prontuario._id}, req.body, {}, function(err, prontuario){
     if(err) {
       return next(err);
     }
@@ -35,9 +48,14 @@ router.get('/:prontuarioId', function(req, res) {
 });
 
 // Remove um prontuário
-router.get('/:prontuarioId/delete', function(req, res) {
-  req.prontuario.remove().exec();
-  res.json({'status': 'ok'});
+router.delete('/:prontuarioId', function(req, res) {
+  Prontuario.remove({_id: req.prontuario.id}, function(err) {
+    if(err) {
+      return next(err);
+    }
+
+    res.json({'status': 'ok'});
+  });
 });
 
 // Retorna todos os laudos de um prontuário
@@ -61,7 +79,9 @@ router.get('/:prontuarioId/laudos/:laudoId', function(req, res) {
 // Adiciona um laudo a um prontuário
 router.post('/:prontuarioId/laudos', function(req, res, next) {
   var laudo = new Laudo(req.body);
+
   laudo.prontuario = req.prontuario;
+  laudo.user = req.user;
 
   laudo.save(function(err, laudo){
     if(err) {
@@ -73,9 +93,14 @@ router.post('/:prontuarioId/laudos', function(req, res, next) {
 });
 
 // Remove um laudo de um prontuário
-router.get('/:prontuarioId/laudos/:laudoId/delete', function(req, res) {
-  req.laudo.remove().exec();
-  res.json({'status': 'ok'});
+router.delete('/:prontuarioId/laudos/:laudoId', function(req, res) {
+  Laudo.remove({_id: req.laudo.id}, function(err) {
+    if(err) {
+      return next(err);
+    }
+
+    res.json({'status': 'ok'});
+  });
 });
 
 // Adiciona um prontuário ao request sempre que o parâmetro prontuarioId for informado

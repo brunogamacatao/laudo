@@ -46,7 +46,11 @@ var LaudoSchema = new mongoose.Schema({
   prontuario: {
     type: mongoose.Schema.ObjectId,
     ref: 'Prontuario'
-  }
+  },
+  owner: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User'
+  }  
 });
 
 LaudoSchema.pre('save', function(next) {

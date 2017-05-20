@@ -3,7 +3,7 @@ function setupRoutes($stateProvider, $urlRouterProvider) {
     // Estados do login
     .state('login', {
       url: '/',
-      templateUrl: 'login.html',
+      templateUrl: 'login/login.html',
       controller: 'LoginController',
       authenticate: false
     })
@@ -14,7 +14,7 @@ function setupRoutes($stateProvider, $urlRouterProvider) {
     })
     .state('register', {
       url: '/register',
-      templateUrl: 'register.html',
+      templateUrl: 'login/register.html',
       controller: 'RegisterController',
       authenticate: false
     })
@@ -28,43 +28,43 @@ function setupRoutes($stateProvider, $urlRouterProvider) {
     // Estados dos laudos
     .state('novo_laudo', {
       url: '/prontuarios/:id_prontuario/novo_laudo',
-      templateUrl: 'laudos_form.html',
+      templateUrl: 'laudo/form.html',
       controller: 'LaudosController',
       authenticate: true
     })
     .state('editar_laudo', {
       url: '/prontuarios/:id_prontuario/editar_laudo/:id_laudo',
-      templateUrl: 'laudos_form.html',
+      templateUrl: 'laudo/form.html',
       controller: 'LaudosController',
       authenticate: true
     })
     .state('listar_laudos', {
       url: '/prontuarios/:id_prontuario/laudos',
-      templateUrl: 'laudos.html',
+      templateUrl: 'laudo/list.html',
       controller: 'ListaController',
       authenticate: true
     })
     // Estados dos prontuários
     .state('prontuarios', {
       url: '/prontuarios',
-      templateUrl: 'prontuarios.html',
+      templateUrl: 'prontuario/list.html',
       controller: 'ProntuariosController',
       authenticate: true
     })
     .state('novo_prontuario', {
       url: '/novo_prontuario',
-      templateUrl: 'prontuarios_form.html',
+      templateUrl: 'prontuario/form.html',
       controller: 'NovoProntuarioController',
       authenticate: true
     })
     .state('editar_prontuario', {
       url: '/prontuarios/:id',
-      templateUrl: 'prontuarios_form.html',
+      templateUrl: 'prontuario/form.html',
       controller: 'EditarProntuarioController',
       authenticate: true
     });
 
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/main');
 }
 
 export default setupRoutes;

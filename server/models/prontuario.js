@@ -46,7 +46,11 @@ var ProntuarioSchema = new mongoose.Schema({
   mae: MaeSchema,
   crianca: CriancaSchema,
   createdAt: Date,
-  updatedAt: Date
+  updatedAt: Date,
+  owner: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User'
+  }
 });
 
 ProntuarioSchema.pre('save', function(next) {
