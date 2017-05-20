@@ -509,6 +509,7 @@ controllers.controller('ExportarController', ['$rootScope', '$scope', '$http', '
         // Carrega os laudos
         $http.get('/prontuarios/' + $scope.id_prontuario + '/laudos').then(function(retorno) {
           var laudos = retorno.data;
+          laudos.forEach((e) => e.prontuario = prontuario);
           excel.addSheet('Laudos', laudosToArray(laudos));
 
           // Carrega os exames

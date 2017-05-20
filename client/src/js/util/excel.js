@@ -55,7 +55,7 @@ class Excel {
 }
 
 export var laudosToArray = function(laudos) {
-  var colunas = ['Nome', 'Data de Início dos Sintomas', 'Data da Coleta', 'Data do Resultado', 
+  var colunas = ['ID do Prontuário', 'Nome', 'Data de Início dos Sintomas', 'Data da Coleta', 'Data do Resultado', 
   'Sangue', 'Urina', 'Líquido Amniótico', 'Líquido Cefalorraquidiano',
   'Febre', 'Dor de Cabeça', 'Exantema', 'Conjuntivite', 'Dor pelo corpo', 'Dor retro-orbital', 'Dor nas articulações',
   'Metodologia', 'Resultado', 
@@ -69,6 +69,7 @@ export var laudosToArray = function(laudos) {
   for (var i = 0; i < laudos.length; i++) {
     var l = laudos[i];
     resultado.push([
+      !l.prontuario ? '' : l.prontuario._id,
       l.nome,
       l.dataInicioSintomas,
       l.dataColeta,
@@ -105,7 +106,7 @@ export var laudosToArray = function(laudos) {
 };
 
 export var prontuariosToArray = function(prontuarios) {
-  var colunas = ['Nome da mãe', 'Local do acompanhamento', 'endereço', 'cidade', 'ponto de referência', 'telefone',
+  var colunas = ['ID', 'Nome da mãe', 'Local do acompanhamento', 'endereço', 'cidade', 'ponto de referência', 'telefone',
   'telefone de contato', 'data de nascimento', 'gestações', 'nascimentos', 'abortos', 'peso da mãe', 'altura da mãe',
   'primeira ultrassom', 'última ultrassom', 'idade gestacional na admissão do projeto', 
   'História da Exantema', 'Exantema Trimestre', 'Exantema Mês', 'Exantema Idade Gestacional Mês', 'Exantema Idade Gestacional Trimestre',
@@ -119,6 +120,7 @@ export var prontuariosToArray = function(prontuarios) {
     var p = prontuarios[i];
     resultado.push(
       [
+        p._id,
         !p.mae ? '' : p.mae.nome,
         !p.mae ? '' : p.mae.localAcompanhamento,
         !p.mae ? '' : p.mae.endereco,
@@ -159,7 +161,7 @@ export var prontuariosToArray = function(prontuarios) {
 };
 
 export var examesToArray = function(exames) {
-  var colunas = ['Nome da mãe', 'Nome da criança', 'Tipo do Exame', 'Data', 'Idade gestacional',
+  var colunas = ['ID do Prontuário', 'Nome da mãe', 'Nome da criança', 'Tipo do Exame', 'Data', 'Idade gestacional',
   'Local', 'Imagem salva', 'Redução volumétrica', 'Paquigiria', 'Lisencefalia', 'Ventriculomegalia',
   'Hidrocefalia', 'Ventriculomegalia severa', 'Calficações', 'Local das calcificações', 'Corpo caloso',
   'Malformações císticas', 'Local dos cistos', 'Hipoplasia do cerebelo', 'Hipoplasia do vermis',
@@ -172,6 +174,7 @@ export var examesToArray = function(exames) {
     var e = exames[i];
     resultado.push(
       [
+        e.prontuario._id,
         e.prontuario.mae.nome,
         e.prontuario.crianca.nome,
         e.nome,
@@ -204,7 +207,7 @@ export var examesToArray = function(exames) {
 };
 
 export var gmfmsToArray = function(gmfms)  {
-  var colunas = ['Nome da mãe', 'Nome da criança', 'Data', 'Nível I', 'Nível II', 'Nível III', 'Nível IV', 'Nível V',
+  var colunas = ['ID do Prontuário', 'Nome da mãe', 'Nome da criança', 'Data', 'Nível I', 'Nível II', 'Nível III', 'Nível IV', 'Nível V',
   'Score 88', 'Dimensão A', 'Dimensão B', 'Dimensão C', 'Dimensão D', 'Dimensão E', 'Score 66',
   'Erro padrão', 'Índice de Confiança', 'Autor'];
 
@@ -214,6 +217,7 @@ export var gmfmsToArray = function(gmfms)  {
     var g = gmfms[i];
 
     resultado.push([
+      g.prontuario._id,
       g.prontuario.mae.nome,
       g.prontuario.crianca.nome,
       g.data,
