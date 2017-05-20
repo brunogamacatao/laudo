@@ -7,10 +7,17 @@ import Excel, {laudosToArray, prontuariosToArray, examesToArray, gmfmsToArray} f
 const controllers = angular.module('ipesq.controllers', ['ipesq.services']);
 
 // Cria os controladores
-controllers.controller('MainController', ['$rootScope', '$scope', 'Prontuario',
-  function($rootScope, $scope, Prontuario) {
+controllers.controller('MainController', ['$rootScope', '$scope', 'Prontuario', 'AuthService',
+  function($rootScope, $scope, Prontuario, AuthService) {
     $rootScope.currentMenu = 'index';
+    $scope.admin = AuthService.isAdmin();
     $scope.prontuarios = Prontuario.query();
+
+    $scope.exportar = function() {
+      var excel = new Excel();
+      excel.addSheet('Prontuários', prontuariosToArray($scope.prontuarios));
+      excel.save('ipesq.xlsx');
+    };
   }
 ]);
 
