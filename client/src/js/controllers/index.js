@@ -1,20 +1,25 @@
 import angular from 'angular';
 import PrintToPdf from '../util/print';
 import '../services';
+import Excel, {laudosToArray, prontuariosToArray, examesToArray, gmfmsToArray} from '../util/excel';
 
 // Cria o módulo
 const controllers = angular.module('ipesq.controllers', ['ipesq.services']);
 
 // Cria os controladores
-controllers.controller('MainController', ['$rootScope', 
-  function($rootScope) {
+controllers.controller('MainController', ['$rootScope', '$scope', 'Prontuario',
+  function($rootScope, $scope, Prontuario) {
     $rootScope.currentMenu = 'index';
+    $scope.prontuarios = Prontuario.query();
   }
 ]);
 
-controllers.controller('LaudosController', ['$rootScope', '$scope', '$http', '$stateParams', 'Prontuario', function($rootScope, $scope, $http, $stateParams, Prontuario) {
+controllers.controller('LaudosController', 
+['$rootScope', '$scope', '$http', '$stateParams', 'Prontuario', 'AuthService',
+function($rootScope, $scope, $http, $stateParams, Prontuario, AuthService) {
   $rootScope.currentMenu = 'novo';
   $scope.id_prontuario = $stateParams.id_prontuario;
+  $scope.admin = AuthService.isAdmin();
 
   function novoLaudo() {
     return {
@@ -86,10 +91,13 @@ controllers.controller('LaudosController', ['$rootScope', '$scope', '$http', '$s
   };
 }]);
 
-controllers.controller('ListaController', ['$rootScope', '$scope', '$http', '$state', '$stateParams', function($rootScope, $scope, $http, $state, $stateParams) {
+controllers.controller('ListaController', 
+['$rootScope', '$scope', '$http', '$state', '$stateParams', 'AuthService',
+function($rootScope, $scope, $http, $state, $stateParams, AuthService) {
   $rootScope.currentMenu = 'lista';
   $scope.id_prontuario = $stateParams.id_prontuario;
   $scope.laudos = [];
+  $scope.admin = AuthService.isAdmin();
 
   function carregaLaudos() {
     $http.get('/prontuarios/' + $scope.id_prontuario + '/laudos').then(function(retorno) {
@@ -257,10 +265,11 @@ controllers.controller('NovoProntuarioController', ['$rootScope', '$scope', '$ht
   }
 ]);
 
-controllers.controller('EditarProntuarioController', ['$rootScope', '$scope', '$http', '$state', '$stateParams', 'Prontuario',
-  function($rootScope, $scope, $http, $state, $stateParams, Prontuario) {
+controllers.controller('EditarProntuarioController', ['$rootScope', '$scope', '$http', '$state', '$stateParams', 'Prontuario', 'AuthService',
+  function($rootScope, $scope, $http, $state, $stateParams, Prontuario, AuthService) {
     $rootScope.currentMenu = 'editar_prontuario';
 
+    $scope.admin = AuthService.isAdmin();
     $scope.prontuario = Prontuario.get({id: $stateParams.id});
 
     $scope.salvar = function() {
@@ -275,10 +284,11 @@ controllers.controller('EditarProntuarioController', ['$rootScope', '$scope', '$
 // EXAMES
 // ----------------------------------------------------------------------------
 
-controllers.controller('NovoExameController', ['$rootScope', '$scope', '$http', '$state', '$stateParams',
-  function($rootScope, $scope, $http, $state, $stateParams) {
+controllers.controller('NovoExameController', ['$rootScope', '$scope', '$http', '$state', '$stateParams', 'AuthService',
+  function($rootScope, $scope, $http, $state, $stateParams, AuthService) {
     $rootScope.currentMenu = 'novo_exame';
     $scope.id_prontuario = $stateParams.id_prontuario;
+    $scope.admin = AuthService.isAdmin();
 
     $scope.exame = {};
     $scope.unidade = '';
@@ -299,10 +309,11 @@ controllers.controller('NovoExameController', ['$rootScope', '$scope', '$http', 
   }
 ]);
 
-controllers.controller('EditarExameController', ['$rootScope', '$scope', '$http', '$state', '$stateParams',
-  function($rootScope, $scope, $http, $state, $stateParams) {
+controllers.controller('EditarExameController', ['$rootScope', '$scope', '$http', '$state', '$stateParams', 'AuthService',
+  function($rootScope, $scope, $http, $state, $stateParams, AuthService) {
     $rootScope.currentMenu = 'editar_exame';
     $scope.id_prontuario = $stateParams.id_prontuario;
+    $scope.admin = AuthService.isAdmin();
 
     $scope.exame = {};
     $scope.unidade = '';
@@ -333,10 +344,11 @@ controllers.controller('EditarExameController', ['$rootScope', '$scope', '$http'
   }
 ]);
 
-controllers.controller('ListarExamesController', ['$rootScope', '$scope', '$http', '$state', '$stateParams',
-  function($rootScope, $scope, $http, $state, $stateParams) {
+controllers.controller('ListarExamesController', ['$rootScope', '$scope', '$http', '$state', '$stateParams', 'AuthService',
+  function($rootScope, $scope, $http, $state, $stateParams, AuthService) {
     $rootScope.currentMenu = 'listar_exames';
     $scope.id_prontuario = $stateParams.id_prontuario;
+    $scope.admin = AuthService.isAdmin();
 
     $scope.exames = [];
 
@@ -372,10 +384,11 @@ controllers.controller('ListarExamesController', ['$rootScope', '$scope', '$http
 // GMFMS
 // ----------------------------------------------------------------------------
 
-controllers.controller('NovoGMFMController', ['$rootScope', '$scope', '$http', '$state', '$stateParams',
-  function($rootScope, $scope, $http, $state, $stateParams) {
+controllers.controller('NovoGMFMController', ['$rootScope', '$scope', '$http', '$state', '$stateParams', 'AuthService',
+  function($rootScope, $scope, $http, $state, $stateParams, AuthService) {
     $rootScope.currentMenu = 'novo_gmfm';
     $scope.id_prontuario = $stateParams.id_prontuario;
+    $scope.admin = AuthService.isAdmin();
 
     $scope.gmfm = {};
 
@@ -390,10 +403,11 @@ controllers.controller('NovoGMFMController', ['$rootScope', '$scope', '$http', '
   }
 ]);
 
-controllers.controller('EditarGMFMController', ['$rootScope', '$scope', '$http', '$state', '$stateParams',
-  function($rootScope, $scope, $http, $state, $stateParams) {
+controllers.controller('EditarGMFMController', ['$rootScope', '$scope', '$http', '$state', '$stateParams', 'AuthService',
+  function($rootScope, $scope, $http, $state, $stateParams, AuthService) {
     $rootScope.currentMenu = 'editar_gmfm';
     $scope.id_prontuario = $stateParams.id_prontuario;
+    $scope.admin = AuthService.isAdmin();
 
     $scope.gmfm = {};
 
@@ -417,10 +431,11 @@ controllers.controller('EditarGMFMController', ['$rootScope', '$scope', '$http',
   }
 ]);
 
-controllers.controller('ListarGMFMSController', ['$rootScope', '$scope', '$http', '$state', '$stateParams',
-  function($rootScope, $scope, $http, $state, $stateParams) {
+controllers.controller('ListarGMFMSController', ['$rootScope', '$scope', '$http', '$state', '$stateParams', 'AuthService',
+  function($rootScope, $scope, $http, $state, $stateParams, AuthService) {
     $rootScope.currentMenu = 'listar_gmfms';
     $scope.id_prontuario = $stateParams.id_prontuario;
+    $scope.admin = AuthService.isAdmin();
 
     $scope.gmfms = [];
 
@@ -447,6 +462,45 @@ controllers.controller('ListarGMFMSController', ['$rootScope', '$scope', '$http'
       $('#modal_excluir_gmfm').modal('hide');
       $http.delete('/prontuarios/' + $scope.id_prontuario + '/gmfms/' + $scope.gmfmParaExcluir._id).then(function(retorno) {
         carrega();
+      });
+    };
+  }
+]);
+
+// Exportar
+controllers.controller('ExportarController', ['$rootScope', '$scope', '$http', '$state', '$stateParams', 'Prontuario',
+  function($rootScope, $scope, $http, $state, $stateParams, Prontuario) {
+    $rootScope.currentMenu = 'exportar';
+    $scope.id_prontuario = $stateParams.id_prontuario;
+
+    $scope.exportar = function() {
+      var excel = new Excel();
+
+      // Carrega o prontuário      
+      Prontuario.get({id: $stateParams.id_prontuario}, function(prontuario) {
+        excel.addSheet('Prontuário', prontuariosToArray([prontuario]));
+
+        // Carrega os laudos
+        $http.get('/prontuarios/' + $scope.id_prontuario + '/laudos').then(function(retorno) {
+          var laudos = retorno.data;
+          excel.addSheet('Laudos', laudosToArray(laudos));
+
+          // Carrega os exames
+          $http.get('/prontuarios/' + $scope.id_prontuario + '/exames').then(function(retorno) {
+            var exames = retorno.data;
+            exames.forEach((e) => e.prontuario = prontuario);
+            excel.addSheet('Exames', examesToArray(exames));
+
+            // Carrega os GMFMs
+            $http.get('/prontuarios/' + $scope.id_prontuario + '/gmfms').then(function(retorno) {
+              var gmfms = retorno.data;
+              gmfms.forEach((g) => g.prontuario = prontuario);
+              excel.addSheet('GMFM', gmfmsToArray(gmfms));
+
+              excel.save('ipesq.xlsx');
+            });
+          });
+        });
       });
     };
   }

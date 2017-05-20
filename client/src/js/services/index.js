@@ -9,6 +9,7 @@ services.factory('AuthService',
 
     // create user variable
     var user = null;
+    var admin = false;
 
     // return available functions for use in the controllers
     return ({
@@ -17,8 +18,13 @@ services.factory('AuthService',
       getUserStatus: getUserStatus,
       login: login,
       logout: logout,
-      register: register
+      register: register,
+      isAdmin: isAdmin
     });
+
+    function isAdmin() {
+      return admin;
+    }
 
     function isLoggedIn() {
       if(user) {
@@ -48,13 +54,16 @@ services.factory('AuthService',
         .then(function success(data, status) {
           if(data.status === 200 && data.status){
             user = true;
+            admin = data.data.admin;
             deferred.resolve();
           } else {
             user = false;
+            admin = false;
             deferred.reject();
           }
         }, function error(data) {
           user = false;
+          admin = false;
           deferred.reject();
         });
 

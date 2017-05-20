@@ -6,6 +6,7 @@
   <li role="presentation"><a ui-sref="listar_exames({id_prontuario: id_prontuario})">Exames</a></li>
   <li role="presentation"><a ui-sref="novo_gmfm({id_prontuario: id_prontuario})">Novo GMFM</a></li>
   <li role="presentation"><a ui-sref="listar_gmfms({id_prontuario: id_prontuario})">GMFMs</a></li>
+  <li role="presentation" ng-if="admin"><a ui-sref="exportar({id_prontuario: id_prontuario})">Exportar</a></li>
 </ul>
 
 <table class="table table-bordered table-hover table-striped">

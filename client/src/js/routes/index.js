@@ -100,6 +100,13 @@ function setupRoutes($stateProvider, $urlRouterProvider) {
       templateUrl: 'prontuario/form.html',
       controller: 'EditarProntuarioController',
       authenticate: true
+    })
+    // Exportar
+    .state('exportar', {
+      url: '/prontuarios/:id_prontuario/exportar',
+      templateUrl: 'exportar/index.html',
+      controller: 'ExportarController',
+      authenticate: true
     });
 
   $urlRouterProvider.otherwise('/main');
