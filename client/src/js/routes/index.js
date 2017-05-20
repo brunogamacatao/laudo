@@ -21,7 +21,7 @@ function setupRoutes($stateProvider, $urlRouterProvider) {
     // Página principal
     .state('index', {
       url: '/main',
-      templateUrl: 'home.html',
+      templateUrl: 'main.html',
       controller: 'MainController',
       authenticate: true
     })
