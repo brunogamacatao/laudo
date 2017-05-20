@@ -1,0 +1,101 @@
+<ul class="nav nav-tabs">
+  <li role="presentation"><a ui-sref="editar_prontuario({id: id_prontuario})">Prontuário</a></li>
+  <li role="presentation"><a ui-sref="novo_laudo({id_prontuario: id_prontuario})">Novo Laudo</a></li>
+  <li role="presentation"><a ui-sref="listar_laudos({id_prontuario: id_prontuario})">Laudos</a></li>
+  <li role="presentation" class="active"><a ui-sref="novo_exame({id_prontuario: id_prontuario})">Novo Exame</a></li>
+  <li role="presentation"><a ui-sref="listar_exames({id_prontuario: id_prontuario})">Exames</a></li>
+</ul>
+
+<form id="formulario" ng-submit="salvar()">
+  <div class="form-group">
+    <label>Nome</label> 
+    <select id="nome_exame_select" class="form-control" ng-model="exame.nome" ng-change="mudaUnidade()">
+      <option value="">Selecione um tipo de exame</option>
+      <option value="RESSONANCIA_FETAL">Ressonância Fetal</option>
+      <option value="RESSONANCIA_NEONATAL">Ressonância Neonatal</option>
+      <option value="RESSONANCIA_UM_ANO">Ressonância com um ano</option>
+      <option value="TOMOGRAFIA">Tomografia Computadorizada</option>
+    </select>
+  </div>  
+  <div class="form-group">
+    <label>Data</label>
+    <input type="date" class="form-control" ng-model="exame.data">
+  </div>
+  <div class="form-group">
+    <label>Idade Gestacional {{unidade}}</label>
+    <input type="number" step="1" min="0" class="form-control" ng-model="exame.idadeGestacional">
+  </div>
+  <div class="form-group">
+    <label>Local</label> <input type="text" class="form-control" ng-model="exame.local">
+  </div>  
+  <div class="checkbox">
+    <label><input type="checkbox" ng-model="exame.imagemSalva"></label> Imagem Salva
+  </div>
+  <div class="checkbox">
+    <label><input type="checkbox" ng-model="exame.reducaoVolumetrica"></label> Redução Volumétrica
+  </div>
+  <div class="checkbox">
+    <label><input type="checkbox" ng-model="exame.paquigiria"></label> Paquigiria
+  </div>
+  <div class="checkbox">
+    <label><input type="checkbox" ng-model="exame.lisencefalia"></label> Lisencefalia
+  </div>
+  <div class="checkbox">
+    <label><input type="checkbox" ng-model="exame.ventriculomegalia"></label> Ventriculomegalia
+  </div>
+  <div class="checkbox">
+    <label><input type="checkbox" ng-model="exame.hidrocefalia"></label> Hidrocefalia
+  </div>
+  <div class="checkbox">
+    <label><input type="checkbox" ng-model="exame.ventriculomegaliaSevera"></label> Ventriculomegalia Severa
+  </div>
+  <div class="checkbox">
+    <label><input type="checkbox" ng-model="exame.calcificacoes"></label> Calcificacoes
+  </div>
+  <div class="form-group">
+    <label>Local das Calcificações</label> 
+    <select class="form-control" ng-model="exame.localDasCalcificacoes">
+      <option value="">Selecione o local</option>
+      <option value="SUBCORTICAL">Subcortical</option>
+      <option value="CORTICAL">Cortical</option>
+      <option value="NUCLEOS_DA_BASE">Núcleos da Base</option>
+      <option value="TALAMO">Tálamo</option>
+      <option value="CEREBELO">Cerebelo</option>
+      <option value="TRONCO">Tronco Cerebral</option>
+    </select>
+  </div>  
+  <div class="form-group">
+    <label>Corpo Caloso</label> 
+    <select class="form-control" ng-model="exame.corpoCaloso">
+      <option value="">Selecione</option>
+      <option value="NORMAL">Normal</option>
+      <option value="DISGENESIA">Disgenesia</option>
+      <option value="AGENESIA">Agenesia</option>
+    </select>
+  </div>  
+  <div class="checkbox">
+    <label><input type="checkbox" ng-model="exame.malformacoesCisticas"></label> Malformacoes Císticas
+  </div>
+  <div class="form-group">
+    <label>Local dos Cistos</label> <input type="text" class="form-control" ng-model="exame.localCistos">
+  </div>  
+  <div class="checkbox">
+    <label><input type="checkbox" ng-model="exame.hipoplasiaDoCerebelo"></label> Hipoplasia do Cerebelo
+  </div>
+  <div class="checkbox">
+    <label><input type="checkbox" ng-model="exame.hipoplasiaDoVermis"></label> Hipoplasia do Vermis
+  </div>
+  <div class="checkbox">
+    <label><input type="checkbox" ng-model="exame.hipoplasiaDoTronco"></label> Hipoplasia do Tronco
+  </div>
+  <div class="checkbox">
+    <label><input type="checkbox" ng-model="exame.hipoplasiaDaPonte"></label> Hipoplasia da Ponte
+  </div>
+  <div class="checkbox">
+    <label><input type="checkbox" ng-model="exame.hipoPlasiaDoHipotalamo"></label> Hipoplasia do Hipotálamo
+  </div>
+  <div class="checkbox">
+    <label><input type="checkbox" ng-model="exame.reducaoDasFontanelas"></label> Redução das Fontanelas
+  </div>
+  <button type="submit" class="btn btn-default">Salvar</button>
+</form>

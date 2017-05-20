@@ -44,6 +44,25 @@ function setupRoutes($stateProvider, $urlRouterProvider) {
       controller: 'ListaController',
       authenticate: true
     })
+    // Estados dos exames
+    .state('novo_exame', {
+      url: '/prontuarios/:id_prontuario/novo_exame',
+      templateUrl: 'exame/form.html',
+      controller: 'NovoExameController',
+      authenticate: true
+    })
+    .state('editar_exame', {
+      url: '/prontuarios/:id_prontuario/editar_exame/:id_exame',
+      templateUrl: 'exame/form.html',
+      controller: 'EditarExameController',
+      authenticate: true
+    })
+    .state('listar_exames', {
+      url: '/prontuarios/:id_prontuario/exames',
+      templateUrl: 'exame/list.html',
+      controller: 'ListarExamesController',
+      authenticate: true
+    })
     // Estados dos prontuários
     .state('prontuarios', {
       url: '/prontuarios',

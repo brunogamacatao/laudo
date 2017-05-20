@@ -17,6 +17,7 @@ BancoDeDados.prototype.registraModelos = function() {
   require('./models/user');
   require('./models/laudo');
   require('./models/prontuario');
+  require('./models/exame');
 };
 
 module.exports = BancoDeDados;
