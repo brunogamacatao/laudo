@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var Laudo = mongoose.model('Laudo');
 var Prontuario = mongoose.model('Prontuario');
 var Exame = mongoose.model('Exame');
+var GMFM = mongoose.model('GMFM');
 
 // ----------------------------------------------------------------------------
 // PRONTUÁRIOS
@@ -161,9 +162,69 @@ router.put('/:prontuarioId/exames/:exameId', function(req, res, next) {
   });
 });
 
-// Remove um laudo de um prontuário
+// Remove um exame de um prontuário
 router.delete('/:prontuarioId/exames/:exameId', function(req, res) {
   Exame.remove({_id: req.exame.id}, function(err) {
+    if(err) {
+      return next(err);
+    }
+
+    res.json({'status': 'ok'});
+  });
+});
+
+// ----------------------------------------------------------------------------
+// GMFM
+// ----------------------------------------------------------------------------
+
+// Retorna todos os gmfm de um prontuário
+router.get('/:prontuarioId/gmfms', function(req, res, next) {
+  var filter = {'prontuario': req.prontuario};
+
+  GMFM.find(filter).sort('-updatedAt').exec(function(err, gmfms){
+    if (err) {
+      return next(err);
+    }
+
+    res.json(gmfms);
+  });
+});
+
+// Retorna um gmfm
+router.get('/:prontuarioId/gmfms/:gmfmId', function(req, res) {
+  res.json(req.gmfm);
+});
+
+// Adiciona um gmfm a um prontuário
+router.post('/:prontuarioId/gmfms', function(req, res, next) {
+  var gmfm = new GMFM(req.body);
+
+  gmfm.prontuario = req.prontuario;
+  gmfm.user = req.user;
+
+  gmfm.save(function(err, gmfm){
+    if(err) {
+      return next(err);
+    }
+
+    res.json(gmfm);
+  });
+});
+
+// Atualiza um gmfm
+router.put('/:prontuarioId/gmfms/:gmfmId', function(req, res, next) {
+  GMFM.update({_id: req.gmfm._id}, req.body, {}, function(err, gmfm){
+    if(err) {
+      return next(err);
+    }
+
+    res.json(gmfm);
+  });
+});
+
+// Remove um gmfm de um prontuário
+router.delete('/:prontuarioId/gmfms/:gmfmId', function(req, res) {
+  GMFM.remove({_id: req.gmfm.id}, function(err) {
     if(err) {
       return next(err);
     }
@@ -230,5 +291,22 @@ router.param('exameId', function(req, res, next, id) {
   });
 });
 
+// Adiciona um gmfm ao request sempre que o parâmetro gmfmId for informado
+router.param('gmfmId', function(req, res, next, id) {
+  var query = GMFM.findById(id);
+
+  query.exec(function (err, gmfm){
+    if (err) { 
+      return next(err); 
+    }
+
+    if (!gmfm) { 
+      return next(new Error('Não foi possível encontrar o gmfm')); 
+    }
+
+    req.gmfm = gmfm;
+    return next();
+  });
+});
 
 module.exports = router;

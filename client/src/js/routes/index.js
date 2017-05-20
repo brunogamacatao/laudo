@@ -63,6 +63,25 @@ function setupRoutes($stateProvider, $urlRouterProvider) {
       controller: 'ListarExamesController',
       authenticate: true
     })
+    // Estados dos gmfms
+    .state('novo_gmfm', {
+      url: '/prontuarios/:id_prontuario/novo_gmfm',
+      templateUrl: 'gmfm/form.html',
+      controller: 'NovoGMFMController',
+      authenticate: true
+    })
+    .state('editar_gmfm', {
+      url: '/prontuarios/:id_prontuario/editar_gmfm/:id_gmfm',
+      templateUrl: 'gmfm/form.html',
+      controller: 'EditarGMFMController',
+      authenticate: true
+    })
+    .state('listar_gmfms', {
+      url: '/prontuarios/:id_prontuario/gmfms',
+      templateUrl: 'gmfm/list.html',
+      controller: 'ListarGMFMSController',
+      authenticate: true
+    })
     // Estados dos prontuários
     .state('prontuarios', {
       url: '/prontuarios',

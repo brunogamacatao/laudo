@@ -3,32 +3,30 @@
   <li role="presentation"><a ui-sref="novo_laudo({id_prontuario: id_prontuario})">Novo Laudo</a></li>
   <li role="presentation"><a ui-sref="listar_laudos({id_prontuario: id_prontuario})">Laudos</a></li>
   <li role="presentation"><a ui-sref="novo_exame({id_prontuario: id_prontuario})">Novo Exame</a></li>
-  <li role="presentation" class="active"><a ui-sref="listar_exames({id_prontuario: id_prontuario})">Exames</a></li>
+  <li role="presentation"><a ui-sref="listar_exames({id_prontuario: id_prontuario})">Exames</a></li>
   <li role="presentation"><a ui-sref="novo_gmfm({id_prontuario: id_prontuario})">Novo GMFM</a></li>
-  <li role="presentation"><a ui-sref="listar_gmfms({id_prontuario: id_prontuario})">GMFMs</a></li>
+  <li role="presentation" class="active"><a ui-sref="listar_gmfms({id_prontuario: id_prontuario})">GMFMs</a></li>
 </ul>
 
 <table class="table table-bordered table-hover table-striped">
   <thead>
     <tr>
-      <th>NOME</th>
       <th>DATA</th>
       <th>&nbsp;</th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="exame in exames">
-      <td>{{exame.nome}}</td>
-      <td>{{exame.data | date: 'dd/MM/yyyy'}}</td>
+    <tr ng-repeat="gmfm in gmfms">
+      <td>{{gmfm.data | date: 'dd/MM/yyyy'}}</td>
       <td>
-        <button class="btn btn-primary" ng-click="detalhe(exame)"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-        <button class="btn btn-danger" ng-click="excluir(exame)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+        <button class="btn btn-primary" ng-click="detalhe(gmfm)"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+        <button class="btn btn-danger" ng-click="excluir(gmfm)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
       </td>
     </tr>
   </tbody>
 </table>
 
-<div class="modal fade" tabindex="-1" role="dialog" id="modal_excluir_exame">
+<div class="modal fade" tabindex="-1" role="dialog" id="modal_excluir_gmfm">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -36,7 +34,7 @@
         <h4 class="modal-title">Tem certeza ?</h4>
       </div>
       <div class="modal-body">
-        <p>Tem certeza que quer excluir este exame ?</p>
+        <p>Tem certeza que quer excluir este GMFM ?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" ng-click="confirmaExcluir()">Excluir</button>

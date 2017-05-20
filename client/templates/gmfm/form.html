@@ -1,0 +1,59 @@
+<ul class="nav nav-tabs">
+  <li role="presentation"><a ui-sref="editar_prontuario({id: id_prontuario})">Prontuário</a></li>
+  <li role="presentation"><a ui-sref="novo_laudo({id_prontuario: id_prontuario})">Novo Laudo</a></li>
+  <li role="presentation"><a ui-sref="listar_laudos({id_prontuario: id_prontuario})">Laudos</a></li>
+  <li role="presentation"><a ui-sref="novo_exame({id_prontuario: id_prontuario})">Novo Exame</a></li>
+  <li role="presentation"><a ui-sref="listar_exames({id_prontuario: id_prontuario})">Exames</a></li>
+  <li role="presentation" class="active"><a ui-sref="novo_gmfm({id_prontuario: id_prontuario})">Novo GMFM</a></li>
+  <li role="presentation"><a ui-sref="listar_gmfms({id_prontuario: id_prontuario})">GMFMs</a></li>
+</ul>
+
+<form id="formulario" ng-submit="salvar()">
+  <div class="form-group">
+    <label>Data</label>
+    <input type="date" class="form-control" ng-model="gmfm.data">
+  </div>
+  <div class="form-group">
+    <label>Nível I</label><input type="number" step="0.01" min="0" class="form-control" ng-model="gmfm.nivelI">
+  </div>
+  <div class="form-group">
+    <label>Nível II</label><input type="number" step="0.01" min="0" class="form-control" ng-model="gmfm.nivelII">
+  </div>
+  <div class="form-group">
+    <label>Nível III</label><input type="number" step="0.01" min="0" class="form-control" ng-model="gmfm.nivelIII">
+  </div>
+  <div class="form-group">
+    <label>Nível IV</label><input type="number" step="0.01" min="0" class="form-control" ng-model="gmfm.nivelIV">
+  </div>
+  <div class="form-group">
+    <label>Nível V</label><input type="number" step="0.01" min="0" class="form-control" ng-model="gmfm.nivelV">
+  </div>
+  <div class="form-group">
+    <label>Score 88</label><input type="number" step="0.01" min="0" class="form-control" ng-model="gmfm.score88">
+  </div>
+  <div class="form-group">
+    <label>Dimensão A</label><input type="number" step="0.01" min="0" class="form-control" ng-model="gmfm.dimensaoA">
+  </div>
+  <div class="form-group">
+    <label>Dimensão B</label><input type="number" step="0.01" min="0" class="form-control" ng-model="gmfm.dimensaoB">
+  </div>
+  <div class="form-group">
+    <label>Dimensão C</label><input type="number" step="0.01" min="0" class="form-control" ng-model="gmfm.dimensaoC">
+  </div>
+  <div class="form-group">
+    <label>Dimensão D</label><input type="number" step="0.01" min="0" class="form-control" ng-model="gmfm.dimensaoD">
+  </div>
+  <div class="form-group">
+    <label>Dimensão E</label><input type="number" step="0.01" min="0" class="form-control" ng-model="gmfm.dimensaoE">
+  </div>
+  <div class="form-group">
+    <label>Score 66</label><input type="number" step="0.01" min="0" class="form-control" ng-model="gmfm.score66">
+  </div>
+  <div class="form-group">
+    <label>Erro Padrão</label><input type="number" step="0.01" min="0" class="form-control" ng-model="gmfm.erroPadrao">
+  </div>
+  <div class="form-group">
+    <label>Índice de Confiança</label><input type="number" step="0.01" min="0" class="form-control" ng-model="gmfm.indiceDeConfianca">
+  </div>
+  <button type="submit" class="btn btn-default">Salvar</button>
+</form>
