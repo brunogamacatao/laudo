@@ -7,8 +7,8 @@ import Excel, {laudosToArray, prontuariosToArray, examesToArray, gmfmsToArray} f
 const controllers = angular.module('ipesq.controllers', ['ipesq.services']);
 
 // Cria os controladores
-controllers.controller('MainController', ['$rootScope', '$scope', 'Prontuario', 'AuthService',
-  function($rootScope, $scope, Prontuario, AuthService) {
+controllers.controller('MainController', ['$rootScope', '$scope', 'Prontuario', 'AuthService', '$http',
+  function($rootScope, $scope, Prontuario, AuthService, $http) {
     $rootScope.currentMenu = 'index';
     $scope.admin = AuthService.isAdmin();
     $scope.prontuarios = Prontuario.query();
@@ -16,7 +16,26 @@ controllers.controller('MainController', ['$rootScope', '$scope', 'Prontuario', 
     $scope.exportar = function() {
       var excel = new Excel();
       excel.addSheet('Prontuários', prontuariosToArray($scope.prontuarios));
-      excel.save('ipesq.xlsx');
+
+      // Carrega os laudos
+      $http.get('/prontuarios/laudos').then(function(retorno) {
+        var laudos = retorno.data;
+        excel.addSheet('Laudos', laudosToArray(laudos));
+
+        // Carrega os exames
+        $http.get('/prontuarios/exames').then(function(retorno) {
+          var exames = retorno.data;
+          excel.addSheet('Exames', examesToArray(exames));
+
+          // Carrega os GMFMs
+          $http.get('/prontuarios/gmfms').then(function(retorno) {
+            var gmfms = retorno.data;
+            excel.addSheet('GMFM', gmfmsToArray(gmfms));
+            excel.save('ipesq.xlsx');
+          });
+        });
+      });
+
     };
   }
 ]);

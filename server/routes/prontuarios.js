@@ -21,6 +21,37 @@ router.get('/', function(req, res, next) {
     res.json(posts);
   });
 });
+// Retorna todos os laudos
+router.get('/laudos', function(req, res, next) {
+  Laudo.find().sort('-updatedAt').populate('prontuario').populate('owner').exec(function(err, laudos){
+    if (err) {
+      return next(err);
+    }
+
+    res.json(laudos);
+  });
+});
+// Retorna todos os exames
+router.get('/exames', function(req, res, next) {
+  Exame.find().sort('-updatedAt').populate('prontuario').populate('owner').exec(function(err, exames){
+    if (err) {
+      return next(err);
+    }
+
+    res.json(exames);
+  });
+});
+// Retorna todos os gmfm
+router.get('/gmfms', function(req, res, next) {
+  GMFM.find().sort('-updatedAt').populate('prontuario').populate('owner').exec(function(err, gmfms){
+    if (err) {
+      return next(err);
+    }
+
+    res.json(gmfms);
+  });
+});
+
 
 // Adiciona um prontuário
 router.post('/', function(req, res, next) {
