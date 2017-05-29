@@ -72,19 +72,25 @@
     </div>
     <div class="panel-body">
       <div class="form-group">
-        <label>História de enxantema</label> <input type="text" class="form-control" ng-model="prontuario.mae.enxatema.historiaEnxatema">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="prontuario.mae.enxatema.historiaEnxatema"> História de enxantema
+          </label>
+        </div>
       </div>
-      <div class="form-group">
-        <label>Trimestre</label> <input type="text" class="form-control" ng-model="prontuario.mae.enxatema.trimestre">
-      </div>
-      <div class="form-group">
-        <label>Mês</label> <input type="text" class="form-control" ng-model="prontuario.mae.enxatema.mes">
-      </div>
-      <div class="form-group">
-        <label>Idade gestacional enxantema (mês)</label> <input type="text" class="form-control" ng-model="prontuario.mae.enxatema.idadeGestacionalEnxatemaMes">
-      </div>
-      <div class="form-group">
-        <label>Idade gestacional enxantema (trimestre)</label> <input type="text" class="form-control" ng-model="prontuario.mae.enxatema.idadeGestacionalEnxatemaTrimestre">
+      <div ng-show="prontuario.mae.enxatema.historiaEnxatema">
+        <div class="form-group">
+          <label>Trimestre</label> <input type="text" class="form-control" ng-model="prontuario.mae.enxatema.trimestre">
+        </div>
+        <div class="form-group">
+          <label>Mês</label> <input type="text" class="form-control" ng-model="prontuario.mae.enxatema.mes">
+        </div>
+        <div class="form-group">
+          <label>Idade gestacional enxantema (mês)</label> <input type="text" class="form-control" ng-model="prontuario.mae.enxatema.idadeGestacionalEnxatemaMes">
+        </div>
+        <div class="form-group">
+          <label>Idade gestacional enxantema (trimestre)</label> <input type="text" class="form-control" ng-model="prontuario.mae.enxatema.idadeGestacionalEnxatemaTrimestre">
+        </div>
       </div>
     </div>
   </div>
