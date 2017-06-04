@@ -14,32 +14,32 @@ var GMFM = mongoose.model('GMFM');
 
 // Retorna todos os prontuários
 router.get('/', function(req, res, next) {
-  var createSearchRegex = () => (new RegExp(req.query.search, 'i'));
+  // var createSearchRegex = () => (new RegExp(req.query.search, 'i'));
 
-  var query = !req.query.search ? {} : {
-    $or: [
-      {'mae.nome': createSearchRegex()},
-      {'mae.cidade': createSearchRegex()},
-      {'crianca.nome': createSearchRegex()},
-      {'crianca.maFormacao': createSearchRegex()}
-    ]
-  };
+  // var query = !req.query.search ? {} : {
+  //   $or: [
+  //     {'mae.nome': createSearchRegex()},
+  //     {'mae.cidade': createSearchRegex()},
+  //     {'crianca.nome': createSearchRegex()},
+  //     {'crianca.maFormacao': createSearchRegex()}
+  //   ]
+  // };
 
-  var sort = {'updatedAt': -1};
+  // var sort = {'updatedAt': -1};
 
-  if (req.query.sort) {
-    sort = {};
-    sort[req.query.sort] = 1;
-    sort['updatedAt'] = -1;
-  }
+  // if (req.query.sort) {
+  //   sort = {};
+  //   sort[req.query.sort] = 1;
+  //   sort['updatedAt'] = -1;
+  // }
 
-  var options = {
-    offset: req.query.offset,
-    limit: req.query.limit,
-    sort: sort
-  };
+  // var options = {
+  //   offset: req.query.offset,
+  //   limit: req.query.limit,
+  //   sort: sort
+  // };
 
-  Prontuario.paginate(query, options, function(err, result){
+  Prontuario.paginate({}, {'updatedAt': -1}, function(err, result){
     if (err) {
       return next(err);
     }
