@@ -34,8 +34,8 @@ router.get('/', function(req, res, next) {
   }
 
   var options = {
-    offset: req.query.offset,
-    limit: req.query.limit,
+    offset: parseInt(req.query.offset),
+    limit: parseInt(req.query.limit),
     sort: sort
   };
 
