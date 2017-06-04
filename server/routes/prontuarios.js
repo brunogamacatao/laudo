@@ -378,4 +378,4 @@ router.param('gmfmId', function(req, res, next, id) {
   });
 });
 
-export default router;
+module.exports = router;
