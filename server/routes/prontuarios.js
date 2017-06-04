@@ -36,10 +36,10 @@ router.get('/', function(req, res, next) {
   var options = {
     offset: req.query.offset,
     limit: req.query.limit,
-//    sort: sort
+    sort: sort
   };
 
-  Prontuario.paginate({}, options, function(err, result){
+  Prontuario.paginate({}, {}, function(err, result){
     if (err) {
       return next(err);
     }
@@ -378,4 +378,4 @@ router.param('gmfmId', function(req, res, next, id) {
   });
 });
 
-module.exports = router;
+export default router;
