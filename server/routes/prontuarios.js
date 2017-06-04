@@ -39,13 +39,20 @@ router.get('/', function(req, res, next) {
     sort: sort
   };
 
-  Prontuario.paginate({}, {}, function(err, result){
-    if (err) {
-      return next(err);
-    }
+  try {
+    Prontuario.paginate(query, options, function(err, result){
+      if (err) {
+        console.log('ERRO', err);
+        //return next(err);
+        res.json(err);
+      }
 
-    res.json(result);
-  });
+      res.json(result);
+    });
+  } catch (ex) {
+    console.log('ERRO', ex);
+    res.json([]);
+  }
 });
 
 // Retorna a quantidade de prontuários
