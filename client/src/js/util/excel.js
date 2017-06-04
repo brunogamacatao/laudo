@@ -175,8 +175,8 @@ export var examesToArray = function(exames) {
     resultado.push(
       [
         e.prontuario._id,
-        e.prontuario.mae.nome,
-        e.prontuario.crianca.nome,
+        !e.prontuario.mae ? '' : e.prontuario.mae.nome,
+        !e.prontuario.crianca ? '' : e.prontuario.crianca.nome,
         e.nome,
         e.data,
         e.idadeGestacional,
@@ -218,8 +218,8 @@ export var gmfmsToArray = function(gmfms)  {
 
     resultado.push([
       g.prontuario._id,
-      g.prontuario.mae.nome,
-      g.prontuario.crianca.nome,
+      g.prontuario.mae ? '' : g.prontuario.mae.nome,
+      g.prontuario.crianca ? '' : g.prontuario.crianca.nome,
       g.data,
       g.nivelI,
       g.nivelII,

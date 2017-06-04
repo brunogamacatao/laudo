@@ -17,9 +17,9 @@ controllers.controller('MainController', ['$rootScope', '$scope', 'Prontuario', 
 
     $scope.exportar = function() {
       // Carrega os prontuários
-      Prontuario.query(function(prontuarios) {
+      Prontuario.query(function(result) {
         var excel = new Excel();
-        excel.addSheet('Prontuários', prontuariosToArray(prontuarios));
+        excel.addSheet('Prontuários', prontuariosToArray(result.docs));
 
         // Carrega os laudos
         $http.get('/prontuarios/laudos').then(function(retorno) {

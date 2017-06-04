@@ -27,17 +27,23 @@ router.get('/', token({ required: true }), function(req, res, next) {
 
   var sort = {'updatedAt': -1};
 
-  if (req.query.sort) {
+  if (req.query.hasOwnProperty('sort')) {
     sort = {};
     sort[req.query.sort] = 1;
     sort['updatedAt'] = -1;
   }
 
   var options = {
-    offset: parseInt(req.query.offset),
-    limit: parseInt(req.query.limit),
-    sort: sort
+    limit: 9999999
   };
+
+  if (req.query.hasOwnProperty('offset') && req.query.hasOwnProperty('limit')) {
+    options = {
+      offset: parseInt(req.query.offset),
+      limit: parseInt(req.query.limit),
+      sort: sort
+    };
+  }
 
   Prontuario.paginate(query, options, function(err, result){
     if (err) {

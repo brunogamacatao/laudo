@@ -43,7 +43,7 @@ router.post('/login', function(req, res, next) {
       sign(user.id).then((token) => {
         res.status(200).json({
           nome: user.nome,
-          admin: user.admim,
+          admin: user.admin,
           username: user.username,
           token
         });
