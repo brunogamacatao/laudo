@@ -3,13 +3,14 @@
     <h3 class="panel-title">Filtre os Prontuários</h3>
   </div>
   <div class="panel-body">
-    <div class="form-inline">
+    <form class="form-inline" ng-submit="procurar()">
       <div class="form-group">
         <label class="sr-only" for="filtro">Filtro</label>
         <input type="text" class="form-control" id="filtro" placeholder="Filtro" ng-model="filtro">
-        Encontrados {{pFiltrados.length}} prontuários
+        <button class="button">Procurar</button>
+        Encontrados {{total}} prontuários
       </div>
-    </div>
+    </form>
   </div>
 </div>
 
@@ -31,7 +32,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="prontuario in prontuarios|filter:filtro|orderBy:ordem as pFiltrados">
+    <tr ng-repeat="prontuario in prontuarios">
       <td>{{prontuario.mae.nome}}</td>
       <td>{{prontuario.crianca.nome}}</td>
       <td>{{prontuario.mae.cidade}}</td>
@@ -43,8 +44,34 @@
     </tr>
   </tbody>
 </table>
-<div ng-if="prontuarios.length === 0">
+
+<nav aria-label="Page navigation" ng-show="pages > 0">
+  <ul class="pagination">
+    <li>
+      <a ng-click="irParaPagina(1)" aria-label="Primeira">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li ng-repeat="pagina in paginas" ng-class="{active: pagina === page}">
+      <a ng-click="irParaPagina(pagina)">
+        {{pagina}}
+        <span class="sr-only" ng-if="pagina === page">(current)</span>
+      </a>
+    </li>
+    <li>
+      <a ng-click="irParaPagina(-1)" aria-label="Última">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<div ng-if="procurando">
   <h3>Aguarde, carregando ...</h3>
+</div>
+
+<div ng-if="!procurando && total === 0">
+  <h3>Nenhum registro encontrado</h3>
 </div>
 
 <div class="modal fade" tabindex="-1" role="dialog" id="modal_excluir_prontuario">

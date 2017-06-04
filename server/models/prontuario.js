@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 
 var EnxatemaSchema = new mongoose.Schema({
   historiaEnxatema: Boolean,
@@ -52,6 +53,9 @@ var ProntuarioSchema = new mongoose.Schema({
     ref: 'User'
   }
 });
+
+// Adicionar paginação ao esquema
+ProntuarioSchema.plugin(mongoosePaginate);
 
 ProntuarioSchema.pre('save', function(next) {
   var now = new Date();

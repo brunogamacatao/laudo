@@ -65,6 +65,7 @@ app.run(['$rootScope', '$state', 'AuthService', function ($rootScope, $state, Au
       AuthService.getUserStatus().then(function success(data) {
         if (data.data.status) {
           AuthService.setUserStatus(true);
+          AuthService.setToken(data.data.token);
           $rootScope.$emit('login');
         } else {
           handleLogout();

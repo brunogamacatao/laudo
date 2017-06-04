@@ -1,7 +1,8 @@
-var express = require('express');
-var router = express.Router();
+import express from 'express';
+import mongoose from 'mongoose';
+import { token } from '../aplicacao'
 
-var mongoose = require('mongoose');
+var router = express.Router();
 var Laudo = mongoose.model('Laudo');
 var Prontuario = mongoose.model('Prontuario');
 var Exame = mongoose.model('Exame');
@@ -12,15 +13,52 @@ var GMFM = mongoose.model('GMFM');
 // ----------------------------------------------------------------------------
 
 // Retorna todos os prontuários
-router.get('/', function(req, res, next) {
-  Prontuario.find().sort('-updatedAt').exec(function(err, posts){
+router.get('/', token({ required: true }), function(req, res, next) {
+  var createSearchRegex = () => (new RegExp(req.query.search, 'i'));
+
+  var query = !req.query.search ? {} : {
+    $or: [
+      {'mae.nome': createSearchRegex()},
+      {'mae.cidade': createSearchRegex()},
+      {'crianca.nome': createSearchRegex()},
+      {'crianca.maFormacao': createSearchRegex()}
+    ]
+  };
+
+  var sort = {'updatedAt': -1};
+
+  if (req.query.sort) {
+    sort = {};
+    sort[req.query.sort] = 1;
+    sort['updatedAt'] = -1;
+  }
+
+  var options = {
+    offset: req.query.offset,
+    limit: req.query.limit,
+    sort: sort
+  };
+
+  Prontuario.paginate(query, options, function(err, result){
     if (err) {
       return next(err);
     }
 
-    res.json(posts);
+    res.json(result);
   });
 });
+
+// Retorna a quantidade de prontuários
+router.get('/count', token({ required: true }), function(req, res, next) {
+  Prontuario.count({}, function(err, count){
+    if (err) {
+      return next(err);
+    }
+
+    res.json({count});
+  });
+});
+
 // Retorna todos os laudos
 router.get('/laudos', function(req, res, next) {
   Laudo.find().sort('-updatedAt').populate('prontuario').populate('owner').exec(function(err, laudos){

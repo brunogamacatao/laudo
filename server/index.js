@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-var Servidor = require('./servidor');
-var Aplicacao = require('./aplicacao');
-var BancoDeDados = require('./banco_de_dados');
+import Servidor from './servidor';
+import Aplicacao from './aplicacao';
+import BancoDeDados from './banco_de_dados';
 
 // Tenta se conectar ao banco de dados
 new BancoDeDados(function() {

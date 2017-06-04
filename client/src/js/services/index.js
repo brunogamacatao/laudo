@@ -3,12 +3,14 @@ import angular from 'angular';
 // Cria o módulo
 const services = angular.module('ipesq.services', []);
 
+var token = null;
+
 services.factory('AuthService',
   ['$q', '$timeout', '$http',
   function ($q, $timeout, $http) {
 
     // create user variable
-    var user = null;
+    var user  = null;
     var admin = false;
 
     // return available functions for use in the controllers
@@ -19,11 +21,21 @@ services.factory('AuthService',
       login: login,
       logout: logout,
       register: register,
-      isAdmin: isAdmin
+      isAdmin: isAdmin,
+      getToken: getToken,
+      setToken: setToken
     });
 
     function isAdmin() {
       return admin;
+    }
+
+    function getToken() {
+      return token;
+    }
+
+    function setToken(_token) {
+      token = _token;
     }
 
     function isLoggedIn() {
@@ -53,16 +65,18 @@ services.factory('AuthService',
         // handle success
         .then(function success(data, status) {
           if(data.status === 200 && data.status){
-            user = true;
+            user  = data.data;
             admin = data.data.admin;
+            token = data.data.token;
             deferred.resolve();
           } else {
-            user = false;
+            user  = false;
             admin = false;
+            token = null;
             deferred.reject();
           }
         }, function error(data) {
-          user = false;
+          user  = false;
           admin = false;
           deferred.reject();
         });
@@ -82,9 +96,11 @@ services.factory('AuthService',
         // handle success
         .then(function success(data) {
           user = false;
+          token = null;
           deferred.resolve();
         }, function error(data) {
           user = false;
+          token = null;
           deferred.reject();
         });
 
@@ -121,7 +137,20 @@ services.factory('AuthService',
 }]);
 
 services.factory('Prontuario', ['$resource', function($resource) {
-  return $resource('/prontuarios/:id', null, {
-    'update': { method:'PUT' }
-  });
+  var headers = {'Authorization': function() {
+    return 'Bearer ' + token;
+  }};
+
+  var actions = {
+    'get'   : {method: 'GET', headers: headers},
+    'save'  : {method: 'POST', headers: headers},
+    'create': {method: 'POST', headers: headers},
+    'query' : {method: 'GET', headers: headers},
+    'remove': {method: 'DELETE', headers: headers},
+    'delete': {method: 'DELETE', headers: headers},
+    'update': {method: 'PUT', headers: headers},
+    'count' : {method: 'GET', headers: headers, url: '/prontuarios/count'}
+  };
+
+  return $resource('/prontuarios/:id', null, actions);
 }]);

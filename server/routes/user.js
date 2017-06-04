@@ -1,8 +1,9 @@
-var express = require('express');
-var router = express.Router();
-var passport = require('passport');
-var User = require('../models/user');
+import express from 'express';
+import passport from 'passport';
+import User from '../models/user';
+import { sign } from '../services/jwt'
 
+var router = express.Router();
 
 router.post('/register', function(req, res) {
   User.register(new User({ nome: req.body.nome, 
@@ -38,7 +39,15 @@ router.post('/login', function(req, res, next) {
           err: 'Could not log in user'
         });
       }
-      res.status(200).json(user);
+
+      sign(user.id).then((token) => {
+        res.status(200).json({
+          nome: user.nome,
+          admin: user.admim,
+          username: user.username,
+          token
+        });
+      });
     });
   })(req, res, next);
 });
@@ -56,8 +65,12 @@ router.get('/status', function(req, res) {
       status: false
     });
   }
-  res.status(200).json({
-    status: true
+
+  sign(req.user.id).then((token) => {
+    res.status(200).json({
+      status: true,
+      token
+    });
   });
 });
 

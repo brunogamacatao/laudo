@@ -1,16 +1,20 @@
 // Imports gerais
-var express      = require('express');
-var compression  = require('compression');
-var path         = require('path');
-var favicon      = require('serve-favicon');
-var logger       = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser   = require('body-parser');
-var constantes   = require('./config/constantes');
+import express      from 'express';
+import compression  from 'compression';
+import path         from 'path';
+import favicon      from 'serve-favicon';
+import logger       from 'morgan';
+import cookieParser from 'cookie-parser';
+import bodyParser   from 'body-parser';
+import constantes   from './config/constantes';
 
 // Autenticação
-var passport      = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
+import User from './models/user';
+import passport from 'passport';
+import { Strategy as LocalStrategy } from 'passport-local';
+
+import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt'
+import { jwtSecret, masterKey } from './config/constantes'
 
 /**
  * Criação de uma classe responsável por configurar e inicar a aplicação.
@@ -88,11 +92,37 @@ Aplicacao.prototype.setupMiddleware = function() {
  * Configuração da autenticação da aplicação
  */
 Aplicacao.prototype.setupAuthentication = function() {
-  var User = require('./models/user');
   passport.use(new LocalStrategy(User.authenticate()));
   passport.serializeUser(User.serializeUser());
   passport.deserializeUser(User.deserializeUser());
+
+  passport.use('token', new JwtStrategy({
+    secretOrKey: jwtSecret,
+    jwtFromRequest: ExtractJwt.fromExtractors([
+      ExtractJwt.fromUrlQueryParameter('access_token'),
+      ExtractJwt.fromBodyField('access_token'),
+      ExtractJwt.fromAuthHeaderWithScheme('Bearer')
+    ])
+  }, ({ id }, done) => {
+    User.findById(id).then((user) => {
+      done(null, user)
+      return null
+    }).catch(done)
+  }));
+  
 };
+
+export const token = ({ required, admin } = {}) => (req, res, next) =>
+  passport.authenticate('token', { session: false }, (err, user, info) => {
+    if (err || (required && !user) || (required && admin && !user.admin)) {
+      return res.status(401).end()
+    }
+
+    req.logIn(user, { session: false }, (err) => {
+      if (err) return res.status(401).end()
+      next()
+    })
+  })(req, res, next);
 
 /**
  * Configura o live reload dos dados do cliente. Ou seja, sempre que páginas,
@@ -131,4 +161,4 @@ Aplicacao.prototype.generalErrorHandler = function(err, req, res, next) {
   res.json({error: err, message: err.message, stack: err.stack});  
 };
 
-module.exports = Aplicacao;
+export default Aplicacao;
