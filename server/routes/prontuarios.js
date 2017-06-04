@@ -13,7 +13,7 @@ var GMFM = mongoose.model('GMFM');
 // ----------------------------------------------------------------------------
 
 // Retorna todos os prontuários
-router.get('/', token({ required: true }), function(req, res, next) {
+router.get('/', function(req, res, next) {
   var createSearchRegex = () => (new RegExp(req.query.search, 'i'));
 
   var query = !req.query.search ? {} : {
