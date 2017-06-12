@@ -19,6 +19,7 @@ BancoDeDados.prototype.registraModelos = function() {
   require('./models/prontuario');
   require('./models/exame');
   require('./models/gmfm');
+  require('./models/questionario');
 };
 
 module.exports = BancoDeDados;

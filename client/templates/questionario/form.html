@@ -1,0 +1,584 @@
+<ul class="nav nav-tabs" ng-if="prontuario._id">
+  <li role="presentation"><a ui-sref="editar_prontuario({id: prontuario._id})">Prontuário</a></li>
+  <li role="presentation"><a ui-sref="novo_laudo({id_prontuario: prontuario._id})">Novo Laudo</a></li>
+  <li role="presentation"><a ui-sref="listar_laudos({id_prontuario: prontuario._id})">Laudos</a></li>
+  <li role="presentation"><a ui-sref="novo_exame({id_prontuario: prontuario._id})">Novo Exame</a></li>
+  <li role="presentation"><a ui-sref="listar_exames({id_prontuario: prontuario._id})">Exames</a></li>
+  <li role="presentation"><a ui-sref="novo_gmfm({id_prontuario: prontuario._id})">Novo GMFM</a></li>
+  <li role="presentation"><a ui-sref="listar_gmfms({id_prontuario: prontuario._id})">GMFMs</a></li>
+  <li role="presentation" class="active"><a ui-sref="novo_questionario({id_prontuario: prontuario._id})">Questionário</a></li>
+  <li role="presentation" ng-if="admin"><a ui-sref="exportar({id_prontuario: prontuario._id})">Exportar</a></li>
+</ul>
+
+
+<style>
+  .ipesq_form fieldset legend, .ipesq_form fieldset label {
+    font-weight: bold;
+  }
+  .ipesq_form fieldset p {
+    display: table;
+  }
+  .ipesq_form fieldset p label {
+    display: table-cell;
+    width: 200px;
+  }
+</style>
+
+<form action="" class="ipesq_form">
+  <fieldset>
+    <legend>Dados do Serviço de Saúde</legend>
+    <p>
+      <label>Tipo:</label>
+      <input type="radio" name="tipo" ng-model='model.servicoDeSaude.tipo' value="hospital_publico" > Hospital Público
+      <input type="radio" name="tipo" ng-model='model.servicoDeSaude.tipo' value="hospital_particular"> Hospital Particular
+      <input type="radio" name="tipo" ng-model='model.servicoDeSaude.tipo' value="hospital_filantropico"> Hospital Filantrópico
+      <input type="radio" name="tipo" ng-model='model.servicoDeSaude.tipo' value="domicilio"> Domicílio
+      <input type="radio" name="tipo" ng-model='model.servicoDeSaude.tipo' value="outros"> Outros
+    </p>
+    <p>
+      <label>Serviço de saúde:</label>
+      <span><input type="text" ng-model='model.servicoDeSaude.nome'></span>
+    </p>
+    <p>
+      <label>Município:</label>
+      <input type="text" ng-model='model.servicoDeSaude.municipio'>
+    </p>
+  </fieldset>
+</form>
+<form action="" class="ipesq_form">
+  <fieldset>
+    <legend>Dados do Recém Nascido</legend>
+    <p>
+      <label>Data do parto:</label>
+      <input type="date" ng-model='model.dataDoParto'>
+    </p>
+    <p>
+      <label>Sexo:</label>
+      <input type="radio" name="sexo" ng-model='model.sexo' value="masculino" > Masculino
+      <input type="radio" name="sexo" ng-model='model.sexo' value="feminino"> Feminino
+      <input type="radio" name="sexo" ng-model='model.sexo' value="indeterminado"> Indeterminado
+    </p>
+    <p>
+      <label>Idade gestacional:</label>
+      Semanas: <input type="number" min="1" ng-model='model.idadeGestacional.semanas'> &nbsp;
+      Dias: <input type="number" min="0" ng-model='model.idadeGestacional.dias'>
+    </p>
+    <p>
+      <label>Classificação quanto a idade gestacional:</label>
+      <input type="radio" name="tipoIdadeGestacional" ng-model='model.idadeGestacional.tipo' value="pre_termo" > Pré-termo
+      <input type="radio" name="tipoIdadeGestacional" ng-model='model.idadeGestacional.tipo' value="termo"> Termo
+      <input type="radio" name="tipoIdadeGestacional" ng-model='model.idadeGestacional.tipo' value="pos_termo"> Pós-termo
+    </p>
+    <p>
+      <label>Gemelar:</label>
+      <input type="radio" name="gemelar" ng-model='model.gemelar' value="sim" > Sim
+      <input type="radio" name="gemelar" ng-model='model.gemelar' value="nao"> Não
+    </p>
+    <p ng-if='model.gemelar == "sim"'>
+      <label>Tipo gemelar:</label>
+      <input type="radio" name="tipoGemelar" ng-model='model.tipoGemelar' value="1" > 1º Gemelar
+      <input type="radio" name="tipoGemelar" ng-model='model.tipoGemelar' value="2"> 2º Gemelar
+      <input type="radio" name="tipoGemelar" ng-model='model.tipoGemelar' value="3"> 3º Gemelar
+    </p>
+    <p>
+      <label>Tipo de parto:</label>
+      <input type="radio" name="tipoDeParto" ng-model='model.tipoDeParto' value="vaginal" > Normal/Vaginal
+      <input type="radio" name="tipoDeParto" ng-model='model.tipoDeParto' value="forceps"> Fórceps
+      <input type="radio" name="tipoDeParto" ng-model='model.tipoDeParto' value="cesareo"> Cesáreo
+    </p>
+    <p>
+      <label>Ocorreu dano perinatal:</label>
+      <input type="radio" name="danoPerinatal" ng-model='model.temDanoPerinatal' value="sim" > Sim
+      <input type="radio" name="danoPerinatal" ng-model='model.temDanoPerinatal' value="nao"> Não
+    </p>
+    <p ng-if='model.temDanoPerinatal == "sim"'>
+      <label>Dano perinatal:</label>
+      <input type="radio" name="danoPerinatal" ng-model='model.danoPerinatal' value="anoxico" > Anóxico
+      <input type="radio" name="danoPerinatal" ng-model='model.danoPerinatal' value="isquemico"> Isquêmico
+      <input type="radio" name="danoPerinatal" ng-model='model.danoPerinatal' value="hemorragico"> Hemorrágico      
+      <input type="radio" name="danoPerinatal" ng-model='model.danoPerinatal' value="traumatico"> Traumático      
+      <input type="radio" name="danoPerinatal" ng-model='model.danoPerinatal' value="outros"> Outros      
+    </p>
+    <p ng-if='model.temDanoPerinatal == "sim" && model.danoPerinatal == "outros"'>
+      <label>Outro dano perinatal:</label>
+      <input type="text" ng-model="model.outrosDanosPerinatais">
+    </p>    
+  </fieldset>
+  <fieldset>
+    <legend>Exame físico ao nascer</legend>
+    <p>
+      <label>Peso (g):</label>
+      <input type="number" min="0" step="0.01" ng-model='model.exameFisicoAoNascer.peso'>
+    </p>
+    <p>
+      <label>Estatura (cm):</label>
+      <input type="number" min="0" step="0.01" ng-model='model.exameFisicoAoNascer.estatura'>
+    </p>
+    <p>
+      <label>Perímetro cefálico (cm):</label>
+      <input type="number" min="0" step="0.01" ng-model='model.exameFisicoAoNascer.perimetroCefalico'>
+    </p>
+    <p>
+      <label>Perímetro torácico (cm):</label>
+      <input type="number" min="0" step="0.01" ng-model='model.exameFisicoAoNascer.perimetroToracico'>
+    </p>
+    <p>
+      <label>Índice de Apgar:</label>
+      1º min: <input type="number" min="0" ng-model='model.exameFisicoAoNascer.apgar1'>
+      5º min: <input type="number" min="0" ng-model='model.exameFisicoAoNascer.apgar5'>
+      10º min: <input type="number" min="0" ng-model='model.exameFisicoAoNascer.apgar10'>
+    </p>
+    <p>
+      <label>Presença de outras malformações:</label>
+      <input type="radio" name="temMalformacoes" ng-model='model.temMalformacoes' value="sim" > Sim
+      <input type="radio" name="temMalformacoes" ng-model='model.temMalformacoes' value="nao"> Não    
+    </p>
+    <div ng-if='model.temMalformacoes == "sim"'>
+      <table>
+        <tr>
+          <td><input type="checkbox" ng-model='model.malformacoes.ictericia'> Icterícia</td>
+          <td><input type="checkbox" ng-model='model.malformacoes.hidropsia'> Hidropsia</td>
+          <td><input type="checkbox" ng-model='model.malformacoes.petequias'> Petéquias</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" ng-model='model.malformacoes.anemia'> Anemia</td>
+          <td><input type="checkbox" ng-model='model.malformacoes.rms'> Rinite muco-sanguinolenta</td>
+          <td><input type="checkbox" ng-model='model.malformacoes.plaquetopenia'> Plaquetopenia</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" ng-model='model.malformacoes.esplenomegalia'> Esplenomegalia</td>
+          <td><input type="checkbox" ng-model='model.malformacoes.hepatomegalia'> hepatomegalia</td>
+          <td><input type="checkbox" ng-model='model.malformacoes.convulsoes'> Convulsões</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" ng-model='model.malformacoes.ao'> Alterações ósseas</td>
+          <td><input type="checkbox" ng-model='model.malformacoes.lc'> Lesões cutâneas</td>
+          <td><input type="checkbox" ng-model='model.malformacoes.choro'> Choro ao manuseio</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" ng-model='model.malformacoes.pseudoparalisia'> Pseudoparalisia</td>
+          <td><input type="checkbox" ng-model='model.malformacoes.outras'> Outras</td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+    <p ng-if='model.temMalformacoes == "sim" && model.malformacoes.outras'>
+      <label>Outras malformações:</label>
+      <input type="text" ng-model='model.outrasMalformacoes'>
+    </p>
+  </fieldset>
+  <md-content>
+    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+      <md-button class="md-raised md-primary" ng-click="cadastrar()">Salvar</md-button>
+    </section>
+  </md-content>
+</form>
+
+<fieldset>
+  <legend>Exames Inespecíficos</legend>
+  <p>
+    <label>Data:</label>
+    <input type="date">
+  </p>
+  <table>
+    <tr>
+      <th>Hb(mg/dl)</th>
+      <th>Ht(%)</th>
+      <th>Leucócitos(mm3)</th>
+      <th>Bastonetes(%)</th>
+      <th>Segmentados(%)</th>
+    </tr>      
+    <tr>
+      <td><input type="number" min="0" step="0.01" ng-model='model.hb'></td>
+      <td><input type="number" min="0" step="0.01" ng-model='model.ht'></td>
+      <td><input type="number" min="0" step="0.01" ng-model='model.leucocitos'></td>
+      <td><input type="number" min="0" step="0.01" ng-model='model.bastonetes'></td>
+      <td><input type="number" min="0" step="0.01" ng-model='model.segmentados'></td>
+    </tr>
+    <tr>
+      <th>Monócitos(%)</th>
+      <th>Linfócitos(%)</th>
+      <th>Plaquetas(%)</th>
+      <th>Glicose(mg/dl)</th>
+    </tr>
+    <tr>
+      <td><input type="number" min="0" step="0.01" ng-model='model.monocitos'></td>
+      <td><input type="number" min="0" step="0.01" ng-model='model.linfocitos'></td>
+      <td><input type="number" min="0" step="0.01" ng-model='model.plaquetas'></td>
+      <td><input type="number" min="0" step="0.01" ng-model='model.glicose'></td>
+    </tr>
+  </table>
+  <p style="text-align: center">
+    <md-button class="md-raised md-primary" ng-click="adicionar()">Adicionar</md-button>
+  </p>  
+</fieldset>
+
+<div ng-show='exames.length > 0'>
+  <hr/>
+
+  <fieldset>
+    <legend>Exames Cadastrados</legend>
+    <table ng-repeat='exame in exames track by $index'>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Hb(mg/dl)</th>
+          <th>Ht(%)</th>
+          <th>Leucócitos(mm3)</th>
+          <th>Bastonetes(%)</th>
+          <th>Segmentados(%)</th>
+          <th>Monócitos(%)</th>
+          <th>Linfócitos(%)</th>
+          <th>Plaquetas(%)</th>
+          <th>Glicose(mg/dl)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{exame.data|date:'dd/MM/yyyy'}}</td>
+          <td>{{exame.hb}}</td>
+          <td>{{exame.ht}}</td>
+          <td>{{exame.leucocitos}}</td>
+          <td>{{exame.bastonetes}}</td>
+          <td>{{exame.segmentados}}</td>
+          <td>{{exame.monocitos}}</td>
+          <td>{{exame.linfocitos}}</td>
+          <td>{{exame.plaquetas}}</td>
+          <td>{{exame.glicose}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+</div>
+
+<fieldset>
+  <legend>Exames Etiológicos</legend>
+  <p>
+    <label>Data:</label>
+    <input type="date">
+  </p>
+  <table>
+    <tr>
+      <th>Hb(mg/dl)</th>
+      <th>Ht(%)</th>
+      <th>Leucócitos(mm3)</th>
+      <th>Bastonetes(%)</th>
+      <th>Segmentados(%)</th>
+    </tr>      
+    <tr>
+      <td><input type="number" min="0" step="0.01" ng-model='model.hb'></td>
+      <td><input type="number" min="0" step="0.01" ng-model='model.ht'></td>
+      <td><input type="number" min="0" step="0.01" ng-model='model.leucocitos'></td>
+      <td><input type="number" min="0" step="0.01" ng-model='model.bastonetes'></td>
+      <td><input type="number" min="0" step="0.01" ng-model='model.segmentados'></td>
+    </tr>
+    <tr>
+      <th>Monócitos(%)</th>
+      <th>Linfócitos(%)</th>
+      <th>Plaquetas(%)</th>
+      <th>Glicose(mg/dl)</th>
+    </tr>
+    <tr>
+      <td><input type="number" min="0" step="0.01" ng-model='model.monocitos'></td>
+      <td><input type="number" min="0" step="0.01" ng-model='model.linfocitos'></td>
+      <td><input type="number" min="0" step="0.01" ng-model='model.plaquetas'></td>
+      <td><input type="number" min="0" step="0.01" ng-model='model.glicose'></td>
+    </tr>
+  </table>
+  <p style="text-align: center">
+    <md-button class="md-raised md-primary" ng-click="adicionar()">Adicionar</md-button>
+  </p>  
+</fieldset>
+
+<div ng-show='exames.length > 0'>
+  <hr/>
+
+  <fieldset>
+    <legend>Exames Cadastrados</legend>
+    <table ng-repeat='exame in exames track by $index'>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Hb(mg/dl)</th>
+          <th>Ht(%)</th>
+          <th>Leucócitos(mm3)</th>
+          <th>Bastonetes(%)</th>
+          <th>Segmentados(%)</th>
+          <th>Monócitos(%)</th>
+          <th>Linfócitos(%)</th>
+          <th>Plaquetas(%)</th>
+          <th>Glicose(mg/dl)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{exame.data|date:'dd/MM/yyyy'}}</td>
+          <td>{{exame.hb}}</td>
+          <td>{{exame.ht}}</td>
+          <td>{{exame.leucocitos}}</td>
+          <td>{{exame.bastonetes}}</td>
+          <td>{{exame.segmentados}}</td>
+          <td>{{exame.monocitos}}</td>
+          <td>{{exame.linfocitos}}</td>
+          <td>{{exame.plaquetas}}</td>
+          <td>{{exame.glicose}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+</div>
+
+<fieldset>
+  <legend>Exames de Imagem</legend>
+  <p>
+    <label>Data:</label>
+    <input type="date">
+  </p>
+  <table>
+    <tr>
+      <th>Hb(mg/dl)</th>
+      <th>Ht(%)</th>
+      <th>Leucócitos(mm3)</th>
+      <th>Bastonetes(%)</th>
+      <th>Segmentados(%)</th>
+    </tr>      
+    <tr>
+      <td><input type="number" min="0" step="0.01" ng-model='model.hb'></td>
+      <td><input type="number" min="0" step="0.01" ng-model='model.ht'></td>
+      <td><input type="number" min="0" step="0.01" ng-model='model.leucocitos'></td>
+      <td><input type="number" min="0" step="0.01" ng-model='model.bastonetes'></td>
+      <td><input type="number" min="0" step="0.01" ng-model='model.segmentados'></td>
+    </tr>
+    <tr>
+      <th>Monócitos(%)</th>
+      <th>Linfócitos(%)</th>
+      <th>Plaquetas(%)</th>
+      <th>Glicose(mg/dl)</th>
+    </tr>
+    <tr>
+      <td><input type="number" min="0" step="0.01" ng-model='model.monocitos'></td>
+      <td><input type="number" min="0" step="0.01" ng-model='model.linfocitos'></td>
+      <td><input type="number" min="0" step="0.01" ng-model='model.plaquetas'></td>
+      <td><input type="number" min="0" step="0.01" ng-model='model.glicose'></td>
+    </tr>
+  </table>
+  <p style="text-align: center">
+    <md-button class="md-raised md-primary" ng-click="adicionar()">Adicionar</md-button>
+  </p>  
+</fieldset>
+
+<div ng-show='exames.length > 0'>
+  <hr/>
+
+  <fieldset>
+    <legend>Exames Cadastrados</legend>
+    <table ng-repeat='exame in exames track by $index'>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Hb(mg/dl)</th>
+          <th>Ht(%)</th>
+          <th>Leucócitos(mm3)</th>
+          <th>Bastonetes(%)</th>
+          <th>Segmentados(%)</th>
+          <th>Monócitos(%)</th>
+          <th>Linfócitos(%)</th>
+          <th>Plaquetas(%)</th>
+          <th>Glicose(mg/dl)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{exame.data|date:'dd/MM/yyyy'}}</td>
+          <td>{{exame.hb}}</td>
+          <td>{{exame.ht}}</td>
+          <td>{{exame.leucocitos}}</td>
+          <td>{{exame.bastonetes}}</td>
+          <td>{{exame.segmentados}}</td>
+          <td>{{exame.monocitos}}</td>
+          <td>{{exame.linfocitos}}</td>
+          <td>{{exame.plaquetas}}</td>
+          <td>{{exame.glicose}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+</div>
+
+<fieldset>
+  <legend>Outros Exames</legend>
+  <p>
+    <label>Data:</label>
+    <input type="date">
+  </p>
+  <table>
+    <tr>
+      <th>Hb(mg/dl)</th>
+      <th>Ht(%)</th>
+      <th>Leucócitos(mm3)</th>
+      <th>Bastonetes(%)</th>
+      <th>Segmentados(%)</th>
+    </tr>      
+    <tr>
+      <td><input type="number" min="0" step="0.01" ng-model='model.hb'></td>
+      <td><input type="number" min="0" step="0.01" ng-model='model.ht'></td>
+      <td><input type="number" min="0" step="0.01" ng-model='model.leucocitos'></td>
+      <td><input type="number" min="0" step="0.01" ng-model='model.bastonetes'></td>
+      <td><input type="number" min="0" step="0.01" ng-model='model.segmentados'></td>
+    </tr>
+    <tr>
+      <th>Monócitos(%)</th>
+      <th>Linfócitos(%)</th>
+      <th>Plaquetas(%)</th>
+      <th>Glicose(mg/dl)</th>
+    </tr>
+    <tr>
+      <td><input type="number" min="0" step="0.01" ng-model='model.monocitos'></td>
+      <td><input type="number" min="0" step="0.01" ng-model='model.linfocitos'></td>
+      <td><input type="number" min="0" step="0.01" ng-model='model.plaquetas'></td>
+      <td><input type="number" min="0" step="0.01" ng-model='model.glicose'></td>
+    </tr>
+  </table>
+  <p style="text-align: center">
+    <md-button class="md-raised md-primary" ng-click="adicionar()">Adicionar</md-button>
+  </p>  
+</fieldset>
+
+<div ng-show='exames.length > 0'>
+  <hr/>
+
+  <fieldset>
+    <legend>Exames Cadastrados</legend>
+    <table ng-repeat='exame in exames track by $index'>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Hb(mg/dl)</th>
+          <th>Ht(%)</th>
+          <th>Leucócitos(mm3)</th>
+          <th>Bastonetes(%)</th>
+          <th>Segmentados(%)</th>
+          <th>Monócitos(%)</th>
+          <th>Linfócitos(%)</th>
+          <th>Plaquetas(%)</th>
+          <th>Glicose(mg/dl)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{exame.data|date:'dd/MM/yyyy'}}</td>
+          <td>{{exame.hb}}</td>
+          <td>{{exame.ht}}</td>
+          <td>{{exame.leucocitos}}</td>
+          <td>{{exame.bastonetes}}</td>
+          <td>{{exame.segmentados}}</td>
+          <td>{{exame.monocitos}}</td>
+          <td>{{exame.linfocitos}}</td>
+          <td>{{exame.plaquetas}}</td>
+          <td>{{exame.glicose}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+</div>
+
+
+<form class="ipesq_form">
+  <fieldset>
+    <legend>Dados da Mãe</legend>
+    <p>
+      <label>Nome:</label>
+      <input type="text" ng-model='model.mae.nome'>
+    </p>
+    <p>
+      <label>Data de nascimento:</label>
+      <input type="date" ng-model='model.mae.dataDeNascimento'>
+    </p>
+    <p>
+      <label>Raça/cor:</label>
+      <input type="radio" name="tipo" ng-model='model.mae.raca' value="branca"> Branca
+      <input type="radio" name="tipo" ng-model='model.mae.raca' value="preta"> Preta
+      <input type="radio" name="tipo" ng-model='model.mae.raca' value="amarela"> Amarela
+      <input type="radio" name="tipo" ng-model='model.mae.raca' value="parda"> Parda
+      <input type="radio" name="tipo" ng-model='model.mae.raca' value="indigena"> Indígena
+      <input type="radio" name="tipo" ng-model='model.mae.raca' value="ignorado"> Ignorado
+    </p>
+    <p>
+      <label>Escolaridade</label>
+      <input type="radio" name="tipo" ng-model='model.mae.escolaridade' value="sem"> Sem escolaridade
+      <input type="radio" name="tipo" ng-model='model.mae.escolaridade' value="fundamental1"> Fundamental I
+      <input type="radio" name="tipo" ng-model='model.mae.escolaridade' value="fundamental2"> Fundamental II
+      <input type="radio" name="tipo" ng-model='model.mae.escolaridade' value="medio"> Médio
+      <input type="radio" name="tipo" ng-model='model.mae.escolaridade' value="superior"> Superior
+      <input type="radio" name="tipo" ng-model='model.mae.escolaridade' value="ignorado"> Ignorado
+    </p>
+    <p>
+      <label>Estado Civil</label>
+      <input type="radio" name="tipo" ng-model='model.mae.estadoCivil' value="solteira"> Solteira
+      <input type="radio" name="tipo" ng-model='model.mae.estadoCivil' value="casada"> Casada
+      <input type="radio" name="tipo" ng-model='model.mae.estadoCivil' value="viuva"> Viúva
+      <input type="radio" name="tipo" ng-model='model.mae.estadoCivil' value="separada"> Separada/Divorciada
+      <input type="radio" name="tipo" ng-model='model.mae.estadoCivil' value="uniao_estavel"> União Estável
+      <input type="radio" name="tipo" ng-model='model.mae.estadoCivil' value="ignorado"> Ignorado
+    </p>
+    <p>
+      <label>Ocupação:</label>
+      <input type="text" ng-model='model.mae.ocupacao'>
+    </p>
+    <p>
+      <label>Número de pessoas que moram na sua casa:</label>
+      <input type="number" min="1" ng-model='model.mae.numeroDePessoasNaCasa'>
+    </p>
+    <p>
+      <label>Renda familiar mensal:</label>
+      <input type="number" min="0" step="0.01" ng-model='model.mae.rendaFamiliar'>
+    </p>
+
+    <fieldset>
+      <legend>Endereço Atual</legend>
+      <p>
+        <label style="display: inline;">Estado:</label>
+        &nbsp;
+        <select ng-model='model.endereco.estado'>
+          <option>Selecione</option>
+          <option value="pb">Paraíba</option>
+          <option value="pe">Pernambuco</option>
+          <option value="rn">Rio Grande do Norte</option>
+        </select>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <label style="display: inline;">Município:</label>
+        &nbsp;
+        <select ng-model='model.endereco.municipio'>
+          <option>Selecione</option>
+          <option value="1">Campina Grande</option>
+          <option value="2">João Pessoa</option>
+          <option value="3">Patos</option>
+          <option value="4">São José da Lagoa Tapada</option>
+        </select>
+      </p>
+      <p>
+        <label style="display: inline;">Logradouro:</label>
+        &nbsp;
+        <input style="width: 400px;" type="text" ng-model='model.endereco.logradouro'>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <label style="display: inline;">Número:</label>
+        &nbsp;
+        <input type="text" ng-model='model.endereco.numero'>
+      </p>
+      <p>
+        <label style="display: inline;">Bairro:</label>
+        &nbsp;
+        <input style="width: 400px;" type="text" ng-model='model.endereco.bairro'>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <label style="display: inline;">Telefone:</label>
+        &nbsp;
+        <input type="text" ng-model='model.endereco.telefone'>
+      </p>
+    </fieldset>
+  </fieldset>
+  <md-content>
+    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+      <md-button class="md-raised md-primary" ng-click="cadastrar()">Cadastrar</md-button>
+    </section>
+  </md-content>
+</form>

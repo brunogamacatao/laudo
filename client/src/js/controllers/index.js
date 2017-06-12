@@ -606,3 +606,14 @@ controllers.controller('ExportarController', ['$rootScope', '$scope', '$http', '
     };
   }
 ]);
+
+// ----------------------------------------------------------------------------
+// EXAMES
+// ----------------------------------------------------------------------------
+
+controllers.controller('NovoQuestionarioController', ['$rootScope', '$scope', 
+  function($rootScope, $scope) {
+    $rootScope.currentMenu = 'novo';
+    $scope.id_prontuario = $stateParams.id_prontuario;
+  }
+]);

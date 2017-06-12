@@ -101,6 +101,13 @@ function setupRoutes($stateProvider, $urlRouterProvider) {
       controller: 'EditarProntuarioController',
       authenticate: true
     })
+    // Questionário SUS
+    .state('novo_questionario', {
+      url: '/prontuarios/:id_prontuario/novo_questionario',
+      templateUrl: 'questionario/form.html',
+      controller: 'NovoQuestionarioController',
+      authenticate: true
+    })
     // Exportar
     .state('exportar', {
       url: '/prontuarios/:id_prontuario/exportar',
