@@ -266,6 +266,97 @@ var HabitosSchema = new mongoose.Schema({
   usoDeDrogas: [DrogasIlicitasSchema]
 });
 
+var VacinaSchema = new mongoose.Schema({
+  nome: String,
+  numeroDeDoses: Number,
+  dataDoses: [Date]
+});
+
+var ComplicacoesSchema = new mongoose.Schema({
+  teveComplicacoes: Boolean,
+  infeccaoTratoUrinario: Boolean,
+  anemia: Boolean,
+  diabetesGestacional: Boolean,
+  hipertensaoAterial: Boolean,
+  preeclampsia: Boolean,
+  placentaPrevia: Boolean,
+  oligodramnio: Boolean,
+  polidramnio: Boolean,
+  insuficienciaColoUterino: Boolean,
+  hiperemeseGravitica: Boolean,
+  anomaliasAnatomicasUtero: Boolean,
+  deslocamentoPlacenta: Boolean,
+  crescimentoIntrauterinoRestrito: Boolean,
+  incisura: Boolean,
+  outras: String
+});
+
+var UltrassomSchema = new mongoose.Schema({
+  data: Date,
+  idadeGestacional: Number,
+  perimetroCefalico: Number,
+  microcefalia: Boolean,
+  calcificacoes: Boolean,
+  ventriculomegalia: Boolean,
+  outrosAchados: String
+});
+
+var ResultadoExamePreNatalSchema = new mongoose.Schema({
+  realizado: Boolean,
+  data: Date,
+  resultado: String
+});
+
+var ExamePreNatalSchema = new mongoose.Schema({
+  nome: String,
+  primeiroTrimestre: ResultadoExamePreNatalSchema,
+  segundoTrimestre: ResultadoExamePreNatalSchema,
+  terceiroTrimestre: ResultadoExamePreNatalSchema
+});
+
+var DoencasInfectoContagiosasSchema = new mongoose.Schema({
+  trimestre: Number,
+  toxoplasmose: Boolean,
+  rubeola: Boolean,
+  citomegalovirus: Boolean,
+  sifilis: Boolean,
+  herpesSimples: Boolean,
+  parvovirus: Boolean,
+  hiv: Boolean,
+  dengue: Boolean,
+  chikungunya: Boolean,
+  zikaVirus: Boolean,
+  outras: String
+});
+
+var VRDLSifilisSchema = new mongoose.Schema({
+  titulo: String,
+  recebeuTratamento: Boolean,
+  dataInicioTratamento: Date,
+  parceiroTratadoConcomitante: Boolean
+});
+
+var PreNatalSchema = new mongoose.Schema({
+  realizouPreNatal: Boolean,
+  unidadeDeSaude: String,
+  municipio: String,
+  consultasPrimeiroTrimestre: Number,
+  consultasSegundoTrimestre: Number,
+  consultasTerceiroTrimestre: Number,
+  dataPrimeiraConsulta: Date,
+  idadeGestacionalPrimeiraConsulta: Number,
+  pesoInicioGestacao: Number,
+  pesoFinalGestacao: Number,
+  altura: Number,
+  historicoVacinal: [VacinaSchema],
+  complicacoes: ComplicacoesSchema,
+  examesUltrassom: [UltrassomSchema],
+  exames: [ExamePreNatalSchema],
+  diagnosticoDoencasInfectoContagiosas: Boolean,
+  doencasInfectoContagiosas: [DoencasInfectoContagiosasSchema],
+  vrdl: [VRDLSifilisSchema]
+});
+
 var MaeSchema = new mongoose.Schema({
   nome: String,
   dataDeNascimento: Date,
@@ -287,13 +378,33 @@ var MaeSchema = new mongoose.Schema({
   historicoObstetricio: HistoricoObstetricioSchema,
   duranteGestacao: DuranteGestacaoSchema,
   historicoManchasVermelhas: [HistoricoManchasVermelhasSchema],
-  habitos: HabitosSchema
+  habitos: HabitosSchema,
+  prenatal: PreNatalSchema
+});
+
+var EncerramentoCasoSchema = new mongoose.Schema({
+  statusInvestigacao: String,
+  classificacaoFinal: String,
+  etiologiaProvavel: String,
+  hdRelacionada: String,
+  evolucao: String,
+  dataEvolucao: Date,
+  observacoes: String
+});
+
+var InvestigadorSchema = new mongoose.Schema({
+  inicioInvestigacao: Date,
+  investigadorInicio: String,
+  fimInvestigacao: Date,
+  investigadorFim: String
 });
 
 var QuestionarioSchema = new mongoose.Schema({
   servicoSaude: ServicoSaudeSchema,
   recemNascido: RecemNascidoSchema,
-  mae: MaeSchema
+  mae: MaeSchema,
+  encerramentoCaso: EncerramentoCasoSchema,
+  investigador: InvestigadorSchema
 });
 
 mongoose.model('Questionario', QuestionarioSchema);
