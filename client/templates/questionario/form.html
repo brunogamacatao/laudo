@@ -1,584 +1,598 @@
-<ul class="nav nav-tabs" ng-if="prontuario._id">
-  <li role="presentation"><a ui-sref="editar_prontuario({id: prontuario._id})">Prontuário</a></li>
-  <li role="presentation"><a ui-sref="novo_laudo({id_prontuario: prontuario._id})">Novo Laudo</a></li>
-  <li role="presentation"><a ui-sref="listar_laudos({id_prontuario: prontuario._id})">Laudos</a></li>
-  <li role="presentation"><a ui-sref="novo_exame({id_prontuario: prontuario._id})">Novo Exame</a></li>
-  <li role="presentation"><a ui-sref="listar_exames({id_prontuario: prontuario._id})">Exames</a></li>
-  <li role="presentation"><a ui-sref="novo_gmfm({id_prontuario: prontuario._id})">Novo GMFM</a></li>
-  <li role="presentation"><a ui-sref="listar_gmfms({id_prontuario: prontuario._id})">GMFMs</a></li>
-  <li role="presentation" class="active"><a ui-sref="novo_questionario({id_prontuario: prontuario._id})">Questionário</a></li>
-  <li role="presentation" ng-if="admin"><a ui-sref="exportar({id_prontuario: prontuario._id})">Exportar</a></li>
+<ul class="nav nav-tabs" ng-if="id_prontuario">
+  <li role="presentation"><a ui-sref="editar_prontuario({id: id_prontuario})">Prontuário</a></li>
+  <li role="presentation"><a ui-sref="novo_laudo({id_prontuario: id_prontuario})">Novo Laudo</a></li>
+  <li role="presentation"><a ui-sref="listar_laudos({id_prontuario: id_prontuario})">Laudos</a></li>
+  <li role="presentation"><a ui-sref="novo_exame({id_prontuario: id_prontuario})">Novo Exame</a></li>
+  <li role="presentation"><a ui-sref="listar_exames({id_prontuario: id_prontuario})">Exames</a></li>
+  <li role="presentation"><a ui-sref="novo_gmfm({id_prontuario: id_prontuario})">Novo GMFM</a></li>
+  <li role="presentation"><a ui-sref="listar_gmfms({id_prontuario: id_prontuario})">GMFMs</a></li>
+  <li role="presentation" class="active"><a ui-sref="novo_questionario({id_prontuario: id_prontuario})">Questionário</a></li>
+  <li role="presentation" ng-if="admin"><a ui-sref="exportar({id_prontuario: id_prontuario})">Exportar</a></li>
 </ul>
 
-
-<style>
-  .ipesq_form fieldset legend, .ipesq_form fieldset label {
-    font-weight: bold;
-  }
-  .ipesq_form fieldset p {
-    display: table;
-  }
-  .ipesq_form fieldset p label {
-    display: table-cell;
-    width: 200px;
-  }
-</style>
-
-<form action="" class="ipesq_form">
-  <fieldset>
-    <legend>Dados do Serviço de Saúde</legend>
-    <p>
-      <label>Tipo:</label>
-      <input type="radio" name="tipo" ng-model='model.servicoDeSaude.tipo' value="hospital_publico" > Hospital Público
-      <input type="radio" name="tipo" ng-model='model.servicoDeSaude.tipo' value="hospital_particular"> Hospital Particular
-      <input type="radio" name="tipo" ng-model='model.servicoDeSaude.tipo' value="hospital_filantropico"> Hospital Filantrópico
-      <input type="radio" name="tipo" ng-model='model.servicoDeSaude.tipo' value="domicilio"> Domicílio
-      <input type="radio" name="tipo" ng-model='model.servicoDeSaude.tipo' value="outros"> Outros
-    </p>
-    <p>
-      <label>Serviço de saúde:</label>
-      <span><input type="text" ng-model='model.servicoDeSaude.nome'></span>
-    </p>
-    <p>
-      <label>Município:</label>
-      <input type="text" ng-model='model.servicoDeSaude.municipio'>
-    </p>
-  </fieldset>
-</form>
-<form action="" class="ipesq_form">
-  <fieldset>
-    <legend>Dados do Recém Nascido</legend>
-    <p>
-      <label>Data do parto:</label>
-      <input type="date" ng-model='model.dataDoParto'>
-    </p>
-    <p>
-      <label>Sexo:</label>
-      <input type="radio" name="sexo" ng-model='model.sexo' value="masculino" > Masculino
-      <input type="radio" name="sexo" ng-model='model.sexo' value="feminino"> Feminino
-      <input type="radio" name="sexo" ng-model='model.sexo' value="indeterminado"> Indeterminado
-    </p>
-    <p>
-      <label>Idade gestacional:</label>
-      Semanas: <input type="number" min="1" ng-model='model.idadeGestacional.semanas'> &nbsp;
-      Dias: <input type="number" min="0" ng-model='model.idadeGestacional.dias'>
-    </p>
-    <p>
-      <label>Classificação quanto a idade gestacional:</label>
-      <input type="radio" name="tipoIdadeGestacional" ng-model='model.idadeGestacional.tipo' value="pre_termo" > Pré-termo
-      <input type="radio" name="tipoIdadeGestacional" ng-model='model.idadeGestacional.tipo' value="termo"> Termo
-      <input type="radio" name="tipoIdadeGestacional" ng-model='model.idadeGestacional.tipo' value="pos_termo"> Pós-termo
-    </p>
-    <p>
-      <label>Gemelar:</label>
-      <input type="radio" name="gemelar" ng-model='model.gemelar' value="sim" > Sim
-      <input type="radio" name="gemelar" ng-model='model.gemelar' value="nao"> Não
-    </p>
-    <p ng-if='model.gemelar == "sim"'>
-      <label>Tipo gemelar:</label>
-      <input type="radio" name="tipoGemelar" ng-model='model.tipoGemelar' value="1" > 1º Gemelar
-      <input type="radio" name="tipoGemelar" ng-model='model.tipoGemelar' value="2"> 2º Gemelar
-      <input type="radio" name="tipoGemelar" ng-model='model.tipoGemelar' value="3"> 3º Gemelar
-    </p>
-    <p>
-      <label>Tipo de parto:</label>
-      <input type="radio" name="tipoDeParto" ng-model='model.tipoDeParto' value="vaginal" > Normal/Vaginal
-      <input type="radio" name="tipoDeParto" ng-model='model.tipoDeParto' value="forceps"> Fórceps
-      <input type="radio" name="tipoDeParto" ng-model='model.tipoDeParto' value="cesareo"> Cesáreo
-    </p>
-    <p>
-      <label>Ocorreu dano perinatal:</label>
-      <input type="radio" name="danoPerinatal" ng-model='model.temDanoPerinatal' value="sim" > Sim
-      <input type="radio" name="danoPerinatal" ng-model='model.temDanoPerinatal' value="nao"> Não
-    </p>
-    <p ng-if='model.temDanoPerinatal == "sim"'>
-      <label>Dano perinatal:</label>
-      <input type="radio" name="danoPerinatal" ng-model='model.danoPerinatal' value="anoxico" > Anóxico
-      <input type="radio" name="danoPerinatal" ng-model='model.danoPerinatal' value="isquemico"> Isquêmico
-      <input type="radio" name="danoPerinatal" ng-model='model.danoPerinatal' value="hemorragico"> Hemorrágico      
-      <input type="radio" name="danoPerinatal" ng-model='model.danoPerinatal' value="traumatico"> Traumático      
-      <input type="radio" name="danoPerinatal" ng-model='model.danoPerinatal' value="outros"> Outros      
-    </p>
-    <p ng-if='model.temDanoPerinatal == "sim" && model.danoPerinatal == "outros"'>
-      <label>Outro dano perinatal:</label>
-      <input type="text" ng-model="model.outrosDanosPerinatais">
-    </p>    
-  </fieldset>
-  <fieldset>
-    <legend>Exame físico ao nascer</legend>
-    <p>
-      <label>Peso (g):</label>
-      <input type="number" min="0" step="0.01" ng-model='model.exameFisicoAoNascer.peso'>
-    </p>
-    <p>
-      <label>Estatura (cm):</label>
-      <input type="number" min="0" step="0.01" ng-model='model.exameFisicoAoNascer.estatura'>
-    </p>
-    <p>
-      <label>Perímetro cefálico (cm):</label>
-      <input type="number" min="0" step="0.01" ng-model='model.exameFisicoAoNascer.perimetroCefalico'>
-    </p>
-    <p>
-      <label>Perímetro torácico (cm):</label>
-      <input type="number" min="0" step="0.01" ng-model='model.exameFisicoAoNascer.perimetroToracico'>
-    </p>
-    <p>
-      <label>Índice de Apgar:</label>
-      1º min: <input type="number" min="0" ng-model='model.exameFisicoAoNascer.apgar1'>
-      5º min: <input type="number" min="0" ng-model='model.exameFisicoAoNascer.apgar5'>
-      10º min: <input type="number" min="0" ng-model='model.exameFisicoAoNascer.apgar10'>
-    </p>
-    <p>
-      <label>Presença de outras malformações:</label>
-      <input type="radio" name="temMalformacoes" ng-model='model.temMalformacoes' value="sim" > Sim
-      <input type="radio" name="temMalformacoes" ng-model='model.temMalformacoes' value="nao"> Não    
-    </p>
-    <div ng-if='model.temMalformacoes == "sim"'>
-      <table>
-        <tr>
-          <td><input type="checkbox" ng-model='model.malformacoes.ictericia'> Icterícia</td>
-          <td><input type="checkbox" ng-model='model.malformacoes.hidropsia'> Hidropsia</td>
-          <td><input type="checkbox" ng-model='model.malformacoes.petequias'> Petéquias</td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" ng-model='model.malformacoes.anemia'> Anemia</td>
-          <td><input type="checkbox" ng-model='model.malformacoes.rms'> Rinite muco-sanguinolenta</td>
-          <td><input type="checkbox" ng-model='model.malformacoes.plaquetopenia'> Plaquetopenia</td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" ng-model='model.malformacoes.esplenomegalia'> Esplenomegalia</td>
-          <td><input type="checkbox" ng-model='model.malformacoes.hepatomegalia'> hepatomegalia</td>
-          <td><input type="checkbox" ng-model='model.malformacoes.convulsoes'> Convulsões</td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" ng-model='model.malformacoes.ao'> Alterações ósseas</td>
-          <td><input type="checkbox" ng-model='model.malformacoes.lc'> Lesões cutâneas</td>
-          <td><input type="checkbox" ng-model='model.malformacoes.choro'> Choro ao manuseio</td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" ng-model='model.malformacoes.pseudoparalisia'> Pseudoparalisia</td>
-          <td><input type="checkbox" ng-model='model.malformacoes.outras'> Outras</td>
-          <td></td>
-        </tr>
-      </table>
+<!-- DADOS DO SERVIÇO DE SAÚDE -->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Dados do serviço de saúde</h3>
+  </div>
+  <div class="panel-body">
+    <div class="form-group">
+      <label>Tipo</label>
+      <select class="form-control" ng-model="questionario.servicoSaude.tipo">
+        <option value="">Selecione</option>
+        <option value="hospital publico">Hospital Público</option>
+        <option value="hospital particular">Hospital Particular</option>
+        <option value="hospital filantropico">Hospital Filantrópico</option>
+        <option value="domicilio">Domicílio</option>
+        <option value="outros">Outros</option>
+      </select>
     </div>
-    <p ng-if='model.temMalformacoes == "sim" && model.malformacoes.outras'>
-      <label>Outras malformações:</label>
-      <input type="text" ng-model='model.outrasMalformacoes'>
-    </p>
-  </fieldset>
-  <md-content>
-    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-      <md-button class="md-raised md-primary" ng-click="cadastrar()">Salvar</md-button>
-    </section>
-  </md-content>
-</form>
-
-<fieldset>
-  <legend>Exames Inespecíficos</legend>
-  <p>
-    <label>Data:</label>
-    <input type="date">
-  </p>
-  <table>
-    <tr>
-      <th>Hb(mg/dl)</th>
-      <th>Ht(%)</th>
-      <th>Leucócitos(mm3)</th>
-      <th>Bastonetes(%)</th>
-      <th>Segmentados(%)</th>
-    </tr>      
-    <tr>
-      <td><input type="number" min="0" step="0.01" ng-model='model.hb'></td>
-      <td><input type="number" min="0" step="0.01" ng-model='model.ht'></td>
-      <td><input type="number" min="0" step="0.01" ng-model='model.leucocitos'></td>
-      <td><input type="number" min="0" step="0.01" ng-model='model.bastonetes'></td>
-      <td><input type="number" min="0" step="0.01" ng-model='model.segmentados'></td>
-    </tr>
-    <tr>
-      <th>Monócitos(%)</th>
-      <th>Linfócitos(%)</th>
-      <th>Plaquetas(%)</th>
-      <th>Glicose(mg/dl)</th>
-    </tr>
-    <tr>
-      <td><input type="number" min="0" step="0.01" ng-model='model.monocitos'></td>
-      <td><input type="number" min="0" step="0.01" ng-model='model.linfocitos'></td>
-      <td><input type="number" min="0" step="0.01" ng-model='model.plaquetas'></td>
-      <td><input type="number" min="0" step="0.01" ng-model='model.glicose'></td>
-    </tr>
-  </table>
-  <p style="text-align: center">
-    <md-button class="md-raised md-primary" ng-click="adicionar()">Adicionar</md-button>
-  </p>  
-</fieldset>
-
-<div ng-show='exames.length > 0'>
-  <hr/>
-
-  <fieldset>
-    <legend>Exames Cadastrados</legend>
-    <table ng-repeat='exame in exames track by $index'>
-      <thead>
-        <tr>
-          <th>Data</th>
-          <th>Hb(mg/dl)</th>
-          <th>Ht(%)</th>
-          <th>Leucócitos(mm3)</th>
-          <th>Bastonetes(%)</th>
-          <th>Segmentados(%)</th>
-          <th>Monócitos(%)</th>
-          <th>Linfócitos(%)</th>
-          <th>Plaquetas(%)</th>
-          <th>Glicose(mg/dl)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{{exame.data|date:'dd/MM/yyyy'}}</td>
-          <td>{{exame.hb}}</td>
-          <td>{{exame.ht}}</td>
-          <td>{{exame.leucocitos}}</td>
-          <td>{{exame.bastonetes}}</td>
-          <td>{{exame.segmentados}}</td>
-          <td>{{exame.monocitos}}</td>
-          <td>{{exame.linfocitos}}</td>
-          <td>{{exame.plaquetas}}</td>
-          <td>{{exame.glicose}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </fieldset>
+    <div class="form-group" ng-show="questionario.servicoSaude.tipo === 'outros'">
+      <label>Tipo do Serviço de Saúde</label>
+      <input class="form-control" ng-model="questionario.servicoSaude.descricao">
+    </div>
+    <div class="form-group">
+      <label>Identificação do serviço de saúde</label>
+      <input class="form-control" ng-model="questionario.servicoSaude.identificacao">
+    </div>
+    <div class="form-group">
+      <label>Município de ocorrência</label>
+      <input class="form-control" ng-model="questionario.servicoSaude.municipio">
+    </div>
+    <div class="row"> <!-- Início da linha -->
+      <div class="col-md-6"> <!-- Coluna -->
+        <div class="form-group">
+          <label>Prontuário</label>
+          <input class="form-control" ng-model="questionario.servicoSaude.prontuario">
+        </div>
+      </div>
+      <div class="col-md-6"> <!-- Coluna -->
+        <div class="form-group">
+          <label>Responsável</label>
+          <input class="form-control" ng-model="questionario.servicoSaude.responsavel">
+        </div>
+      </div>
+    </div> <!-- Fim da linha -->
+  </div>
 </div>
+<!-- FIM - DADOS DO SERVIÇO DE SAÚDE -->
 
-<fieldset>
-  <legend>Exames Etiológicos</legend>
-  <p>
-    <label>Data:</label>
-    <input type="date">
-  </p>
-  <table>
-    <tr>
-      <th>Hb(mg/dl)</th>
-      <th>Ht(%)</th>
-      <th>Leucócitos(mm3)</th>
-      <th>Bastonetes(%)</th>
-      <th>Segmentados(%)</th>
-    </tr>      
-    <tr>
-      <td><input type="number" min="0" step="0.01" ng-model='model.hb'></td>
-      <td><input type="number" min="0" step="0.01" ng-model='model.ht'></td>
-      <td><input type="number" min="0" step="0.01" ng-model='model.leucocitos'></td>
-      <td><input type="number" min="0" step="0.01" ng-model='model.bastonetes'></td>
-      <td><input type="number" min="0" step="0.01" ng-model='model.segmentados'></td>
-    </tr>
-    <tr>
-      <th>Monócitos(%)</th>
-      <th>Linfócitos(%)</th>
-      <th>Plaquetas(%)</th>
-      <th>Glicose(mg/dl)</th>
-    </tr>
-    <tr>
-      <td><input type="number" min="0" step="0.01" ng-model='model.monocitos'></td>
-      <td><input type="number" min="0" step="0.01" ng-model='model.linfocitos'></td>
-      <td><input type="number" min="0" step="0.01" ng-model='model.plaquetas'></td>
-      <td><input type="number" min="0" step="0.01" ng-model='model.glicose'></td>
-    </tr>
-  </table>
-  <p style="text-align: center">
-    <md-button class="md-raised md-primary" ng-click="adicionar()">Adicionar</md-button>
-  </p>  
-</fieldset>
+<!-- DADOS DO RECÉM NASCIDO -->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Dados do recém nascido</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Data da ocorrência do parto</label>
+          <input type="date" class="form-control" ng-model="questionario.recemNascido.dataParto">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Sexo</label>
+          <select class="form-control" ng-model="questionario.recemNascido.sexo">
+            <option value="">Selecione</option>
+            <option value="masculino">Masculino</option>
+            <option value="feminino">Feminino</option>
+            <option value="indeterminado">Indeterminado</option>
+          </select>
+        </div>
+      </div>
+    </div>
 
-<div ng-show='exames.length > 0'>
-  <hr/>
+    <div class="row"> <!-- Início da linha -->
+      <div class="col-md-3"> <!-- Coluna -->
+        <div class="form-group">
+          <label>Idade Gestacional</label>
+          <input type="number" step="1" placeholder="Semanas" class="form-control" ng-model="questionario.recemNascido.idadeGestacional.semanas">
+        </div>
+      </div>
+      <div class="col-md-3"> <!-- Coluna -->
+        <div class="form-group">
+          <label></label>
+          <input type="number" step="1" placeholder="Dias" class="form-control" ng-model="questionario.recemNascido.idadeGestacional.dias">
+        </div>
+      </div>
+      <div class="col-md-6"> <!-- Coluna -->
+        <div class="form-group">
+          <label>Classificação quanto à idade gestacional</label>
+          <select class="form-control" ng-model="questionario.recemNascido.idadeGestacional.classificacao">
+            <option value="">Selecione</option>
+            <option value="pre-termo">Pré-termo</option>
+            <option value="termo">Termo</option>
+            <option value="pos-termo">Pós-termo</option>
+          </select>
+        </div>
+      </div>
+    </div> <!-- Fim da linha -->
+    
+    <div class="row"> <!-- Início da linha -->
+      <div class="col-md-6"> <!-- Coluna -->
+        <div class="form-group">
+          <label>Gemelar</label>
+          <select class="form-control" ng-model="questionario.recemNascido.gemelar">
+            <option value="">Selecione</option>
+            <option value="nao">Não</option>
+            <option value="gemelar_1">1º Gemelar</option>
+            <option value="gemelar_2">2º Gemelar</option>
+            <option value="gemelar_3">3º Gemelar</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6"> <!-- Coluna -->
+        <div class="form-group">
+          <label>Tipo de parto</label>
+          <select class="form-control" ng-model="questionario.recemNascido.tipoParto">
+            <option value="">Selecione</option>
+            <option value="vaginal">Normal (Vaginal)</option>
+            <option value="forceps">Fórceps</option>
+            <option value="cesareo">Cesáreo</option>
+          </select>
+        </div>
+      </div>
+    </div> <!-- Fim da linha -->
 
-  <fieldset>
-    <legend>Exames Cadastrados</legend>
-    <table ng-repeat='exame in exames track by $index'>
-      <thead>
-        <tr>
-          <th>Data</th>
-          <th>Hb(mg/dl)</th>
-          <th>Ht(%)</th>
-          <th>Leucócitos(mm3)</th>
-          <th>Bastonetes(%)</th>
-          <th>Segmentados(%)</th>
-          <th>Monócitos(%)</th>
-          <th>Linfócitos(%)</th>
-          <th>Plaquetas(%)</th>
-          <th>Glicose(mg/dl)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{{exame.data|date:'dd/MM/yyyy'}}</td>
-          <td>{{exame.hb}}</td>
-          <td>{{exame.ht}}</td>
-          <td>{{exame.leucocitos}}</td>
-          <td>{{exame.bastonetes}}</td>
-          <td>{{exame.segmentados}}</td>
-          <td>{{exame.monocitos}}</td>
-          <td>{{exame.linfocitos}}</td>
-          <td>{{exame.plaquetas}}</td>
-          <td>{{exame.glicose}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </fieldset>
+    <div class="row"> <!-- Início da linha -->
+      <div class="col-md-6"> <!-- Coluna -->
+        <div class="form-group">
+          <label>Ocorreu dano perinatal ?</label>
+          <select class="form-control" ng-model="questionario.recemNascido.danoPerinatal">
+            <option value="">Selecione</option>
+            <option value="nao">Não</option>
+            <option value="anoxico">Anóxico</option>
+            <option value="isquemico">Isquêmico</option>
+            <option value="hemorragico">Hemorrágico</option>
+            <option value="traumatico">Traumático</option>
+            <option value="outros">Outros</option>
+          </select>
+        </div>
+      </div> <!-- Fim da coluna -->
+      <div class="col-md-6" ng-show="questionario.recemNascido.danoPerinatal === 'outros'"> <!-- Coluna -->
+        <div class="form-group">
+          <label>Dano perinatal</label>
+          <input class="form-control" ng-model="questionario.recemNascido.outroDanoPerinatal">
+        </div>
+      </div> <!-- Fim da coluna -->
+    </div> <!-- Fim da linha -->
+
+    <div class="form-group">
+      <label>Exame físico ao nascer</label>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Peso (g)</label>
+            <input type="number" step="0.01" class="form-control" ng-model="questionario.recemNascido.exameFisicoAoNascer.peso">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Estatura (cm)</label>
+            <input type="number" step="0.01" class="form-control" ng-model="questionario.recemNascido.exameFisicoAoNascer.estatura">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Perímetro cefálico (cm)</label>
+            <input type="number" step="0.01" class="form-control" ng-model="questionario.recemNascido.exameFisicoAoNascer.perimetroCefalico">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Perímetro torácico (cm)</label>
+            <input type="number" step="0.01" class="form-control" ng-model="questionario.recemNascido.exameFisicoAoNascer.perimetroToracico">
+          </div>
+        </div>
+      </div> <!-- Fim da linha da tabela - Exame físico ao nascer -->
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Apgar 1º min</label>
+            <input type="number" step="0.01" class="form-control" ng-model="questionario.recemNascido.exameFisicoAoNascer.apgar1Min">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Apgar 5º min</label>
+            <input type="number" step="0.01" class="form-control" ng-model="questionario.recemNascido.exameFisicoAoNascer.apgar5Min">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Apgar 10º min</label>
+            <input type="number" step="0.01" class="form-control" ng-model="questionario.recemNascido.exameFisicoAoNascer.apgar10Min">
+          </div>
+        </div>
+      </div> <!-- Fim da linha da tabela - Exame físico ao nascer -->
+    </div> <!-- Fim - Exame físico ao nascer -->
+    <div class="form-group">
+      <label>Presença de outras malformações</label>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="questionario.recemNascido.malformacoes.possui"> Sim 
+        </label>
+      </div>
+      <div class="checkbox" ng-show="questionario.recemNascido.malformacoes.possui">
+        <label>
+          <input type="checkbox" ng-model="questionario.recemNascido.malformacoes.aparelhoCirculatorio"> Aparelho circulatório 
+        </label>
+      </div>
+      <div class="checkbox" ng-show="questionario.recemNascido.malformacoes.possui">
+        <label>
+          <input type="checkbox" ng-model="questionario.recemNascido.malformacoes.aparelhoRespiratorio"> Aparelho respiratório 
+        </label>
+      </div>
+      <div class="checkbox" ng-show="questionario.recemNascido.malformacoes.possui">
+        <label>
+          <input type="checkbox" ng-model="questionario.recemNascido.malformacoes.aparelhoDigestivo"> Aparelho digestivo 
+        </label>
+      </div>
+      <div class="checkbox" ng-show="questionario.recemNascido.malformacoes.possui">
+        <label>
+          <input type="checkbox" ng-model="questionario.recemNascido.malformacoes.orgaosGenitais"> Órgãos genitais
+        </label>
+      </div>
+      <div class="checkbox" ng-show="questionario.recemNascido.malformacoes.possui">
+        <label>
+          <input type="checkbox" ng-model="questionario.recemNascido.malformacoes.aparelhoOsteomuscular"> Aparelho osteomuscular
+        </label>
+      </div>
+    </div> <!-- Presença de malformações -->
+    <div class="form-group" ng-show="questionario.recemNascido.malformacoes.possui">
+      <label>Descrição da malformação:</label>
+      <input class="form-control" ng-model="questionario.recemNascido.malformacoes.descricao">
+    </div>
+
+    <div class="form-group">
+      <label>Houve outros achados clínicos ?</label>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="questionario.recemNascido.outrosAchadosClinicos.possui"> Sim 
+        </label>
+      </div>
+      <div ng-show="questionario.recemNascido.outrosAchadosClinicos.possui">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="questionario.recemNascido.outrosAchadosClinicos.ictericia"> Icterícia osteomuscular
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="questionario.recemNascido.outrosAchadosClinicos.anemia"> Anemia
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="questionario.recemNascido.outrosAchadosClinicos.esplenomegalia"> Esplenomegalia
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="questionario.recemNascido.outrosAchadosClinicos.alteracoesOsseas"> Alterações ósseas
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="questionario.recemNascido.outrosAchadosClinicos.choroAoManuseio"> Choro ao manuseio
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="questionario.recemNascido.outrosAchadosClinicos.hidropsia"> Hidropsia
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="questionario.recemNascido.outrosAchadosClinicos.riniteMucoSanguinolenta"> Rinite muco-sanguinolenta
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="questionario.recemNascido.outrosAchadosClinicos.hepatomegalia"> Hepatomegalia
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="questionario.recemNascido.outrosAchadosClinicos.lesoesCutaneas"> Lesões cutâneas
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="questionario.recemNascido.outrosAchadosClinicos.pseudoparalisia"> Pseudoparalisia
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="questionario.recemNascido.outrosAchadosClinicos.petequias"> Petéquias
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="questionario.recemNascido.outrosAchadosClinicos.plaquetopenia"> Plaquetopenia
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="questionario.recemNascido.outrosAchadosClinicos.convulsoes"> Convulsões
+          </label>
+        </div>
+      </div> <!-- Possui achados clínicos -->
+    </div>
+
+    <div class="form-group" ng-show="questionario.recemNascido.outrosAchadosClinicos.possui">
+      <label>Outros achados clínicos:</label>
+      <input class="form-control" ng-model="questionario.recemNascido.outrosAchadosClinicos.outras">
+    </div>
+
+    <!-- Panel Exames Inespecíficos -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Exames inespecíficos</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Hemograma (considerar o primeiro)</label>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.recemNascido.hemograma.primeiro"> Sim
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" ng-show="questionario.recemNascido.hemograma.primeiro">
+            <div class="form-group">
+              <label>Data da realização</label>
+              <input class="form-control" ng-model="questionario.recemNascido.hemograma.data">
+            </div>
+          </div>
+        </div>
+        <div class="row" ng-show="questionario.recemNascido.hemograma.primeiro"> <!-- Primeira linha do hemograma -->
+          <div class="col-md-2">
+            <label>Hb (mg/dl)</label>
+            <input class="form-control" type="number" step="0.01" ng-model="questionario.recemNascido.hemograma.hb">
+          </div>
+          <div class="col-md-2">
+            <label>Ht (%)</label>
+            <input class="form-control" type="number" step="0.01" ng-model="questionario.recemNascido.hemograma.ht">
+          </div>
+          <div class="col-md-2">
+            <label>Leucócitos (mm³)</label>
+            <input class="form-control" type="number" step="0.01" ng-model="questionario.recemNascido.hemograma.leucocitos">
+          </div>
+          <div class="col-md-2">
+            <label>Bastonetes (%)</label>
+            <input class="form-control" type="number" step="0.01" ng-model="questionario.recemNascido.hemograma.bastonetes">
+          </div>
+          <div class="col-md-2">
+            <label>Segmentados (%)</label>
+            <input class="form-control" type="number" step="0.01" ng-model="questionario.recemNascido.hemograma.segmentados">
+          </div>
+          <div class="col-md-2">
+            <label>Monócitos (%)</label>
+            <input class="form-control" type="number" step="0.01" ng-model="questionario.recemNascido.hemograma.monocitos">
+          </div>
+        </div> <!-- FIM - Primeira linha do hemograma -->
+        <div class="row" ng-show="questionario.recemNascido.hemograma.primeiro"> <!-- Segunda linha do hemograma -->
+          <div class="col-md-2">
+            <label>Linfócitos (%)</label>
+            <input class="form-control" type="number" step="0.01" ng-model="questionario.recemNascido.hemograma.linfocitos">
+          </div>
+          <div class="col-md-2">
+            <label>Plaquetas (mm³)</label>
+            <input class="form-control" type="number" step="0.01" ng-model="questionario.recemNascido.hemograma.plaquetas">
+          </div>
+          <div class="col-md-2">
+            <label>Glicose (mg/dl)</label>
+            <input class="form-control" type="number" step="0.01" ng-model="questionario.recemNascido.hemograma.glicose">
+          </div>
+        </div> <!-- FIM - Segunda linha do hemograma -->
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Punção liquórica</label>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.recemNascido.puncaoLiquorica.primeiro"> Sim
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4" ng-show="questionario.recemNascido.puncaoLiquorica.primeiro">
+            <div class="form-group">
+              <label>Data da realização</label>
+              <input class="form-control" ng-model="questionario.recemNascido.puncaoLiquorica.data">
+            </div>
+          </div>
+          <div class="col-md-4" ng-show="questionario.recemNascido.puncaoLiquorica.primeiro">
+            <div class="form-group">
+              <label>Aspecto</label>
+              <select class="form-control" ng-model="questionario.recemNascido.puncaoLiquorica.aspecto">
+                <option value="">Selecione</option>
+                <option value="limpido">Límpido</option>
+                <option value="purulento">Purulento</option>
+                <option value="hemorragico">Hemorrágico</option>
+                <option value="turvo">Turvo</option>
+                <option value="xantocromico">Xantocrômico</option>
+                <option value="outros">Outros</option>
+                <option value="ignorado">Ignorado</option>
+              </select>
+            </div>
+          </div>
+        </div> <!-- FIM - Punção liquórica -->
+        <div class="row" ng-show="questionario.recemNascido.puncaoLiquorica.primeiro">
+          <div class="col-md-2">
+            <label>Hemácias (mm³)</label>
+            <input class="form-control" type="number" step="0.01" ng-model="questionario.recemNascido.puncaoLiquorica.hemacias">
+          </div>
+          <div class="col-md-2">
+            <label>Leucócitos (mm³)</label>
+            <input class="form-control" type="number" step="0.01" ng-model="questionario.recemNascido.puncaoLiquorica.leucocitos">
+          </div>
+          <div class="col-md-2">
+            <label>Bastonetes (%)</label>
+            <input class="form-control" type="number" step="0.01" ng-model="questionario.recemNascido.puncaoLiquorica.bastonetes">
+          </div>
+          <div class="col-md-2">
+            <label>Segmentados (%)</label>
+            <input class="form-control" type="number" step="0.01" ng-model="questionario.recemNascido.puncaoLiquorica.segmentados">
+          </div>
+          <div class="col-md-2">
+            <label>Monócitos (%)</label>
+            <input class="form-control" type="number" step="0.01" ng-model="questionario.recemNascido.puncaoLiquorica.monocitos">
+          </div>
+          <div class="col-md-2">
+            <label>Linfócitos (%)</label>
+            <input class="form-control" type="number" step="0.01" ng-model="questionario.recemNascido.puncaoLiquorica.linfocitos">
+          </div>
+        </div> <!-- FIM - Primeira linha da punção liquórica -->
+        <div class="row" ng-show="questionario.recemNascido.puncaoLiquorica.primeiro">
+          <div class="col-md-2">
+            <label>Proteínas (mg/dl)</label>
+            <input class="form-control" type="number" step="0.01" ng-model="questionario.recemNascido.puncaoLiquorica.proteinas">
+          </div>
+          <div class="col-md-2">
+            <label>Cloreto (mg/dl)</label>
+            <input class="form-control" type="number" step="0.01" ng-model="questionario.recemNascido.puncaoLiquorica.cloreto">
+          </div>
+          <div class="col-md-2">
+            <label>Glicose (mg/dl)</label>
+            <input class="form-control" type="number" step="0.01" ng-model="questionario.recemNascido.puncaoLiquorica.glicose">
+          </div>
+        </div> <!-- FIM - Segunda linha da punção liquórica -->
+
+      </div> <!-- Panel body Exames Inespecíficos -->      
+    </div> <!-- Fim do Panel Exames Inespecíficos -->
+
+    <!-- Panel Exames Etiológicos -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Exames etiológicos</h3>
+      </div>
+      <div class="panel-body">
+        <!-- Formulário novo exame etiológico -->
+        <div class="row">
+          <div class="col-md-2">
+            <label>Agente</label>
+            <select class="form-control" ng-model="temp.exameEtiologico.agente">
+              <option value="">Selecione</option>
+              <option value="rubeola">Rubéola</option>
+              <option value="citomegalovirus">Citomegalovírus</option>
+              <option value="herpesvirus">Herpes vírus</option>
+              <option value="parvovirus">Parvovírus</option>
+              <option value="toxoplasmose">Toxoplasmose</option>
+              <option value="sifilis">Sífilis</option>
+              <option value="hiv">HIV</option>
+              <option value="zikavirus">Zika vírus</option>
+              <option value="chikungunya">Chikungunya</option>
+              <option value="dengue">Dengue</option>
+            </select>
+          </div>
+          <div class="col-md-10">
+            <div class="row">
+              <div class="col-md-2"><label>Amostra</label></div>
+              <div class="col-md-3"><label>Data coleta</label></div>
+              <div class="col-md-2"><label>IgM</label></div>
+              <div class="col-md-2"><label>IgG</label></div>
+              <div class="col-md-2"><label>PCR</label></div>
+            </div>
+            <div class="row"> <!-- Soro do RN -->
+              <div class="col-md-2">Soro do RN</div>
+              <div class="col-md-3">
+                <input class="form-control" type="date" ng-model="temp.exameEtiologico.dados[0].data">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[0].igm">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[0].igg">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[0].pcr">
+              </div>
+            </div> <!-- Fim - Soro do RN -->
+            <div class="row"> <!-- Líquor -->
+              <div class="col-md-2">Líquor</div>
+              <div class="col-md-3">
+                <input class="form-control" type="date" ng-model="temp.exameEtiologico.dados[1].data">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[1].igm">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[1].igg">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[1].pcr">
+              </div>
+            </div> <!-- Fim - Líquor -->
+            <div class="row"> <!-- Urina -->
+              <div class="col-md-2">Urina</div>
+              <div class="col-md-3">
+                <input class="form-control" type="date" ng-model="temp.exameEtiologico.dados[2].data">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[2].igm">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[2].igg">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[2].pcr">
+              </div>
+            </div> <!-- Fim - Urina -->
+
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-primary" ng-click="adicionarExameEtiologico()">Adicionar Exame</button>
+
+        <hr>
+
+        <table class="table table-bordered" ng-show="questionario.recemNascido.examesEtiologicos.length > 0">
+          <thead>
+            <tr>
+              <th>Agente</th>
+              <th>Amostra</th>
+              <th>Data coleta</th>
+              <th>IgM</th>
+              <th>IgG</th>
+              <th>PCR</th>
+            </tr>
+          </thead>
+          <tbody ng-repeat="exame in questionario.recemNascido.examesEtiologicos">
+            <tr>
+              <td rowspan="3">{{exame.agente}}</td>
+              <td>{{exame.dados[0].amostra}}</td>
+              <td>{{exame.dados[0].data|date: 'dd/MM/yyyy'}}</td>
+              <td>{{exame.dados[0].igm}}</td>
+              <td>{{exame.dados[0].igg}}</td>
+              <td>{{exame.dados[0].pcr}}</td>
+            </tr>
+            <tr>
+              <td>{{exame.dados[1].amostra}}</td>
+              <td>{{exame.dados[1].data|date: 'dd/MM/yyyy'}}</td>
+              <td>{{exame.dados[1].igm}}</td>
+              <td>{{exame.dados[1].igg}}</td>
+              <td>{{exame.dados[1].pcr}}</td>
+            </tr>
+            <tr>
+              <td>{{exame.dados[2].amostra}}</td>
+              <td>{{exame.dados[2].data|date: 'dd/MM/yyyy'}}</td>
+              <td>{{exame.dados[2].igm}}</td>
+              <td>{{exame.dados[2].igg}}</td>
+              <td>{{exame.dados[2].pcr}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div> <!-- Fim do Panel Exames Etiológicos -->
+
+  </div> <!-- Fim do panel body - Recém nascido -->
 </div>
-
-<fieldset>
-  <legend>Exames de Imagem</legend>
-  <p>
-    <label>Data:</label>
-    <input type="date">
-  </p>
-  <table>
-    <tr>
-      <th>Hb(mg/dl)</th>
-      <th>Ht(%)</th>
-      <th>Leucócitos(mm3)</th>
-      <th>Bastonetes(%)</th>
-      <th>Segmentados(%)</th>
-    </tr>      
-    <tr>
-      <td><input type="number" min="0" step="0.01" ng-model='model.hb'></td>
-      <td><input type="number" min="0" step="0.01" ng-model='model.ht'></td>
-      <td><input type="number" min="0" step="0.01" ng-model='model.leucocitos'></td>
-      <td><input type="number" min="0" step="0.01" ng-model='model.bastonetes'></td>
-      <td><input type="number" min="0" step="0.01" ng-model='model.segmentados'></td>
-    </tr>
-    <tr>
-      <th>Monócitos(%)</th>
-      <th>Linfócitos(%)</th>
-      <th>Plaquetas(%)</th>
-      <th>Glicose(mg/dl)</th>
-    </tr>
-    <tr>
-      <td><input type="number" min="0" step="0.01" ng-model='model.monocitos'></td>
-      <td><input type="number" min="0" step="0.01" ng-model='model.linfocitos'></td>
-      <td><input type="number" min="0" step="0.01" ng-model='model.plaquetas'></td>
-      <td><input type="number" min="0" step="0.01" ng-model='model.glicose'></td>
-    </tr>
-  </table>
-  <p style="text-align: center">
-    <md-button class="md-raised md-primary" ng-click="adicionar()">Adicionar</md-button>
-  </p>  
-</fieldset>
-
-<div ng-show='exames.length > 0'>
-  <hr/>
-
-  <fieldset>
-    <legend>Exames Cadastrados</legend>
-    <table ng-repeat='exame in exames track by $index'>
-      <thead>
-        <tr>
-          <th>Data</th>
-          <th>Hb(mg/dl)</th>
-          <th>Ht(%)</th>
-          <th>Leucócitos(mm3)</th>
-          <th>Bastonetes(%)</th>
-          <th>Segmentados(%)</th>
-          <th>Monócitos(%)</th>
-          <th>Linfócitos(%)</th>
-          <th>Plaquetas(%)</th>
-          <th>Glicose(mg/dl)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{{exame.data|date:'dd/MM/yyyy'}}</td>
-          <td>{{exame.hb}}</td>
-          <td>{{exame.ht}}</td>
-          <td>{{exame.leucocitos}}</td>
-          <td>{{exame.bastonetes}}</td>
-          <td>{{exame.segmentados}}</td>
-          <td>{{exame.monocitos}}</td>
-          <td>{{exame.linfocitos}}</td>
-          <td>{{exame.plaquetas}}</td>
-          <td>{{exame.glicose}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </fieldset>
-</div>
-
-<fieldset>
-  <legend>Outros Exames</legend>
-  <p>
-    <label>Data:</label>
-    <input type="date">
-  </p>
-  <table>
-    <tr>
-      <th>Hb(mg/dl)</th>
-      <th>Ht(%)</th>
-      <th>Leucócitos(mm3)</th>
-      <th>Bastonetes(%)</th>
-      <th>Segmentados(%)</th>
-    </tr>      
-    <tr>
-      <td><input type="number" min="0" step="0.01" ng-model='model.hb'></td>
-      <td><input type="number" min="0" step="0.01" ng-model='model.ht'></td>
-      <td><input type="number" min="0" step="0.01" ng-model='model.leucocitos'></td>
-      <td><input type="number" min="0" step="0.01" ng-model='model.bastonetes'></td>
-      <td><input type="number" min="0" step="0.01" ng-model='model.segmentados'></td>
-    </tr>
-    <tr>
-      <th>Monócitos(%)</th>
-      <th>Linfócitos(%)</th>
-      <th>Plaquetas(%)</th>
-      <th>Glicose(mg/dl)</th>
-    </tr>
-    <tr>
-      <td><input type="number" min="0" step="0.01" ng-model='model.monocitos'></td>
-      <td><input type="number" min="0" step="0.01" ng-model='model.linfocitos'></td>
-      <td><input type="number" min="0" step="0.01" ng-model='model.plaquetas'></td>
-      <td><input type="number" min="0" step="0.01" ng-model='model.glicose'></td>
-    </tr>
-  </table>
-  <p style="text-align: center">
-    <md-button class="md-raised md-primary" ng-click="adicionar()">Adicionar</md-button>
-  </p>  
-</fieldset>
-
-<div ng-show='exames.length > 0'>
-  <hr/>
-
-  <fieldset>
-    <legend>Exames Cadastrados</legend>
-    <table ng-repeat='exame in exames track by $index'>
-      <thead>
-        <tr>
-          <th>Data</th>
-          <th>Hb(mg/dl)</th>
-          <th>Ht(%)</th>
-          <th>Leucócitos(mm3)</th>
-          <th>Bastonetes(%)</th>
-          <th>Segmentados(%)</th>
-          <th>Monócitos(%)</th>
-          <th>Linfócitos(%)</th>
-          <th>Plaquetas(%)</th>
-          <th>Glicose(mg/dl)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{{exame.data|date:'dd/MM/yyyy'}}</td>
-          <td>{{exame.hb}}</td>
-          <td>{{exame.ht}}</td>
-          <td>{{exame.leucocitos}}</td>
-          <td>{{exame.bastonetes}}</td>
-          <td>{{exame.segmentados}}</td>
-          <td>{{exame.monocitos}}</td>
-          <td>{{exame.linfocitos}}</td>
-          <td>{{exame.plaquetas}}</td>
-          <td>{{exame.glicose}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </fieldset>
-</div>
-
-
-<form class="ipesq_form">
-  <fieldset>
-    <legend>Dados da Mãe</legend>
-    <p>
-      <label>Nome:</label>
-      <input type="text" ng-model='model.mae.nome'>
-    </p>
-    <p>
-      <label>Data de nascimento:</label>
-      <input type="date" ng-model='model.mae.dataDeNascimento'>
-    </p>
-    <p>
-      <label>Raça/cor:</label>
-      <input type="radio" name="tipo" ng-model='model.mae.raca' value="branca"> Branca
-      <input type="radio" name="tipo" ng-model='model.mae.raca' value="preta"> Preta
-      <input type="radio" name="tipo" ng-model='model.mae.raca' value="amarela"> Amarela
-      <input type="radio" name="tipo" ng-model='model.mae.raca' value="parda"> Parda
-      <input type="radio" name="tipo" ng-model='model.mae.raca' value="indigena"> Indígena
-      <input type="radio" name="tipo" ng-model='model.mae.raca' value="ignorado"> Ignorado
-    </p>
-    <p>
-      <label>Escolaridade</label>
-      <input type="radio" name="tipo" ng-model='model.mae.escolaridade' value="sem"> Sem escolaridade
-      <input type="radio" name="tipo" ng-model='model.mae.escolaridade' value="fundamental1"> Fundamental I
-      <input type="radio" name="tipo" ng-model='model.mae.escolaridade' value="fundamental2"> Fundamental II
-      <input type="radio" name="tipo" ng-model='model.mae.escolaridade' value="medio"> Médio
-      <input type="radio" name="tipo" ng-model='model.mae.escolaridade' value="superior"> Superior
-      <input type="radio" name="tipo" ng-model='model.mae.escolaridade' value="ignorado"> Ignorado
-    </p>
-    <p>
-      <label>Estado Civil</label>
-      <input type="radio" name="tipo" ng-model='model.mae.estadoCivil' value="solteira"> Solteira
-      <input type="radio" name="tipo" ng-model='model.mae.estadoCivil' value="casada"> Casada
-      <input type="radio" name="tipo" ng-model='model.mae.estadoCivil' value="viuva"> Viúva
-      <input type="radio" name="tipo" ng-model='model.mae.estadoCivil' value="separada"> Separada/Divorciada
-      <input type="radio" name="tipo" ng-model='model.mae.estadoCivil' value="uniao_estavel"> União Estável
-      <input type="radio" name="tipo" ng-model='model.mae.estadoCivil' value="ignorado"> Ignorado
-    </p>
-    <p>
-      <label>Ocupação:</label>
-      <input type="text" ng-model='model.mae.ocupacao'>
-    </p>
-    <p>
-      <label>Número de pessoas que moram na sua casa:</label>
-      <input type="number" min="1" ng-model='model.mae.numeroDePessoasNaCasa'>
-    </p>
-    <p>
-      <label>Renda familiar mensal:</label>
-      <input type="number" min="0" step="0.01" ng-model='model.mae.rendaFamiliar'>
-    </p>
-
-    <fieldset>
-      <legend>Endereço Atual</legend>
-      <p>
-        <label style="display: inline;">Estado:</label>
-        &nbsp;
-        <select ng-model='model.endereco.estado'>
-          <option>Selecione</option>
-          <option value="pb">Paraíba</option>
-          <option value="pe">Pernambuco</option>
-          <option value="rn">Rio Grande do Norte</option>
-        </select>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <label style="display: inline;">Município:</label>
-        &nbsp;
-        <select ng-model='model.endereco.municipio'>
-          <option>Selecione</option>
-          <option value="1">Campina Grande</option>
-          <option value="2">João Pessoa</option>
-          <option value="3">Patos</option>
-          <option value="4">São José da Lagoa Tapada</option>
-        </select>
-      </p>
-      <p>
-        <label style="display: inline;">Logradouro:</label>
-        &nbsp;
-        <input style="width: 400px;" type="text" ng-model='model.endereco.logradouro'>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <label style="display: inline;">Número:</label>
-        &nbsp;
-        <input type="text" ng-model='model.endereco.numero'>
-      </p>
-      <p>
-        <label style="display: inline;">Bairro:</label>
-        &nbsp;
-        <input style="width: 400px;" type="text" ng-model='model.endereco.bairro'>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <label style="display: inline;">Telefone:</label>
-        &nbsp;
-        <input type="text" ng-model='model.endereco.telefone'>
-      </p>
-    </fieldset>
-  </fieldset>
-  <md-content>
-    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-      <md-button class="md-raised md-primary" ng-click="cadastrar()">Cadastrar</md-button>
-    </section>
-  </md-content>
-</form>
+<!-- FIM - DADOS DO RECÉM NASCIDO -->

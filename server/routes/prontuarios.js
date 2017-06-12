@@ -7,6 +7,7 @@ var Laudo = mongoose.model('Laudo');
 var Prontuario = mongoose.model('Prontuario');
 var Exame = mongoose.model('Exame');
 var GMFM = mongoose.model('GMFM');
+var Questionario = mongoose.model('Questionario');
 
 // ----------------------------------------------------------------------------
 // PRONTUÁRIOS
@@ -309,6 +310,66 @@ router.delete('/:prontuarioId/gmfms/:gmfmId', function(req, res) {
 });
 
 // ----------------------------------------------------------------------------
+// QUESTIONÁRIOS
+// ----------------------------------------------------------------------------
+// Retorna todos os questionários de um prontuário
+router.get('/:prontuarioId/questionarios', function(req, res, next) {
+  Questionario.find()
+    .sort('-updatedAt')
+    .populate('prontuario')
+    .populate('owner')
+    .exec(function(err, data) {
+    if (err) {
+      return next(err);
+    }
+
+    res.json(data);
+  });
+});
+
+// Adiciona um questionário
+router.post('/:prontuarioId/questionarios', function(req, res, next) {
+  var q = new Questionario(req.body);
+
+  q.owner = req.user;
+
+  q.save(function(err, post){
+    if(err) {
+      return next(err);
+    }
+
+    res.json(q);
+  });
+});
+
+// Atualiza um questionário
+router.put('/:prontuarioId/questionarios/:questionarioId', function(req, res, next) {
+  Questionario.update({_id: req.questionario._id}, req.body, {}, function(err, questionario){
+    if(err) {
+      return next(err);
+    }
+
+    res.json(questionario);
+  });
+});
+
+// Retorna um prontuário
+router.get('/:prontuarioId/questionarios/:questionarioId', function(req, res) {
+  res.json(req.questionario);
+});
+
+// Remove um prontuário
+router.delete('/:prontuarioId/questionarios/:questionarioId', function(req, res) {
+  Questionario.remove({_id: req.questionario.id}, function(err) {
+    if(err) {
+      return next(err);
+    }
+
+    res.json({'status': 'ok'});
+  });
+});
+
+// ----------------------------------------------------------------------------
 // REQUEST PARAMETERS
 // ----------------------------------------------------------------------------
 
@@ -383,5 +444,24 @@ router.param('gmfmId', function(req, res, next, id) {
     return next();
   });
 });
+
+// Adiciona um questionário ao request sempre que o parâmetro questionarioId for informado
+router.param('questionarioId', function(req, res, next, id) {
+  var query = Questionario.findById(id);
+
+  query.exec(function (err, questionario){
+    if (err) { 
+      return next(err); 
+    }
+
+    if (!questionario) { 
+      return next(new Error('Não foi possível encontrar o questionário')); 
+    }
+
+    req.questionario = questionario;
+    return next();
+  });
+});
+
 
 module.exports = router;

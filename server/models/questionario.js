@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 
 var ServicoSaudeSchema = new mongoose.Schema({
   tipo: String,
+  descricao: String,
   identificacao: String,
   municipio: String,
   prontuario: String,
@@ -120,6 +121,7 @@ var RecemNascidoSchema = new mongoose.Schema({
   gemelar: String,
   tipoParto: String,
   danoPerinatal: String,
+  outroDanoPerinatal: String,
   exameFisicoAoNascer: ExameFisicoAoNascerSchema,
   malformacoes: MalformacoesSchema,
   outrosAchadosClinicos: OutrosAchadosClinicosSchema,
@@ -262,7 +264,7 @@ var DrogasIlicitasSchema = new mongoose.Schema({
 
 var HabitosSchema = new mongoose.Schema({
   usoDeAlcool: UsoDeAlcoolSchema,
-  tabegismo: TabagismoSchema,
+  tabagismo: TabagismoSchema,
   usoDeDrogas: [DrogasIlicitasSchema]
 });
 
@@ -404,7 +406,29 @@ var QuestionarioSchema = new mongoose.Schema({
   recemNascido: RecemNascidoSchema,
   mae: MaeSchema,
   encerramentoCaso: EncerramentoCasoSchema,
-  investigador: InvestigadorSchema
+  investigador: InvestigadorSchema,
+  createdAt: Date,
+  updatedAt: Date,
+  prontuario: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Prontuario'
+  },
+  owner: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User'
+  }  
+});
+
+QuestionarioSchema.pre('save', function(next) {
+  var now = new Date();
+
+  this.updatedAt = now;
+
+  if (!this.createdAt) {
+    this.createdAt = now;
+  }
+
+  next();
 });
 
 mongoose.model('Questionario', QuestionarioSchema);
