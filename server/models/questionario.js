@@ -179,6 +179,93 @@ var TratamentoDSTSchema = new mongoose.Schema({
   outras: String
 });
 
+var HistoricoObstetricioSchema = new mongoose.Schema({
+  primeiraGestacao: Boolean,
+  quantasVezesEngravidou: Number,
+  quantosNascidosVivos: Number,
+  quantosNascidosMortos: Number,
+  jaAbortou: Boolean,
+  quantosAbortos: Number,
+  jaTeveFilhosComMalFormacaoCongenita: Boolean,
+  quaisFilhosComMalFormacaoCongenita: String,
+  dataNascimentoUltimoFilho: Date
+});
+
+var ContatoSubstanciaSchema = new mongoose.Schema({
+  teveContato: Boolean,
+  detalhe: String
+});
+
+var ContatoRaioXSchema = new mongoose.Schema({
+  teveContato: Boolean,
+  trimestre: Number
+});
+
+var UsoDeMedicamentoSchema = new mongoose.Schema({
+  nome: String,
+  dataInicioTratamento: Date
+});
+
+var DuranteGestacaoSchema = new mongoose.Schema({
+  contatoComPesticidas: ContatoSubstanciaSchema,
+  contatoComAgrotoxicos: ContatoSubstanciaSchema,
+  contatoProdutoQuimico: ContatoSubstanciaSchema,
+  contatoRaioX: ContatoRaioXSchema,
+  medicamentos: [UsoDeMedicamentoSchema]
+});
+
+var HistoricoManchasVermelhasSchema = new mongoose.Schema({
+  trimestre: Number,
+  duracaoEmDias: Number,
+  localDeInicio: String,
+  espalhou: Boolean,
+  espalhouParaOnde: String,
+  febre: Boolean,
+  febreTemperatura: Number,
+  prurido: Boolean,
+  tosse: Boolean,
+  coriza: Boolean,
+  cefaleia: Boolean,
+  mialgia: Boolean,
+  artralgia: Boolean,
+  artralgiaTempo: Number,
+  linfoadenopatia: Boolean,
+  hiperemiaConjuntival: Boolean,
+  vomitos: Boolean,
+  dorRetroorbital: Boolean,
+  outros: String,
+  surgimentoDoRash: String,
+  atendimentoMedico: Boolean,
+  hipoteseDiagnostica: String,
+  tomouRemedio: Boolean,
+  remedios: String
+});
+
+var UsoDeAlcoolSchema = new mongoose.Schema({
+  fezUsoDuranteGestacao: Boolean,
+  frequenciaSemanal: String,
+  doses: String,
+  frequenciaMaisDeTresDoses: String
+});
+
+var TabagismoSchema = new mongoose.Schema({
+  relacaoComCigarro: String,
+  fumaDiariamenteHaQuantosAnos: Number,
+  parouDeFumarHa: Number,
+  parouDeFumarUnidadeDeTempo: String
+});
+
+var DrogasIlicitasSchema = new mongoose.Schema({
+  nome: String,
+  frequencia: String
+});
+
+var HabitosSchema = new mongoose.Schema({
+  usoDeAlcool: UsoDeAlcoolSchema,
+  tabegismo: TabagismoSchema,
+  usoDeDrogas: [DrogasIlicitasSchema]
+});
+
 var MaeSchema = new mongoose.Schema({
   nome: String,
   dataDeNascimento: Date,
@@ -196,8 +283,11 @@ var MaeSchema = new mongoose.Schema({
   viagens: [ViagemSchema],
   antecedentes: [AntecedenteSchema],
   doencasPreexistentes: DoencaPreexistenteSchema,
-  tratamentosDST: TratamentoDSTSchema
-  // CONTINUA ...
+  tratamentosDST: TratamentoDSTSchema,
+  historicoObstetricio: HistoricoObstetricioSchema,
+  duranteGestacao: DuranteGestacaoSchema,
+  historicoManchasVermelhas: [HistoricoManchasVermelhasSchema],
+  habitos: HabitosSchema
 });
 
 var QuestionarioSchema = new mongoose.Schema({
