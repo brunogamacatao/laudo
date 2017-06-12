@@ -6,7 +6,7 @@
     <form class="form-inline" ng-submit="procurar()">
       <div class="form-group">
         <label class="sr-only" for="filtro">Filtro</label>
-        <input type="text" class="form-control" id="filtro" placeholder="Filtro" ng-model="filtro">
+        <input type="text" class="form-control" id="filtro" placeholder="Filtro" ng-model="filtro" ng-change="procurar()" ng-model-options="{ debounce: 200 }">
         <button class="btn btn-default">Procurar</button>
         Encontrados {{total}} prontuários
       </div>
@@ -17,10 +17,18 @@
 <table class="table table-bordered table-hover table-striped">
   <thead>
     <tr>
-      <th ng-click="ordena('mae.nome')">NOME DA MÃE</th>
-      <th ng-click="ordena('crianca.nome')">NOME DO FILHO</th>
-      <th ng-click="ordena('mae.cidade')">CIDADE</th>
-      <th ng-click="ordena('crianca.maFormacao')">MÁ FORMAÇÃO</th>
+      <th ng-click="ordena('mae.nome')">NOME DA MÃE 
+        <span ng-show="ordem === 'mae.nome'" class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+      </th>
+      <th ng-click="ordena('crianca.nome')">NOME DO FILHO
+        <span ng-show="ordem === 'crianca.nome'" class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+      </th>
+      <th ng-click="ordena('mae.cidade')">CIDADE
+        <span ng-show="ordem === 'mae.cidade'" class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+      </th>
+      <th ng-click="ordena('crianca.maFormacao')">MÁ FORMAÇÃO
+        <span ng-show="ordem === 'crianca.maFormacao'" class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+      </th>
       <th>&nbsp;</th>
     </tr>
   </thead>
