@@ -130,9 +130,80 @@ var RecemNascidoSchema = new mongoose.Schema({
   exames: [ExameSchema]
 });
 
+var EnderecoSchema = new mongoose.Schema({
+  estado: String,
+  municipio: String,
+  logradouro: String,
+  numero: String,
+  bairro: String,
+  telefones: String
+});
+
+var ViagemSchema = new mongoose.Schema({
+  dataDeIda: Date,
+  dataDeVolta: Date,
+  pais: String,
+  estado: String,
+  municipio: String
+});
+
+var AntecedenteSchema = new mongoose.Schema({
+  antecedente: String,
+  possui: Boolean,
+  descricao: String
+});
+
+var DoencaPreexistenteSchema = new mongoose.Schema({
+  possui: Boolean,
+  diabetes: Boolean,
+  outrasDoencasMetabolicas: Boolean,
+  hipertensaoAterial: Boolean,
+  cardiopatiaCronica: Boolean,
+  doencaRenalCronica: Boolean,
+  pneumopatiasCronicas: Boolean,
+  hemoglobinopatia: Boolean,
+  cancer: Boolean,
+  doencaAutoImune: Boolean,
+  doencaNeuroleptica: Boolean,
+  outras: String
+});
+
+var TratamentoDSTSchema = new mongoose.Schema({
+  possui: Boolean,
+  hiv: Boolean,
+  sifilis: Boolean,
+  gonorreia: Boolean,
+  clamidia: Boolean,
+  hepatitesBC: Boolean,
+  herpesSimples: Boolean,
+  outras: String
+});
+
+var MaeSchema = new mongoose.Schema({
+  nome: String,
+  dataDeNascimento: Date,
+  idade: Number,
+  raca: String,
+  etnia: String,
+  escolaridade: String,
+  estadoCivil: String,
+  ocupacao: String,
+  pessoasQueMoramNaCasa: Number,
+  rendaFamiliarMensal: Number,
+  enderecoAtual: EnderecoSchema,
+  morouEmOutroEndereco: Boolean,
+  outroEndereco: EnderecoSchema,
+  viagens: [ViagemSchema],
+  antecedentes: [AntecedenteSchema],
+  doencasPreexistentes: DoencaPreexistenteSchema,
+  tratamentosDST: TratamentoDSTSchema
+  // CONTINUA ...
+});
+
 var QuestionarioSchema = new mongoose.Schema({
   servicoSaude: ServicoSaudeSchema,
-  recemNascido: RecemNascidoSchema
+  recemNascido: RecemNascidoSchema,
+  mae: MaeSchema
 });
 
 mongoose.model('Questionario', QuestionarioSchema);
