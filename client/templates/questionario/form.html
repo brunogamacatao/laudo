@@ -1896,13 +1896,14 @@
           <label>Droga</label>
           <select class="form-control" ng-model="temp.droga.nome">
             <option value="">Selecione</option>
-            <option value="maconha">Maconha</option>
-            <option value="cocaina_cheirada">Cocaína cheirada</option>
-            <option value="droga_injetavel">Qualquer droga injetável</option>
-            <option value="crack_merla">Crack ou merla</option>
-            <option value="lanca_perfume">Lança-perfume, loló, cola, éter, solventes, esmalte, tinta, clorofórmio</option>
-            <option value="lsd">LSD</option>
-            <option value="ecstasy">Ecstasy</option>
+            <option value="Maconha">Maconha</option>
+            <option value="Cocaína cheirada">Cocaína cheirada</option>
+            <option value="Qualquer droga injetável">Qualquer droga injetável</option>
+            <option value="Crack ou merla">Crack ou merla</option>
+            <option value="Lança-perfume, loló, cola, éter, solventes, esmalte, tinta ou clorofórmio">Lança-perfume, loló, cola, éter, solventes, esmalte, tinta ou clorofórmio</option>
+            <option value="LSD">LSD</option>
+            <option value="Ecstasy">Ecstasy</option>
+            <option value="Anfetamina ou remédios para emagrecer">Anfetamina ou remédios para emagrecer</option>
           </select>
         </div>
         <div class="form-group">
@@ -1910,10 +1911,10 @@
           <select class="form-control" ng-model="temp.droga.frequencia">
             <option value="">Selecione</option>
             <option value="nunca">Nunca</option>
-            <option value="nenhuma_ultimo_ano">Nenhuma vez no último ano antes de ficar grávida</option>
+            <option value="nenhuma no último ano antes de ficar grávida">Nenhuma vez no último ano antes de ficar grávida</option>
             <option value="mensal">Uma vez por mês pelo menos</option>
             <option value="semanal">Mais ou menos uma vez por semana</option>
-            <option value="diaria">Todos os dias</option>
+            <option value="diária">Todos os dias</option>
           </select>
         </div>
         <button type="button" class="btn btn-primary" ng-click="adicionarDroga()">Adicionar Droga</button>
@@ -1934,6 +1935,572 @@
       </div> <!-- FIM - panel-body Hábitos durante a gestação -->
     </div> <!-- FIM - Hábitos durante a gestação -->
 
+    <!-- DADOS DO PRÉ-NATAL -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Dados do pré-natal (cartão da gestante e outros registros)</h3>
+      </div>
+      <div class="panel-body">
+
+        <div class="form-group">
+          <label>Realizou pré-natal ?</label>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="questionario.mae.prenatal.realizouPreNatal"> Sim
+            </label>
+          </div>
+        </div>
+
+        <div ng-show="questionario.mae.prenatal.realizouPreNatal">
+          <div class="form-group">
+            <label>Unidade de saúde que realizou pré-natal</label>
+            <input class="form-control" ng-model="questionario.mae.prenatal.unidadeDeSaude">
+          </div>
+          <div class="form-group">
+            <label>Município da realização do pré-natal</label>
+            <input class="form-control" ng-model="questionario.mae.prenatal.municipio">
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Número de consultas no 1º trimestre</label>
+                <input type="number" class="form-control" ng-model="questionario.mae.prenatal.consultasPrimeiroTrimestre">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Número de consultas no 2º trimestre</label>
+                <input type="number" class="form-control" ng-model="questionario.mae.prenatal.consultasSegundoTrimestre">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Número de consultas no 3º trimestre</label>
+                <input type="number" class="form-control" ng-model="questionario.mae.prenatal.consultasTerceiroTrimestre">
+              </div>
+            </div>
+          </div> <!-- row -->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Data da primeira consulta</label>
+                <input type="date" class="form-control" ng-model="questionario.mae.prenatal.dataPrimeiraConsulta">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Idade gestacional na 1ª consulta</label>
+                <input type="number" class="form-control" ng-model="questionario.mae.prenatal.idadeGestacionalPrimeiraConsulta">
+              </div>
+            </div>
+          </div> <!-- row -->
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Peso no início da gestação (kg)</label>
+                <input type="number" step="0.1" class="form-control" ng-model="questionario.mae.prenatal.pesoInicioGestacao">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Peso no final da gestação (kg)</label>
+                <input type="number" step="0.1" class="form-control" ng-model="questionario.mae.prenatal.pesoFinalGestacao">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Altura (m)</label>
+                <input type="number" step="0.01" class="form-control" ng-model="questionario.mae.prenatal.altura">
+              </div>
+            </div>
+          </div> <!-- row -->
+          <hr>
+          <h4>Histórico Vacinal</h4>
+          <div class="row">
+            <div class="col-md-8">
+              <label>Imunobiológico</label>
+              <select class="form-control" ng-model="temp.vacina.nome">
+                <option value="">Selecione</option>
+                <option value="Influenza">Influenza</option>
+                <option value="dT">dT</option>
+                <option value="Dtpa">Dtpa</option>
+                <option value="Hepatite B">Hepatite B</option>
+                <option value="Tríplice viral">Tríplice viral</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Número de doses</label>
+                <input type="number" min="1" max="3" class="form-control" ng-model="temp.vacina.numeroDeDoses">
+              </div>
+            </div>
+          </div> <!-- row -->
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Data da 1ª dose</label>
+                <input type="date" class="form-control" ng-model="temp.vacina.dataDoses[0]">
+              </div>
+            </div>
+            <div class="col-md-4" ng-show="temp.vacina.numeroDeDoses >= 2">
+              <div class="form-group">
+                <label>Data da 2ª dose</label>
+                <input type="date" class="form-control" ng-model="temp.vacina.dataDoses[1]">
+              </div>
+            </div>
+            <div class="col-md-4" ng-show="temp.vacina.numeroDeDoses >= 3">
+              <div class="form-group">
+                <label>Data da 3ª dose</label>
+                <input type="date" class="form-control" ng-model="temp.vacina.dataDoses[2]">
+              </div>
+            </div>
+          </div> <!-- row -->
+
+          <button type="button" class="btn btn-primary" ng-click="adicionarVacina()">Adicionar Vacina</button>
+
+          <table class="table table-bordered" ng-show="questionario.mae.prenatal.historicoVacinal.length > 0">
+            <thead>
+              <tr>
+                <th>Imunobiológico</th>
+                <th>Nº de doses</th>
+                <th>Data da 1ª dose</th>
+                <th>Data da 2ª dose</th>
+                <th>Data da 3ª dose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="vacina in questionario.mae.prenatal.historicoVacinal">
+                <td>{{vacina.nome}}</td>
+                <td>{{vacina.numeroDeDoses}}</td>
+                <td>{{vacina.dataDoses[0]|date: 'dd/MM/yyyy'}}</td>
+                <td>
+                  {{vacina.numeroDeDoses >= 2 ? (vacina.dataDoses[1]|date: 'dd/MM/yyyy') : '-'}}
+                </td>
+                <td>
+                  {{vacina.numeroDeDoses >= 3 ? (vacina.dataDoses[2]|date: 'dd/MM/yyyy') : '-'}}
+                </td>
+              </tr>
+            </tbody>
+          </table> <!-- tabela das vacinas -->
+
+          <hr>
+
+          <div class="form-group">
+            <label>Desenvolveu alguma complicação durante a gestação ?</label>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="questionario.mae.prenatal.complicacoes.teveComplicacoes"> Sim
+              </label>
+            </div>
+          </div>
+          <div ng-show="questionario.mae.prenatal.complicacoes.teveComplicacoes">
+            <div class="form-group">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.mae.prenatal.complicacoes.infeccaoTratoUrinario"> Infecção do trato urinário
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.mae.prenatal.complicacoes.anemia"> Anemia
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.mae.prenatal.complicacoes.diabetesGestacional"> Diabetes gestacional
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.mae.prenatal.complicacoes.hipertensaoAterial"> Hipertensão aterial sistêmica gestacional
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.mae.prenatal.complicacoes.preeclampsia"> Pré-eclampsia
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.mae.prenatal.complicacoes.placentaPrevia"> Placenta prévia
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.mae.prenatal.complicacoes.oligodramnio"> Oligodrâmnio
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.mae.prenatal.complicacoes.polidramnio"> Polidrâmnio
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.mae.prenatal.complicacoes.insuficienciaColoUterino"> Insuficiência do colo uterino
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.mae.prenatal.complicacoes.hiperemeseGravitica"> Hiperemese gravítica
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.mae.prenatal.complicacoes.anomaliasAnatomicasUtero"> Anomalias anatômicas do útero
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.mae.prenatal.complicacoes.deslocamentoPlacenta"> Deslocamento de placenta
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.mae.prenatal.complicacoes.crescimentoIntrauterinoRestrito"> Crescimento intrauterino restrito
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.mae.prenatal.complicacoes.incisura"> Incisura
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Outras, especificar</label>
+              <input class="form-control" ng-model="questionario.mae.prenatal.complicacoes.outras">
+            </div>
+          </div> <!-- ng-show="questionario.mae.prenatal.complicacoes.teveComplicacoes" -->
+
+          <hr>
+
+          <h4>Exames de ultrassonografia</h4>
+          <div class="row">
+            <div class="col-md-2">
+              <div class="form-group">
+                <label>Data realização</label>
+                <input type="date" class="form-control" ng-model="temp.ultrassom.data">
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label>Idade gestacional</label>
+                <input type="number" class="form-control" ng-model="temp.ultrassom.idadeGestacional">
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label>Perímetro cefálico</label>
+                <input type="number" class="form-control" ng-model="temp.ultrassom.perimetroCefalico">
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label>Microcefalia</label>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" ng-model="temp.ultrassom.microcefalia"> Sim
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label>Calcificações</label>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" ng-model="temp.ultrassom.calcificacoes"> Sim
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label>Ventriculomegalia</label>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" ng-model="temp.ultrassom.ventriculomegalia"> Sim
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Outros achados</label>
+            <input class="form-control" ng-model="temp.ultrassom.outrosAchados">
+          </div>
+
+          <button type="button" class="btn btn-primary" ng-click="adicionarUltrassom()">Adicionar Exame de Ultrassonografia</button>
+
+          <table class="table table-bordered" ng-show="questionario.mae.prenatal.examesUltrassom.length > 0">
+            <thead>
+              <tr>
+                <th>Data realização</th>
+                <th>Idade gestacional</th>
+                <th>Perímetro cefálico (cm)</th>
+                <th>Microcefalia</th>
+                <th>Calcificações</th>
+                <th>Ventriculomegalia</th>
+                <th>Outros achados</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="exame in questionario.mae.prenatal.examesUltrassom">
+                <td>{{exame.data|date: 'dd/MM/yyyy'}}</td>
+                <td>{{exame.idadeGestacional}}</td>
+                <td>{{exame.perimetroCefalico}}</td>
+                <td>{{exame.microcefalia ? 'Sim' : 'Não'}}</td>
+                <td>{{exame.calcificacoes ? 'Sim' : 'Não'}}</td>
+                <td>{{exame.ventriculomegalia ? 'Sim' : 'Não'}}</td>
+                <td>{{exame.outrosAchados}}</td>
+              </tr>
+            </tbody>
+          </table> <!-- Tabela dos exames de ultrassonografia -->
+
+          <hr>
+
+          <h4>Exames realizados</h4>
+          <div class="form-group">
+            <label>Exame</label>
+
+            <select class="form-control" ng-model="temp.exame.nome">
+              <option value="">Selecione</option>
+              <option value="Hemoglobina">Hemoglobina</option>
+              <option value="Hematócrito">Hematócrito </option>
+              <option value="Glicose">Glicose</option>
+              <option value="Anti-HIV">Anti-HIV</option>
+              <option value="Rubéola">Rubéola</option>
+              <option value="HBsAg">HBsAg</option>
+              <option value="Anti-HCV">Anti-HCV</option>
+              <option value="Toxoplasmose">Toxoplasmose</option>
+              <option value="Sífilis (VRDL)">Sífilis (VRDL)</option>
+              <option value="Citomegalovírus">Citomegalovírus</option>
+              <option value="Herpes Simples">Herpes Simples</option>
+              <option value="Outros">Outros</option>
+            </select>
+
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <h4>Primeiro Trimestre</h4>
+              <div class="form-group">
+                <label>Realizado</label>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" ng-model="temp.exame.primeiroTrimestre.realizado"> Sim
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Data</label>
+                <input type="date" class="form-control" ng-model="temp.exame.primeiroTrimestre.data">
+              </div>
+              <div class="form-group">
+                <label>Resultado</label>
+                <input class="form-control" ng-model="temp.exame.primeiroTrimestre.resultado">
+              </div>
+            </div> <!-- Primeiro trimestre -->
+            <div class="col-md-4">
+              <h4>Segundo Trimestre</h4>
+              <div class="form-group">
+                <label>Realizado</label>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" ng-model="temp.exame.segundoTrimestre.realizado"> Sim
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Data</label>
+                <input type="date" class="form-control" ng-model="temp.exame.segundoTrimestre.data">
+              </div>
+              <div class="form-group">
+                <label>Resultado</label>
+                <input class="form-control" ng-model="temp.exame.segundoTrimestre.resultado">
+              </div>
+            </div> <!-- Segundo trimestre -->
+            <div class="col-md-4">
+              <h4>Terceiro Trimestre</h4>
+              <div class="form-group">
+                <label>Realizado</label>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" ng-model="temp.exame.terceiroTrimestre.realizado"> Sim
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Data</label>
+                <input type="date" class="form-control" ng-model="temp.exame.terceiroTrimestre.data">
+              </div>
+              <div class="form-group">
+                <label>Resultado</label>
+                <input class="form-control" ng-model="temp.exame.terceiroTrimestre.resultado">
+              </div>
+            </div> <!-- Terceiro trimestre -->
+          </div> <!-- row dos exames -->
+
+          <button type="button" class="btn btn-primary" ng-click="adicionarExame()">Adicionar Exame</button>
+
+          <table class="table table-bordered" ng-show="questionario.mae.prenatal.exames.length > 0">
+            <thead>
+              <tr>
+                <th></th>
+                <th colspan="3">Primeiro Trimestre</th>
+                <th colspan="3">Segundo Trimestre</th>
+                <th colspan="3">Terceiro Trimestre</th>
+              </tr>
+              <tr>
+                <th>Exame</th>
+                <th>Realizado</th>
+                <th>Data</th>
+                <th>Resultado</th>
+                <th>Realizado</th>
+                <th>Data</th>
+                <th>Resultado</th>
+                <th>Realizado</th>
+                <th>Data</th>
+                <th>Resultado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="exame in questionario.mae.prenatal.exames">
+                <td>{{exame.nome}}</td>
+                <td>{{exame.primeiroTrimestre.realizado ? 'Sim' : 'Não'}}</td>
+                <td>{{exame.primeiroTrimestre.data|date: 'dd/MM/yyyy'}}</td>
+                <td>{{exame.primeiroTrimestre.resultado}}</td>
+                <td>{{exame.segundoTrimestre.realizado ? 'Sim' : 'Não'}}</td>
+                <td>{{exame.segundoTrimestre.data|date: 'dd/MM/yyyy'}}</td>
+                <td>{{exame.segundoTrimestre.resultado}}</td>
+                <td>{{exame.terceiroTrimestre.realizado ? 'Sim' : 'Não'}}</td>
+                <td>{{exame.terceiroTrimestre.data|date: 'dd/MM/yyyy'}}</td>
+                <td>{{exame.terceiroTrimestre.resultado}}</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div> <!-- ng-show="questionario.mae.prenatal.realizouPreNatal" -->
+
+      </div> <!-- FIM - panel-body DADOS DO PRÉ-NATAL -->
+    </div> <!-- FIM - DADOS DO PRÉ-NATAL -->
+
   </div> <!-- fim panel-body MÃE -->
 </div>
 <!-- FIM - DADOS DA MÃE -->
+
+<!-- ENCERRAMENTO DE CASO -->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Encerramento de caso</h3>
+  </div>
+  <div class="panel-body">
+
+    <div class="form-group">
+      <label>Investigação concluída ?</label>
+      <select class="form-control" ng-model="questionario.encerramentoCaso.statusInvestigacao">
+        <option value="">Selecione</option>
+        <option value="sim">Sim</option>
+        <option value="nao">Não</option>
+        <option value="sim">Recusa</option>
+        <option value="sim">Perda</option>
+        <option value="sim">Em investigação</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Classificação final</label>
+      <select class="form-control" ng-model="questionario.encerramentoCaso.classificacaoFinal">
+        <option value="">Selecione</option>
+        <option value="suspeito">Suspeito</option>
+        <option value="provavel">Provável</option>
+        <option value="confirmado">Confirmado</option>
+        <option value="descartado">Descartado</option>
+        <option value="inconclusivo">Inconclusivo</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Etiologia provável</label>
+      <select class="form-control" ng-model="questionario.encerramentoCaso.etiologiaProvavel">
+        <option value="">Selecione</option>
+        <option value="infeccionsa">Infecciosa</option>
+        <option value="genetica">Genética/cromossômica</option>
+        <option value="ambiental">Ambiental (fármacos, toxicológicas, radiações ionizantes, outras)</option>
+        <option value="inconclusiva">Inconclusiva</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>HD Relacionada</label>
+      <input class="form-control" ng-model="questionario.encerramentoCaso.hdRelacionada">
+    </div>
+    <div class="form-group">
+      <label>Evolução</label>
+      <select class="form-control" ng-model="questionario.encerramentoCaso.evolucao">
+        <option value="">Selecione</option>
+        <option value="alta">Alta</option>
+        <option value="obito">Óbito</option>
+        <option value="ignorado">Ignorado</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Data evolução</label>
+      <input type="date" class="form-control" ng-model="questionario.encerramentoCaso.dataEvolucao">
+    </div>
+    <div class="form-group">
+      <label>Observações</label>
+      <textarea class="form-control" rows="5" ng-model="questionario.encerramentoCaso.observacoes"></textarea>
+    </div>
+  </div>
+</div> <!-- FIM - ENCERRAMENTO DE CASO -->
+
+<!-- DADOS DO INVESTIGADOR -->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Dados do investigador</h3>
+  </div>
+  <div class="panel-body">
+    <div class="form-group">
+      <label>Início da investigação</label>
+      <input type="date" class="form-control" ng-model="questionario.investigador.inicioInvestigacao">
+    </div>
+    <div class="form-group">
+      <label>Nome do investigador</label>
+      <input class="form-control" ng-model="questionario.investigador.investigadorInicio">
+    </div>
+    <div class="form-group">
+      <label>Fim da investigação</label>
+      <input type="date" class="form-control" ng-model="questionario.investigador.fimInvestigacao">
+    </div>
+    <div class="form-group">
+      <label>Nome do investigador</label>
+      <input class="form-control" ng-model="questionario.investigador.investigadorFim">
+    </div>
+  </div>
+</div>
+<!-- FIM - DADOS DO INVESTIGADOR -->
+
+<button type="button" class="btn btn-primary" ng-click="salvar()">Salvar</button>
