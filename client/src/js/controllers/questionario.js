@@ -27,6 +27,11 @@ controllers.controller('NovoQuestionarioController', ['$rootScope', '$scope', '$
       $scope.questionario.mae.duranteGestacao.medicamentos.splice(index, 1);
     }
 
+    $scope.adicionarDroga = function() {
+      $scope.questionario.mae.habitos.usoDeDrogas.push($scope.temp.droga);
+      $scope.temp.droga = {};
+    };
+
     function novoExameEtiologico() {
       return {
         dados: [
@@ -41,7 +46,8 @@ controllers.controller('NovoQuestionarioController', ['$rootScope', '$scope', '$
       $scope.temp = {
         exameEtiologico: novoExameEtiologico(),
         viagem: {},
-        medicamento: {}
+        medicamento: {},
+        droga: {}
       };
 
       return {

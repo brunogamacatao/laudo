@@ -1798,6 +1798,142 @@
       </div> <!-- Fim - panel-body Durante a gestação -->
     </div> <!-- Fim - Durante a gestação -->
 
+
+    <!-- Hábitos durante a gestação -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Hábitos durante a gestação</h3>
+      </div>
+      <div class="panel-body">
+        <!-- Álcool -->
+        <h4>Álcool</h4>
+        <div class="form-group">
+          <label>Fez uso de bebida alcoólica durante a gestação ?</label>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="questionario.mae.habitos.usoDeAlcool.fezUsoDuranteGestacao"> Sim
+            </label>
+          </div>
+        </div>
+        <div ng-show="questionario.mae.habitos.usoDeAlcool.fezUsoDuranteGestacao">
+          <div class="form-group">
+            <label>Com que frequência você utilizava bebidas alcoólicas por semana ?</label>
+            <select class="form-control" ng-model="questionario.mae.habitos.usoDeAlcool.frequenciaSemanal">
+              <option value="">Selecione</option>
+              <option value="uma">Uma</option>
+              <option value="duas">Duas</option>
+              <option value="tres">Três</option>
+              <option value="quatro">Quatro</option>
+              <option value="cinco">Cinco</option>
+              <option value="seis">Seis</option>
+              <option value="sete">Sete ou mais</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Quantas doses ou drinks você costumava tomar nesses dias ?</label>
+            <select class="form-control" ng-model="questionario.mae.habitos.usoDeAlcool.doses">
+              <option value="">Selecione</option>
+              <option value="uma">Uma</option>
+              <option value="duas">Duas</option>
+              <option value="tres">Três ou mais</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Com que frequência tomava mais que três doses ou drinks na mesma ocasião ?</label>
+            <select class="form-control" ng-model="questionario.mae.habitos.usoDeAlcool.frequenciaMaisDeTresDoses">
+              <option value="">Selecione</option>
+              <option value="nunca">Nunca</option>
+              <option value="menos_mensalmente">Mensalmente ou menos</option>
+              <option value="mensalmente">Mensalmente</option>
+              <option value="semanalmente">Semanalmente</option>
+              <option value="diariamente">Diariamente</option>
+              <option value="ignorada">Ignorada</option>
+            </select>
+          </div>
+        </div> <!-- FIM - Álcool -->
+        <hr>
+        <!-- Tabagismo -->
+        <h4>Tabagismo</h4>
+        <div class="form-group">
+          <label>Em relação cigarro, você diria que</label>
+          <select class="form-control" ng-model="questionario.mae.habitos.tabagismo.relacaoComCigarro">
+            <option value="">Selecione</option>
+            <option value="nunca">Nunca fumei</option>
+            <option value="passado">Fumei no passado, mas na gestação não</option>
+            <option value="menos_que_dez">Fumei menos que 10 cigarros por dia</option>
+            <option value="dez_a_vinte">Fumei de 10 a 20 cigarros por dia</option>
+            <option value="mais_de_vinte">Fumei mais de 20 cigarros por dia</option>
+            <option value="nao_soube">Não soube responder</option>
+          </select>
+        </div>
+        <div ng-show="questionario.mae.habitos.tabagismo.relacaoComCigarro && questionario.mae.habitos.tabagismo.relacaoComCigarro !== 'nunca'">
+          <div class="form-group">
+            <label>Se fumante, há quantos anos fuma diariamente ?</label>
+            <input type="number" class="form-control" ng-model="questionario.mae.habitos.tabagismo.fumaDiariamenteHaQuantosAnos">
+          </div>
+          <div class="form-group">
+            <label>Se ex-fumante, parou de fumar há quanto tempo ?</label>
+            <div class="row">
+              <div class="col-md-2">
+                <input type="number" class="form-control" ng-model="questionario.mae.habitos.tabagismo.parouDeFumarHa">
+              </div>
+              <div class="col-md-2">
+                <select class="form-control" ng-model="questionario.mae.habitos.tabagismo.parouDeFumarUnidadeDeTempo">
+                  <option value="">Selecione</option>
+                  <option value="dias">Dias</option>
+                  <option value="semanas">Semanas</option>
+                  <option value="meses">Meses</option>
+                  <option value="anos">Anos</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- FIM - Tabagismo -->
+        <hr>
+        <h4>Drogas Ilícitas</h4>
+        <div class="form-group">
+          <label>Droga</label>
+          <select class="form-control" ng-model="temp.droga.nome">
+            <option value="">Selecione</option>
+            <option value="maconha">Maconha</option>
+            <option value="cocaina_cheirada">Cocaína cheirada</option>
+            <option value="droga_injetavel">Qualquer droga injetável</option>
+            <option value="crack_merla">Crack ou merla</option>
+            <option value="lanca_perfume">Lança-perfume, loló, cola, éter, solventes, esmalte, tinta, clorofórmio</option>
+            <option value="lsd">LSD</option>
+            <option value="ecstasy">Ecstasy</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Frequência</label>
+          <select class="form-control" ng-model="temp.droga.frequencia">
+            <option value="">Selecione</option>
+            <option value="nunca">Nunca</option>
+            <option value="nenhuma_ultimo_ano">Nenhuma vez no último ano antes de ficar grávida</option>
+            <option value="mensal">Uma vez por mês pelo menos</option>
+            <option value="semanal">Mais ou menos uma vez por semana</option>
+            <option value="diaria">Todos os dias</option>
+          </select>
+        </div>
+        <button type="button" class="btn btn-primary" ng-click="adicionarDroga()">Adicionar Droga</button>
+        <table class="table table-bordered" ng-show="questionario.mae.habitos.usoDeDrogas.length > 0">
+          <thead>
+            <tr>
+              <th>Droga</th>
+              <th>Frequência</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="droga in questionario.mae.habitos.usoDeDrogas">
+              <td>{{droga.nome}}</td>
+              <td>{{droga.frequencia}}</td>
+            </tr>
+          </tbody>
+        </table> <!-- Tabela drogas ilícitas -->
+      </div> <!-- FIM - panel-body Hábitos durante a gestação -->
+    </div> <!-- FIM - Hábitos durante a gestação -->
+
   </div> <!-- fim panel-body MÃE -->
 </div>
 <!-- FIM - DADOS DA MÃE -->
