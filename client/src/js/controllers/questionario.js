@@ -9,12 +9,13 @@ controllers.controller('NovoQuestionarioController', ['$rootScope', '$scope', '$
     $scope.questionario = novoQuestionario();
 
     $scope.adicionarExameEtiologico = function() {
-      console.log('adicionarExameEtiologico');
-
       $scope.questionario.recemNascido.examesEtiologicos.push($scope.temp.exameEtiologico);
       $scope.temp.exameEtiologico = novoExameEtiologico();
+    };
 
-      console.log($scope.questionario.recemNascido.examesEtiologicos);
+    $scope.adicionarViagem = function() {
+      $scope.questionario.mae.viagens.push($scope.temp.viagem);
+      $scope.temp.viagem = {};
     };
 
     function novoExameEtiologico() {
@@ -29,7 +30,8 @@ controllers.controller('NovoQuestionarioController', ['$rootScope', '$scope', '$
 
     function novoQuestionario() {
       $scope.temp = {
-        exameEtiologico: novoExameEtiologico()
+        exameEtiologico: novoExameEtiologico(),
+        viagem: {}
       };
 
       return {
@@ -42,14 +44,28 @@ controllers.controller('NovoQuestionarioController', ['$rootScope', '$scope', '$
           hemograma: {},
           puncaoLiquorica: {},
           examesEtiologicos: [],
-          examesCranianos: [],
-          exames: []
+          examesCranianos: [
+            {nome: 'Tomografia craniana'},
+            {nome: 'Ressonância magnética craniana'},
+            {nome: 'Ultrassom transfontanela'}
+          ],
+          exames: [
+            {nome: 'Ultrassom abdominal'},
+            {nome: 'Ecocardiograma'},
+            {nome: 'Fundo do olho'},
+            {nome: 'Teste da orelhinha'}
+          ]
         },
         mae: {
           enderecoAtual: {},
           outroEndereco: {},
           viagens: [],
-          antecedentes: [],
+          antecedentes: [
+            {antecedente: 'parentesco com companheiro'},
+            {antecedente: 'malformacao congenita'},
+            {antecedente: 'microcefalia na familia'},
+            {antecedente: 'medicamento de uso continuo'}
+          ],
           doencasPreexistentes: {},
           tratamentosDST: {},
           historicoObstetricio: {},

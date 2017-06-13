@@ -1,3 +1,14 @@
+<style type="text/css">
+  hr { 
+    border: 0; 
+    height: 1px; 
+    background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); 
+  }  
+</style>
+
 <ul class="nav nav-tabs" ng-if="id_prontuario">
   <li role="presentation"><a ui-sref="editar_prontuario({id: id_prontuario})">Prontuário</a></li>
   <li role="presentation"><a ui-sref="novo_laudo({id_prontuario: id_prontuario})">Novo Laudo</a></li>
@@ -589,10 +600,634 @@
             </tr>
           </tbody>
         </table>
-
       </div>
     </div> <!-- Fim do Panel Exames Etiológicos -->
+    
+    <!-- Panel Exames de Imagem -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Exames de imagem</h3>
+      </div>
+      <div class="panel-body">
 
+        <!-- TOMOGRAFIA CRANIANA -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Tomografia craniana</label>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.recemNascido.examesCranianos[0].possui"> Sim 
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" ng-show="questionario.recemNascido.examesCranianos[0].possui">
+            <div class="form-group">
+              <label>Data da realização</label>
+              <input type="date" class="form-control" ng-model="questionario.recemNascido.examesCranianos[0].data">
+            </div>
+          </div>
+        </div>
+        <div ng-show="questionario.recemNascido.examesCranianos[0].possui">
+          <div class="form-group">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="questionario.recemNascido.examesCranianos[0].normal"> Normal
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="questionario.recemNascido.examesCranianos[0].calcificacoes"> Calcificações
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="questionario.recemNascido.examesCranianos[0].lisencefalia"> Lisencefalia
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="questionario.recemNascido.examesCranianos[0].atrofiaCerebral"> Atrofia Cerebral
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="questionario.recemNascido.examesCranianos[0].ventriculomegalia"> Ventriculomegalia
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="questionario.recemNascido.examesCranianos[0].suturasCalcificadas"> Suturas Calcificadas
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Outras, especificar</label>
+            <input type="text" class="form-control" ng-model="questionario.recemNascido.examesCranianos[0].outras">
+          </div>
+        </div>
+        <!-- FIM - TOMOGRAFIA CRANIANA -->
+        <hr>
+        <!-- RESSONÂNCIA MAGNÉTICA CRANIANA -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Ressonância magnética craniana</label>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.recemNascido.examesCranianos[1].possui"> Sim 
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" ng-show="questionario.recemNascido.examesCranianos[1].possui">
+            <div class="form-group">
+              <label>Data da realização</label>
+              <input type="date" class="form-control" ng-model="questionario.recemNascido.examesCranianos[1].data">
+            </div>
+          </div>
+        </div>
+        <div ng-show="questionario.recemNascido.examesCranianos[1].possui">
+          <div class="form-group">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="questionario.recemNascido.examesCranianos[1].normal"> Normal
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="questionario.recemNascido.examesCranianos[1].calcificacoes"> Calcificações
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="questionario.recemNascido.examesCranianos[1].lisencefalia"> Lisencefalia
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="questionario.recemNascido.examesCranianos[1].atrofiaCerebral"> Atrofia Cerebral
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="questionario.recemNascido.examesCranianos[1].ventriculomegalia"> Ventriculomegalia
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="questionario.recemNascido.examesCranianos[1].suturasCalcificadas"> Suturas Calcificadas
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Outras, especificar</label>
+            <input type="text" class="form-control" ng-model="questionario.recemNascido.examesCranianos[1].outras">
+          </div>
+        </div>
+        <!-- FIM - RESSONÂNCIA MAGNÉTICA CRANIANA -->
+        <hr>
+        <!-- ULTRASSOM TRANSFONTANELA -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Ultrassom transfontanela</label>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.recemNascido.examesCranianos[2].possui"> Sim 
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" ng-show="questionario.recemNascido.examesCranianos[2].possui">
+            <div class="form-group">
+              <label>Data da realização</label>
+              <input type="date" class="form-control" ng-model="questionario.recemNascido.examesCranianos[1].data">
+            </div>
+          </div>
+        </div>
+        <div ng-show="questionario.recemNascido.examesCranianos[2].possui">
+          <div class="form-group">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="questionario.recemNascido.examesCranianos[2].normal"> Normal
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="questionario.recemNascido.examesCranianos[2].calcificacoes"> Calcificações
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="questionario.recemNascido.examesCranianos[2].lisencefalia"> Lisencefalia
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="questionario.recemNascido.examesCranianos[2].atrofiaCerebral"> Atrofia Cerebral
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="questionario.recemNascido.examesCranianos[2].ventriculomegalia"> Ventriculomegalia
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="questionario.recemNascido.examesCranianos[2].suturasCalcificadas"> Suturas Calcificadas
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Outras, especificar</label>
+            <input type="text" class="form-control" ng-model="questionario.recemNascido.examesCranianos[2].outras">
+          </div>
+        </div>
+        <!-- FIM - ULTRASSOM TRANSFONTANELA -->
+        <hr>
+        <!-- ULTRASSOM ABDOMINAL -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Ultrassom abdominal</label>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.recemNascido.exames[0].possui"> Sim 
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" ng-show="questionario.recemNascido.exames[0].possui">
+            <div class="form-group">
+              <label>Data da realização</label>
+              <input type="date" class="form-control" ng-model="questionario.recemNascido.exames[0].data">
+            </div>
+          </div>
+        </div>
+        <div class="row" ng-show="questionario.recemNascido.exames[0].possui">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Encontrada alteração ?</label>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.recemNascido.exames[0].alteracao"> Sim 
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" ng-show="questionario.recemNascido.exames[0].alteracao">
+            <div class="form-group">
+              <label>Especificar alteração</label>
+              <input type="date" class="form-control" ng-model="questionario.recemNascido.exames[0].descricao">
+            </div>
+          </div>
+        </div>
+        <!-- FIM - ULTRASSOM ABDOMINAL -->
+        <hr>
+        <!-- ECOCARDIOGRAMA -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Ecocardiograma</label>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.recemNascido.exames[1].possui"> Sim 
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" ng-show="questionario.recemNascido.exames[1].possui">
+            <div class="form-group">
+              <label>Data da realização</label>
+              <input type="date" class="form-control" ng-model="questionario.recemNascido.exames[1].data">
+            </div>
+          </div>
+        </div>
+        <div class="row" ng-show="questionario.recemNascido.exames[1].possui">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Encontrada alteração ?</label>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.recemNascido.exames[1].alteracao"> Sim 
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" ng-show="questionario.recemNascido.exames[1].alteracao">
+            <div class="form-group">
+              <label>Especificar alteração</label>
+              <input type="date" class="form-control" ng-model="questionario.recemNascido.exames[1].descricao">
+            </div>
+          </div>
+        </div>
+        <!-- FIM - ECOCARDIOGRAMA -->
+        <hr>
+        <!-- FUNDO DO OLHO -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Fundo do olho</label>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.recemNascido.exames[2].possui"> Sim 
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" ng-show="questionario.recemNascido.exames[2].possui">
+            <div class="form-group">
+              <label>Data da realização</label>
+              <input type="date" class="form-control" ng-model="questionario.recemNascido.exames[2].data">
+            </div>
+          </div>
+        </div>
+        <div class="row" ng-show="questionario.recemNascido.exames[2].possui">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Encontrada alteração ?</label>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.recemNascido.exames[2].alteracao"> Sim 
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" ng-show="questionario.recemNascido.exames[2].alteracao">
+            <div class="form-group">
+              <label>Especificar alteração</label>
+              <input type="date" class="form-control" ng-model="questionario.recemNascido.exames[2].descricao">
+            </div>
+          </div>
+        </div>
+        <!-- FIM - FUNDO DO OLHO -->
+        <hr>
+        <!-- TESTE DA ORELHINHA -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Teste da orelhinha</label>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.recemNascido.exames[3].possui"> Sim 
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" ng-show="questionario.recemNascido.exames[3].possui">
+            <div class="form-group">
+              <label>Data da realização</label>
+              <input type="date" class="form-control" ng-model="questionario.recemNascido.exames[3].data">
+            </div>
+          </div>
+        </div>
+        <div class="row" ng-show="questionario.recemNascido.exames[3].possui">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Encontrada alteração ?</label>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.recemNascido.exames[3].alteracao"> Sim 
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" ng-show="questionario.recemNascido.exames[3].alteracao">
+            <div class="form-group">
+              <label>Especificar alteração</label>
+              <input type="date" class="form-control" ng-model="questionario.recemNascido.exames[3].descricao">
+            </div>
+          </div>
+        </div>
+        <!-- FIM - TESTE DA ORELHINHA -->
+      </div> <!-- Panel body Exames de Imagem -->
+    </div> <!-- Panel Exames de Imagem -->
   </div> <!-- Fim do panel body - Recém nascido -->
 </div>
 <!-- FIM - DADOS DO RECÉM NASCIDO -->
+
+<!-- DADOS DA MÃE -->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Entrevista com a mãe</h3>
+  </div>
+  <div class="panel-body">
+    <div class="form-group">
+      <label>Nome</label>
+      <input class="form-control" ng-model="questionario.mae.nome">
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label>Data de nascimento</label>
+          <input type="date" class="form-control" ng-model="questionario.mae.dataDeNascimento">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label>Idade</label>
+          <input type="number" class="form-control" ng-model="questionario.mae.idade">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label>Raça/cor</label>
+          <select class="form-control" ng-model="questionario.mae.raca">
+            <option value="">Selecione</option>
+            <option value="branca">Branca</option>
+            <option value="preta">Preta</option>
+            <option value="amarela">Amarela</option>
+            <option value="parda">Parda</option>
+            <option value="indigena">Indígena</option>
+            <option value="branca">Branca</option>
+            <option value="ignorado">Ignorado</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label>Etnia</label>
+          <input class="form-control" ng-model="questionario.mae.etnia">
+        </div>
+      </div>
+    </div> <!-- fim do row -->
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label>Escolaridade</label>
+          <select class="form-control" ng-model="questionario.mae.escolaridade">
+            <option value="">Selecione</option>
+            <option value="sem_escolaridade">Sem escolaridade</option>
+            <option value="fundamental_I">Fundamental I</option>
+            <option value="fundamental_II">Fundamental II</option>
+            <option value="medio">Médio</option>
+            <option value="superior">Superior</option>
+            <option value="ignorado">Ignorado</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label>Estado civil</label>
+          <select class="form-control" ng-model="questionario.mae.estadoCivil">
+            <option value="">Selecione</option>
+            <option value="solteira">Solteira</option>
+            <option value="casada">Casada</option>
+            <option value="viuva">Viúva</option>
+            <option value="separada">Separada</option>
+            <option value="uniao_estavel">União Estável</option>
+            <option value="ignorado">Ignorado</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label>Quantas pessoas moram na casa</label>
+          <input type="number" class="form-control" ng-model="questionario.mae.pessoasQueMoramNaCasa">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label>Renda familiar mensal</label>
+          <input type="number" step="0.01" class="form-control" ng-model="questionario.mae.rendaFamiliarMensal">
+        </div>
+      </div>
+    </div> <!-- fim do row -->
+
+    <div class="form-group">
+      <label>Ocupação</label>
+      <input class="form-control" ng-model="questionario.mae.ocupacao">
+    </div>
+
+    <!-- Endereço atual -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Endereço atual</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Estado</label>
+              <input class="form-control" ng-model="questionario.mae.enderecoAtual.estado">
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="form-group">
+              <label>Município</label>
+              <input class="form-control" ng-model="questionario.mae.enderecoAtual.municipio">
+            </div>
+          </div>
+        </div> <!-- fim da row -->
+        <div class="row">
+          <div class="col-md-10">
+            <div class="form-group">
+              <label>Logradouro</label>
+              <input class="form-control" ng-model="questionario.mae.enderecoAtual.logradouro">
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <label>Número</label>
+              <input class="form-control" ng-model="questionario.mae.enderecoAtual.numero">
+            </div>
+          </div>
+        </div> <!-- fim da row -->
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <label>Bairro</label>
+              <input class="form-control" ng-model="questionario.mae.enderecoAtual.bairro">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Telefones</label>
+              <input class="form-control" ng-model="questionario.mae.enderecoAtual.telefones">
+            </div>
+          </div>
+        </div> <!-- fim da row -->
+      </div>
+    </div> <!-- Fim - Endereço atual -->
+
+    <div class="form-group">
+      <label>Morou em outro endereço durante a gestação ?</label>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="questionario.mae.morouEmOutroEndereco"> Sim 
+        </label>
+      </div>
+    </div>
+
+    <!-- Outro endereço -->
+    <div class="panel panel-default" ng-show="questionario.mae.morouEmOutroEndereco">
+      <div class="panel-heading">
+        <h3 class="panel-title">Outro endereço</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Estado</label>
+              <input class="form-control" ng-model="questionario.mae.outroEndereco.estado">
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="form-group">
+              <label>Município</label>
+              <input class="form-control" ng-model="questionario.mae.outroEndereco.municipio">
+            </div>
+          </div>
+        </div> <!-- fim da row -->
+        <div class="row">
+          <div class="col-md-10">
+            <div class="form-group">
+              <label>Logradouro</label>
+              <input class="form-control" ng-model="questionario.mae.outroEndereco.logradouro">
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <label>Número</label>
+              <input class="form-control" ng-model="questionario.mae.outroEndereco.numero">
+            </div>
+          </div>
+        </div> <!-- fim da row -->
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <label>Bairro</label>
+              <input class="form-control" ng-model="questionario.mae.outroEndereco.bairro">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Telefones</label>
+              <input class="form-control" ng-model="questionario.mae.outroEndereco.telefones">
+            </div>
+          </div>
+        </div> <!-- fim da row -->
+      </div>
+    </div> <!-- Fim - Outro endereço -->
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Viagens durante a gestação</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Data de ida</label>
+              <input type="date" class="form-control" ng-model="temp.viagem.dataDeIda">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Data de ida</label>
+              <input type="date" class="form-control" ng-model="temp.viagem.dataDeVolta">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>País</label>
+              <input class="form-control" ng-model="temp.viagem.pais">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Estado</label>
+              <input class="form-control" ng-model="temp.viagem.estado">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Município</label>
+              <input class="form-control" ng-model="temp.viagem.municipio">
+            </div>
+          </div>
+        </div> <!-- Fim da row -->
+
+        <button type="button" class="btn btn-primary" ng-click="adicionarViagem()">Adicionar Viagem</button>
+
+        <hr>
+
+        <table class="table table-bordered" ng-show="questionario.mae.viagens.length > 0">
+          <thead>
+            <tr>
+              <th>Data de ida</th>
+              <th>Data de volta</th>
+              <th>País</th>
+              <th>Estado</th>
+              <th>Município</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="viagem in questionario.mae.viagens">
+              <td>{{viagem.dataDeIda|date: 'dd/MM/yyyy'}}</td>
+              <td>{{viagem.dataDeVolta|date: 'dd/MM/yyyy'}}</td>
+              <td>{{viagem.pais}}</td>
+              <td>{{viagem.estado}}</td>
+              <td>{{viagem.municipio}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div> <!-- Viagens durante a gestação -->
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Antecedentes</h3>
+      </div>
+      <div class="panel-body">
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- FIM - DADOS DA MÃE -->

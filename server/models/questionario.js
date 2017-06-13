@@ -96,6 +96,7 @@ var ExameEtiologicoSchema = new mongoose.Schema({
 });
 
 var ExameCranianoSchema = new mongoose.Schema({
+  possui: Boolean,
   nome: String,
   data: Date,
   normal: Boolean,
@@ -108,6 +109,7 @@ var ExameCranianoSchema = new mongoose.Schema({
 });
 
 var ExameSchema = new mongoose.Schema({
+  possui: Boolean,
   nome: String,
   data: Date,
   alteracao: Boolean,
