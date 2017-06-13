@@ -202,7 +202,9 @@ var ContatoSubstanciaSchema = new mongoose.Schema({
 
 var ContatoRaioXSchema = new mongoose.Schema({
   teveContato: Boolean,
-  trimestre: Number
+  primeiroTrimestre: Boolean,
+  segundoTrimestre: Boolean,
+  terceiroTrimestre: Boolean
 });
 
 var UsoDeMedicamentoSchema = new mongoose.Schema({
@@ -220,6 +222,8 @@ var DuranteGestacaoSchema = new mongoose.Schema({
 
 var HistoricoManchasVermelhasSchema = new mongoose.Schema({
   trimestre: Number,
+  apresentouManchas: Boolean,
+  dataInicioEnxatema: Date,
   duracaoEmDias: Number,
   localDeInicio: String,
   espalhou: Boolean,
@@ -381,6 +385,7 @@ var MaeSchema = new mongoose.Schema({
   tratamentosDST: TratamentoDSTSchema,
   historicoObstetricio: HistoricoObstetricioSchema,
   duranteGestacao: DuranteGestacaoSchema,
+  teveManchasVermelhas: Boolean,
   historicoManchasVermelhas: [HistoricoManchasVermelhasSchema],
   habitos: HabitosSchema,
   prenatal: PreNatalSchema

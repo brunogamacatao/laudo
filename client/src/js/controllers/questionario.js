@@ -18,6 +18,15 @@ controllers.controller('NovoQuestionarioController', ['$rootScope', '$scope', '$
       $scope.temp.viagem = {};
     };
 
+    $scope.adicionarMedicamento = function() {
+      $scope.questionario.mae.duranteGestacao.medicamentos.push($scope.temp.medicamento);
+      $scope.temp.medicamento = {};
+    };
+
+    $scope.excluirMedicamento = function(index) {
+      $scope.questionario.mae.duranteGestacao.medicamentos.splice(index, 1);
+    }
+
     function novoExameEtiologico() {
       return {
         dados: [
@@ -31,7 +40,8 @@ controllers.controller('NovoQuestionarioController', ['$rootScope', '$scope', '$
     function novoQuestionario() {
       $scope.temp = {
         exameEtiologico: novoExameEtiologico(),
-        viagem: {}
+        viagem: {},
+        medicamento: {}
       };
 
       return {
@@ -74,9 +84,16 @@ controllers.controller('NovoQuestionarioController', ['$rootScope', '$scope', '$
             contatoComAgrotoxicos: {},
             contatoProdutoQuimico: {},
             contatoRaioX: {},
-            medicamentos: []
+            medicamentos: [
+              {nome: 'Ácido fólico'},
+              {nome: 'Ferro'}
+            ]
           },
-          historicoManchasVermelhas: [],
+          historicoManchasVermelhas: [
+            {trimestre: 1},
+            {trimestre: 2},
+            {trimestre: 3}
+          ],
           habitos: {
             usoDeAlcool: {},
             tabagismo: {},

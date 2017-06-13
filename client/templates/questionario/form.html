@@ -1225,9 +1225,579 @@
         <h3 class="panel-title">Antecedentes</h3>
       </div>
       <div class="panel-body">
-      </div>
-    </div>
+        <!-- PARENTESCO COMPANHEIRO -->
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <label>Há algum grau de parentesco com o seu companheiro ?</label>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.mae.antecedentes[0].possui"> Sim 
+                </label>
+              </div>
+            </div>
+          </div> <!-- fim col-md-8 -->
+          <div class="col-md-4" ng-show="questionario.mae.antecedentes[0].possui">
+            <div class="form-group">
+              <label>Qual ?</label>
+              <input class="form-control" ng-model="questionario.mae.antecedentes[0].descricao">
+            </div>
+          </div> <!-- fim col-md-4 -->
+        </div> <!-- fim row -->
+        <hr>
+        <!-- MALFORMAÇÃO CONGÊNITA -->
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <label>Você possui alguma malformação congênita ?</label>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.mae.antecedentes[1].possui"> Sim 
+                </label>
+              </div>
+            </div>
+          </div> <!-- fim col-md-8 -->
+          <div class="col-md-4" ng-show="questionario.mae.antecedentes[1].possui">
+            <div class="form-group">
+              <label>Qual ?</label>
+              <input class="form-control" ng-model="questionario.mae.antecedentes[1].descricao">
+            </div>
+          </div> <!-- fim col-md-4 -->
+        </div> <!-- fim row -->
+        <hr>
+        <!-- MICROCEFALIA NA FAMÍLIA -->
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <label>Há alguém na sua família, ou na do seu companheiro, que nasceu com microcefalia ?</label>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.mae.antecedentes[2].possui"> Sim 
+                </label>
+              </div>
+            </div>
+          </div> <!-- fim col-md-8 -->
+          <div class="col-md-4" ng-show="questionario.mae.antecedentes[2].possui">
+            <div class="form-group">
+              <label>Qual ?</label>
+              <input class="form-control" ng-model="questionario.mae.antecedentes[2].descricao">
+            </div>
+          </div> <!-- fim col-md-4 -->
+        </div> <!-- fim row -->
+        <hr>
+        <!-- MEDICAMENTO DE USO CONTÍNUO -->
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <label>Você fazia uso de algum medicamento de uso contínuo ?</label>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.mae.antecedentes[3].possui"> Sim 
+                </label>
+              </div>
+            </div>
+          </div> <!-- fim col-md-8 -->
+          <div class="col-md-4" ng-show="questionario.mae.antecedentes[3].possui">
+            <div class="form-group">
+              <label>Qual ?</label>
+              <input class="form-control" ng-model="questionario.mae.antecedentes[3].descricao">
+            </div>
+          </div> <!-- fim col-md-4 -->
+        </div> <!-- fim row -->
+        <hr>
+        <!-- DOENÇAS PRE-EXISTENTES -->
+        <div class="form-group">
+          <label>Teve diagnóstico de alguma doença pré-existente ?</label>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="questionario.mae.doencasPreexistentes.possui"> Sim 
+            </label>
+          </div>
+        </div>
+        <div ng-show="questionario.mae.doencasPreexistentes.possui">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="questionario.mae.doencasPreexistentes.diabetes"> Diabetes 
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="questionario.mae.doencasPreexistentes.outrasDoencasMetabolicas"> Outras doenças metabólicas 
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="questionario.mae.doencasPreexistentes.hipertensaoAterial"> Hipertensão arterial sistêmica
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="questionario.mae.doencasPreexistentes.cardiopatiaCronica"> Cardiopatia crônica 
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="questionario.mae.doencasPreexistentes.doencaRenalCronica"> Doença renal crônica 
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="questionario.mae.doencasPreexistentes.pneumopatiasCronicas"> Pneumopatias crônicas 
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="questionario.mae.doencasPreexistentes.hemoglobinopatia"> Hemoglobinopatia 
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="questionario.mae.doencasPreexistentes.cancer"> Câncer 
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="questionario.mae.doencasPreexistentes.doencaAutoImune"> Doença auto-imune 
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="questionario.mae.doencasPreexistentes.doencaNeuroleptica"> Doença neuroléptica 
+            </label>
+          </div>
+          <div class="form-group">
+            <label>Outras, especificar</label>
+            <input class="form-control" ng-model="questionario.mae.doencasPreexistentes.outras">
+          </div>
+        </div> <!-- FIM - DOENÇAS PRE-EXISTENTES -->
+        <hr>
+        <!-- DST -->
+        <div class="form-group">
+          <label>Teve diagnóstico ou recebeu tratamento para alguma doença sexualmente transmissível ?</label>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="questionario.mae.tratamentosDST.possui"> Sim 
+            </label>
+          </div>
+        </div>
+        <div ng-show="questionario.mae.tratamentosDST.possui">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="questionario.mae.tratamentosDST.hiv"> HIV
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="questionario.mae.tratamentosDST.sifilis"> Sífilis
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="questionario.mae.tratamentosDST.gonorreia"> Gonorréia
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="questionario.mae.tratamentosDST.clamidia"> Clamídia
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="questionario.mae.tratamentosDST.hepatitesBC"> Hepatites B e/ou C
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="questionario.mae.tratamentosDST.herpesSimples"> Herpes simples
+            </label>
+          </div>
+          <div class="form-group">
+            <label>Outras, especificar</label>
+            <input class="form-control" ng-model="questionario.mae.tratamentosDST.outras">
+          </div>
+        </div><!-- FIM - DST -->
+      </div> <!-- fim panel-body -->
+    </div> <!-- fim ANTECEDENTES -->
 
-  </div>
+    <!-- Histórico obstetrício/ginecológico -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Histórico obstetrício/ginecológico</h3>
+      </div>
+      <div class="panel-body">
+        <div class="form-group">
+          <label>Primeira gestação ?</label>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="questionario.mae.historicoObstetricio.primeiraGestacao"> Sim
+            </label>
+          </div>
+        </div> <!-- Primeira gestação ? -->
+        <div class="form-group">
+          <label>Quantas vezes você já engravidou ? (considerar abortos e natimortos)</label>
+          <input type="number" class="form-control" ng-model="questionario.mae.historicoObstetricio.quantasVezesEngravidou">
+        </div>
+        <div class="form-group">
+          <label>Quantos filhos nasceram vivos ?</label>
+          <input type="number" class="form-control" ng-model="questionario.mae.historicoObstetricio.quantosNascidosVivos">
+        </div>
+        <div class="form-group">
+          <label>Quantos filhos nasceram mortos ?</label>
+          <input type="number" class="form-control" ng-model="questionario.mae.historicoObstetricio.quantosNascidosMortos">
+        </div>
+        <div class="form-group">
+          <label>Já teve algum aborto ?</label>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="questionario.mae.historicoObstetricio.jaAbortou"> Sim
+            </label>
+          </div>
+        </div> <!-- Já abortou ? -->
+        <div class="form-group" ng-show="questionario.mae.historicoObstetricio.jaAbortou">
+          <label>Quantos abortos ?</label>
+          <input type="number" class="form-control" ng-model="questionario.mae.historicoObstetricio.quantosAbortos">
+        </div>
+        <div class="form-group">
+          <label>Algum destes nasceu com alguma malformação congênita ?</label>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="questionario.mae.historicoObstetricio.jaTeveFilhosComMalFormacaoCongenita"> Sim
+            </label>
+          </div>
+        </div> <!-- Já teve filhos com malformação congênita ? -->
+        <div class="form-group" ng-show="questionario.mae.historicoObstetricio.jaTeveFilhosComMalFormacaoCongenita">
+          <label>Quais filhos tiveram malformação congênita ?</label>
+          <input type="number" class="form-control" ng-model="questionario.mae.historicoObstetricio.quaisFilhosComMalFormacaoCongenita">
+        </div>
+        <div class="form-group">
+          <label>Qual a data de nascimento do seu último filho ?</label>
+          <input type="date" class="form-control" ng-model="questionario.mae.historicoObstetricio.dataNascimentoUltimoFilho">
+        </div>
+      </div> <!-- Fim - panel-body Histórico obstetrício/ginecológico -->
+    </div> <!-- Fim - Histórico obstetrício/ginecológico -->
+
+    <!-- Durante a gestação -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Durante a gestação</h3>
+      </div>
+      <div class="panel-body">
+        <!-- duranteGestacao.contatoComPesticidas -->
+        <div class="form-group">
+          <label>Teve contato com pesticidas ?</label>
+          <label>
+            <input type="checkbox" ng-model="questionario.mae.duranteGestacao.contatoComPesticidas.teveContato"> Sim
+          </label>
+        </div>
+        <div class="form-group" ng-show="questionario.mae.duranteGestacao.contatoComPesticidas.teveContato">
+          <label>Especificar</label>
+          <input class="form-control" ng-model="questionario.mae.duranteGestacao.contatoComPesticidas.detalhe">
+        </div>
+        <hr>
+        <!-- duranteGestacao.contatoComAgrotoxicos -->
+        <div class="form-group">
+          <label>Teve contato com agrotóxicos ?</label>
+          <label>
+            <input type="checkbox" ng-model="questionario.mae.duranteGestacao.contatoComAgrotoxicos.teveContato"> Sim
+          </label>
+        </div>
+        <div class="form-group" ng-show="questionario.mae.duranteGestacao.contatoComAgrotoxicos.teveContato">
+          <label>Especificar</label>
+          <input class="form-control" ng-model="questionario.mae.duranteGestacao.contatoComAgrotoxicos.detalhe">
+        </div>
+        <hr>
+        <!-- duranteGestacao.contatoProdutoQuimico -->
+        <div class="form-group">
+          <label>Teve contato com algum produto químico ?</label>
+          <label>
+            <input type="checkbox" ng-model="questionario.mae.duranteGestacao.contatoProdutoQuimico.teveContato"> Sim
+          </label>
+        </div>
+        <div class="form-group" ng-show="questionario.mae.duranteGestacao.contatoProdutoQuimico.teveContato">
+          <label>Especificar</label>
+          <input class="form-control" ng-model="questionario.mae.duranteGestacao.contatoProdutoQuimico.detalhe">
+        </div>
+        <hr>
+        <!-- duranteGestacao.contatoRaioX -->
+        <div class="form-group">
+          <label>Realizou algum exame de raio-X ?</label>
+          <label>
+            <input type="checkbox" ng-model="questionario.mae.duranteGestacao.contatoRaioX.teveContato"> Sim
+          </label>
+        </div>
+        <div ng-show="questionario.mae.duranteGestacao.contatoRaioX.teveContato">
+          <label>
+            <input type="checkbox" ng-model="questionario.mae.duranteGestacao.contatoRaioX.primeiroTrimestre"> Primeiro trimestre
+          </label>
+          <label>
+            <input type="checkbox" ng-model="questionario.mae.duranteGestacao.contatoRaioX.segundoTrimestre"> Segundo trimestre
+          </label>
+          <label>
+            <input type="checkbox" ng-model="questionario.mae.duranteGestacao.contatoRaioX.terceiroTrimestre"> Terceiro trimestre
+          </label>
+        </div>
+        <hr>
+        <div class="form-group">
+          <label>Medicamento</label>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <label>Nome</label>
+                <input class="form-control" ng-model="temp.medicamento.nome">
+              </div>
+            </div> <!-- fim col-md-8 -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Data que iniciou o tratamento</label>
+                <input type="date" class="form-control" ng-model="temp.medicamento.dataInicioTratamento">
+              </div>
+            </div> <!-- fim col-md-4 -->
+          </div> <!-- fim row -->
+        </div> <!-- fim form-group medicamento -->
+
+        <button type="button" class="btn btn-primary" ng-click="adicionarMedicamento()">Adicionar Medicamento</button>
+
+        <table class="table table-bordered" ng-show="questionario.mae.duranteGestacao.medicamentos.length > 0">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Data de início</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="medicamento in questionario.mae.duranteGestacao.medicamentos">
+              <td><input class="form-control" ng-model="medicamento.nome"></td>
+              <td><input class="form-control" type="date" ng-model="medicamento.dataInicioTratamento"></td>
+              <td><button class="btn btn-danger" ng-click="excluirMedicamento($index)">X</button></td>
+            </tr>
+          </tbody>
+        </table> <!-- fim table medicamentos -->
+
+        <!-- Histórico de manchas vermelhas -->
+        <div class="form-group">
+          <label>Você teve manchas vermelhas no corpo durante a gestação ?</label>
+          <label>
+            <input type="checkbox" ng-model="questionario.mae.teveManchasVermelhas"> Sim
+          </label>
+        </div>
+        <div ng-show="questionario.mae.teveManchasVermelhas">
+          <!-- Painel manchas vermelhas -->
+          <div ng-repeat="manchas in questionario.mae.historicoManchasVermelhas" class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">{{manchas.trimestre}}º Trimestre</h3>
+            </div>
+            <div class="panel-body">
+              <div class="form-group">
+                <label>Apresentou manchas vermelhas no {{manchas.trimestre}}º trimestre ?</label>
+                <label>
+                  <input type="checkbox" ng-model="manchas.apresentouManchas"> Sim
+                </label>
+              </div>
+              <div ng-show="manchas.apresentouManchas">
+                <div class="form-group">
+                  <label>Data de início do enxatema</label>
+                  <input class="form-control" type="date" ng-model="manchas.dataInicioEnxatema">
+                </div>
+                <div class="form-group">
+                  <label>Durou por quantos dias ?</label>
+                  <input class="form-control" type="number" ng-model="manchas.duracaoEmDias">
+                </div>
+                <div class="form-group">
+                  <label>Local de início</label>
+                  <select class="form-control" ng-model="manchas.localDeInicio">
+                    <option value="">Selecione</option>
+                    <option value="cabeca_pescoco">Cabeça/Pescoço</option>
+                    <option value="tronco">Tronco</option>
+                    <option value="mmss">MMSS</option>
+                    <option value="mmii">MMII</option>
+                    <option value="difuso">Difuso por todo corpo</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label>As manchas se espalharam ? </label>
+                  <label>
+                    <input type="checkbox" ng-model="manchas.espalhou"> Sim
+                  </label>
+                </div>
+                <div class="form-group" ng-show="manchas.espalhou">
+                  <label>Para onde espalhou</label>
+                  <select class="form-control" ng-model="manchas.espalhouParaOnde">
+                    <option value="">Selecione</option>
+                    <option value="cabeca_pescoco">Cabeça/Pescoço</option>
+                    <option value="tronco">Tronco</option>
+                    <option value="mmss">MMSS</option>
+                    <option value="mmii">MMII</option>
+                    <option value="difuso">Difuso por todo corpo</option>
+                  </select>
+                </div>
+    
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label>Febre</label>
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox" ng-model="manchas.febre"> Sim
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2" ng-show="manchas.febre">
+                    <div class="form-group">
+                      <label>Temperatura</label>
+                      <input type="number" step="0.1" ng-model="manchas.febreTemperatura">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Prurido </label>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" ng-model="manchas.prurido"> Sim
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Tosse </label>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" ng-model="manchas.tosse"> Sim
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Coriza </label>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" ng-model="manchas.coriza"> Sim
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Cefaleia </label>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" ng-model="manchas.cefaleia"> Sim
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Mialgia </label>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" ng-model="manchas.mialgia"> Sim
+                    </label>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label>Artralgia</label>
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox" ng-model="manchas.artralgia"> Sim
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2" ng-show="manchas.artralgia">
+                    <div class="form-group">
+                      <label>Tempo</label>
+                      <input type="number" ng-model="manchas.artralgiaTempo">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Linfoadenopatia </label>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" ng-model="manchas.linfoadenopatia"> Sim
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Hiperemia conjuntival </label>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" ng-model="manchas.hiperemiaConjuntival"> Sim
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Vômitos </label>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" ng-model="manchas.vomitos"> Sim
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Dor retroorbital </label>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" ng-model="manchas.dorRetroorbital"> Sim
+                    </label>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label>Outros</label>
+                  <input class="form-control" ng-model="manchas.outros">
+                </div>
+
+                <div class="form-group">
+                  <label>Se teve outros sintomas, o hash surgiu</label>
+                  <select class="form-control" ng-model="manchas.surgimentoDoRash">
+                    <option value="">Selecione</option>
+                    <option value="primeiro">Primeiro</option>
+                    <option value="logoapos">Logo após</option>
+                    <option value="dias">Dias</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label>Teve atendimento médico ?</label>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" ng-model="manchas.atendimentoMedico"> Sim
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group" ng-show="manchas.atendimentoMedico">
+                  <label>Hipótese diagnóstica</label>
+                  <input class="form-control" ng-model="hipoteseDiagnostica">
+                </div>
+
+                <div class="form-group">
+                  <label>Tomou remédio ?</label>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" ng-model="manchas.tomouRemedio"> Sim
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group" ng-show="manchas.tomouRemedio">
+                  <label>Remédios</label>
+                  <input class="form-control" ng-model="remedios">
+                </div>
+
+              </div>
+            </div>
+          </div> 
+          <!-- FIM - Painel manchas vermelhas -->         
+        </div>
+        <!-- FIM - Histórico de manchas vermelhas -->
+
+      </div> <!-- Fim - panel-body Durante a gestação -->
+    </div> <!-- Fim - Durante a gestação -->
+
+  </div> <!-- fim panel-body MÃE -->
 </div>
 <!-- FIM - DADOS DA MÃE -->
