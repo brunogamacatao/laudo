@@ -344,7 +344,7 @@
       </div>
       <div class="panel-body">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="form-group">
               <label>Hemograma (considerar o primeiro)</label>
               <div class="checkbox">
@@ -354,10 +354,16 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6" ng-show="questionario.recemNascido.hemograma.primeiro">
+          <div class="col-md-4" ng-show="questionario.recemNascido.hemograma.primeiro">
             <div class="form-group">
               <label>Data da realização</label>
-              <input class="form-control" ng-model="questionario.recemNascido.hemograma.data">
+              <input type="date" class="form-control" ng-model="questionario.recemNascido.hemograma.data">
+            </div>
+          </div>
+          <div class="col-md-4" ng-show="questionario.recemNascido.hemograma.primeiro">
+            <div class="form-group">
+              <label>Idade de Realização (dias)</label>
+              <input type="number" step="1" class="form-control" ng-model="questionario.recemNascido.hemograma.idadeRealizacao">
             </div>
           </div>
         </div>
@@ -403,7 +409,7 @@
         </div> <!-- FIM - Segunda linha do hemograma -->
 
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-3">
             <div class="form-group">
               <label>Punção liquórica</label>
               <div class="checkbox">
@@ -413,13 +419,19 @@
               </div>
             </div>
           </div>
-          <div class="col-md-4" ng-show="questionario.recemNascido.puncaoLiquorica.primeiro">
+          <div class="col-md-3" ng-show="questionario.recemNascido.puncaoLiquorica.primeiro">
             <div class="form-group">
               <label>Data da realização</label>
-              <input class="form-control" ng-model="questionario.recemNascido.puncaoLiquorica.data">
+              <input type="date" class="form-control" ng-model="questionario.recemNascido.puncaoLiquorica.data">
             </div>
           </div>
-          <div class="col-md-4" ng-show="questionario.recemNascido.puncaoLiquorica.primeiro">
+          <div class="col-md-3" ng-show="questionario.recemNascido.puncaoLiquorica.primeiro">
+            <div class="form-group">
+              <label>Idade de Realização (dias)</label>
+              <input type="number" step="1" class="form-control" ng-model="questionario.recemNascido.puncaoLiquorica.idadeRealizacao">
+            </div>
+          </div>
+          <div class="col-md-3" ng-show="questionario.recemNascido.puncaoLiquorica.primeiro">
             <div class="form-group">
               <label>Aspecto</label>
               <select class="form-control" ng-model="questionario.recemNascido.puncaoLiquorica.aspecto">
@@ -527,7 +539,7 @@
               </div>
             </div> <!-- Fim - Soro do RN -->
             <div class="row"> <!-- Líquor -->
-              <div class="col-md-2">Líquor</div>
+              <div class="col-md-2">Líquor do RN</div>
               <div class="col-md-3">
                 <input class="form-control" type="date" ng-model="temp.exameEtiologico.dados[1].data">
               </div>
@@ -542,7 +554,7 @@
               </div>
             </div> <!-- Fim - Líquor -->
             <div class="row"> <!-- Urina -->
-              <div class="col-md-2">Urina</div>
+              <div class="col-md-2">Urina do RN</div>
               <div class="col-md-3">
                 <input class="form-control" type="date" ng-model="temp.exameEtiologico.dados[2].data">
               </div>
@@ -556,6 +568,119 @@
                 <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[2].pcr">
               </div>
             </div> <!-- Fim - Urina -->
+
+            <div class="row"> <!-- Sangue Materno -->
+              <div class="col-md-2">Sangue Materno</div>
+              <div class="col-md-3">
+                <input class="form-control" type="date" ng-model="temp.exameEtiologico.dados[3].data">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[3].igm">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[3].igg">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[3].pcr">
+              </div>
+            </div> <!-- Fim - Sangue Materno -->
+
+            <div class="row"> <!-- Urina Materna -->
+              <div class="col-md-2">Urina Materna</div>
+              <div class="col-md-3">
+                <input class="form-control" type="date" ng-model="temp.exameEtiologico.dados[4].data">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[4].igm">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[4].igg">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[4].pcr">
+              </div>
+            </div> <!-- Fim - Urina Materna -->
+
+            <div class="row"> <!-- Leite Materno -->
+              <div class="col-md-2">Leite Materno</div>
+              <div class="col-md-3">
+                <input class="form-control" type="date" ng-model="temp.exameEtiologico.dados[5].data">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[5].igm">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[5].igg">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[5].pcr">
+              </div>
+            </div> <!-- Fim - Leite Materno -->
+
+            <div class="row"> <!-- Sangue Paterno -->
+              <div class="col-md-2">Sangue Paterno</div>
+              <div class="col-md-3">
+                <input class="form-control" type="date" ng-model="temp.exameEtiologico.dados[6].data">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[6].igm">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[6].igg">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[6].pcr">
+              </div>
+            </div> <!-- Fim - Sangue Paterno -->
+
+            <div class="row"> <!-- Urina Paterna -->
+              <div class="col-md-2">Urina Paterna</div>
+              <div class="col-md-3">
+                <input class="form-control" type="date" ng-model="temp.exameEtiologico.dados[7].data">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[7].igm">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[7].igg">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[7].pcr">
+              </div>
+            </div> <!-- Fim - Urina Paterna -->
+
+            <div class="row"> <!-- Placenta -->
+              <div class="col-md-2">Placenta</div>
+              <div class="col-md-3">
+                <input class="form-control" type="date" ng-model="temp.exameEtiologico.dados[8].data">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[8].igm">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[8].igg">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[8].pcr">
+              </div>
+            </div> <!-- Fim - Placenta -->
+
+            <div class="row"> <!-- Outros tecidos -->
+              <div class="col-md-2"><input class="form-control" type="text" ng-model="temp.exameEtiologico.dados[9].amostra" placeholder="Qual tecido"></div>
+              <div class="col-md-3">
+                <input class="form-control" type="date" ng-model="temp.exameEtiologico.dados[9].data">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[9].igm">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[9].igg">
+              </div>
+              <div class="col-md-2">
+                <input class="form-control" type="number" step="0.01" ng-model="temp.exameEtiologico.dados[9].pcr">
+              </div>
+            </div> <!-- Fim - Outros tecidos -->
+
 
           </div>
         </div>
@@ -577,7 +702,7 @@
           </thead>
           <tbody ng-repeat="exame in questionario.recemNascido.examesEtiologicos">
             <tr>
-              <td rowspan="3">{{exame.agente}}</td>
+              <td rowspan="10">{{exame.agente}}</td>
               <td>{{exame.dados[0].amostra}}</td>
               <td>{{exame.dados[0].data|date: 'dd/MM/yyyy'}}</td>
               <td>{{exame.dados[0].igm}}</td>
@@ -597,6 +722,55 @@
               <td>{{exame.dados[2].igm}}</td>
               <td>{{exame.dados[2].igg}}</td>
               <td>{{exame.dados[2].pcr}}</td>
+            </tr>
+            <tr>
+              <td>{{exame.dados[3].amostra}}</td>
+              <td>{{exame.dados[3].data|date: 'dd/MM/yyyy'}}</td>
+              <td>{{exame.dados[3].igm}}</td>
+              <td>{{exame.dados[3].igg}}</td>
+              <td>{{exame.dados[3].pcr}}</td>
+            </tr>
+            <tr>
+              <td>{{exame.dados[4].amostra}}</td>
+              <td>{{exame.dados[4].data|date: 'dd/MM/yyyy'}}</td>
+              <td>{{exame.dados[4].igm}}</td>
+              <td>{{exame.dados[4].igg}}</td>
+              <td>{{exame.dados[4].pcr}}</td>
+            </tr>
+            <tr>
+              <td>{{exame.dados[5].amostra}}</td>
+              <td>{{exame.dados[5].data|date: 'dd/MM/yyyy'}}</td>
+              <td>{{exame.dados[5].igm}}</td>
+              <td>{{exame.dados[5].igg}}</td>
+              <td>{{exame.dados[5].pcr}}</td>
+            </tr>
+            <tr>
+              <td>{{exame.dados[6].amostra}}</td>
+              <td>{{exame.dados[6].data|date: 'dd/MM/yyyy'}}</td>
+              <td>{{exame.dados[6].igm}}</td>
+              <td>{{exame.dados[6].igg}}</td>
+              <td>{{exame.dados[6].pcr}}</td>
+            </tr>
+            <tr>
+              <td>{{exame.dados[7].amostra}}</td>
+              <td>{{exame.dados[7].data|date: 'dd/MM/yyyy'}}</td>
+              <td>{{exame.dados[7].igm}}</td>
+              <td>{{exame.dados[7].igg}}</td>
+              <td>{{exame.dados[7].pcr}}</td>
+            </tr>
+            <tr>
+              <td>{{exame.dados[8].amostra}}</td>
+              <td>{{exame.dados[8].data|date: 'dd/MM/yyyy'}}</td>
+              <td>{{exame.dados[8].igm}}</td>
+              <td>{{exame.dados[8].igg}}</td>
+              <td>{{exame.dados[8].pcr}}</td>
+            </tr>
+            <tr>
+              <td>{{exame.dados[9].amostra}}</td>
+              <td>{{exame.dados[9].data|date: 'dd/MM/yyyy'}}</td>
+              <td>{{exame.dados[9].igm}}</td>
+              <td>{{exame.dados[9].igg}}</td>
+              <td>{{exame.dados[9].pcr}}</td>
             </tr>
           </tbody>
         </table>
@@ -1963,19 +2137,19 @@
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
-                <label>Número de consultas no 1º trimestre</label>
+                <label>Número de consultas pre-natais</label>
                 <input type="number" class="form-control" ng-model="questionario.mae.prenatal.consultasPrimeiroTrimestre">
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label>Número de consultas no 2º trimestre</label>
+                <label>Número de consultas pre-natais</label>
                 <input type="number" class="form-control" ng-model="questionario.mae.prenatal.consultasSegundoTrimestre">
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label>Número de consultas no 3º trimestre</label>
+                <label>Número de consultas pre-natais</label>
                 <input type="number" class="form-control" ng-model="questionario.mae.prenatal.consultasTerceiroTrimestre">
               </div>
             </div>
@@ -2248,6 +2422,32 @@
                     <input type="checkbox" ng-model="temp.ultrassom.ventriculomegalia"> Sim
                   </label>
                 </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>DBP</label>
+                <input type="number" step="0.01" placeholder="DBP (cm)" class="form-control" ng-model="temp.ultrassom.dbp">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Fêmur</label>
+                <input type="number" step="0.01" placeholder="Fêmur (cm)" class="form-control" ng-model="temp.ultrassom.femur">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Circunferência Abdominal</label>
+                <input type="number" step="0.01" placeholder="Circunferência Abdominal (cm)" class="form-control" ng-model="temp.ultrassom.circunferenciaAbdominal">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Peso</label>
+                <input type="number" step="0.01" placeholder="Peso (kg)" class="form-control" ng-model="temp.ultrassom.peso">
               </div>
             </div>
           </div>

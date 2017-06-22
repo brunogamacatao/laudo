@@ -75,8 +75,15 @@ controllers.controller('NovoQuestionarioController', ['$rootScope', '$scope', '$
       return {
         dados: [
           {amostra: 'Soro do RN'},
-          {amostra: 'Líquor'},
-          {amostra: 'Urina'}
+          {amostra: 'Líquor do RN'},
+          {amostra: 'Urina do RN'},
+          {amostra: 'Sangue Materno'},
+          {amostra: 'Urina Materna'},
+          {amostra: 'Leite Materno'},
+          {amostra: 'Sangue Paterno'},
+          {amostra: 'Urina Paterna'},
+          {amostra: 'Placenta'},
+          {}
         ]
       };
     }

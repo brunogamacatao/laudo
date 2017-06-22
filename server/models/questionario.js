@@ -64,7 +64,8 @@ var HemogramaSchema = new mongoose.Schema({
   monocitos: Number,
   linfocitos: Number,
   plaquetas: Number,
-  glicose: Number
+  glicose: Number,
+  idadeRealizacao: Number
 });
 
 var PuncaoLiquoricaSchema = new mongoose.Schema({
@@ -79,7 +80,8 @@ var PuncaoLiquoricaSchema = new mongoose.Schema({
   linfocitos: Number,
   proteinas: Number,
   cloreto: Number,
-  glicose: Number
+  glicose: Number,
+  idadeRealizacao: Number
 });
 
 var DadosExameSchema = new mongoose.Schema({
@@ -306,7 +308,11 @@ var UltrassomSchema = new mongoose.Schema({
   microcefalia: Boolean,
   calcificacoes: Boolean,
   ventriculomegalia: Boolean,
-  outrosAchados: String
+  outrosAchados: String,
+  dbp: Number,
+  femur: Number,
+  circunferenciaAbdominal: Number,
+  peso: Number
 });
 
 var ResultadoExamePreNatalSchema = new mongoose.Schema({
