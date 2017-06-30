@@ -4,34 +4,51 @@
   <li role="presentation"><a ui-sref="listar_laudos({id_prontuario: id_prontuario})">Laudos</a></li>
   <li role="presentation"><a ui-sref="novo_exame({id_prontuario: id_prontuario})">Novo Exame</a></li>
   <li role="presentation"><a ui-sref="listar_exames({id_prontuario: id_prontuario})">Exames</a></li>
+
   <li role="presentation"><a ui-sref="novo_gmfm({id_prontuario: id_prontuario})">Novo GMFM</a></li>
-  <li role="presentation" class="active"><a ui-sref="listar_gmfms({id_prontuario: id_prontuario})">GMFMs</a></li>
-
+  <li role="presentation"><a ui-sref="listar_gmfms({id_prontuario: id_prontuario})">GMFMs</a></li>  
   <li role="presentation"><a ui-sref="novo_antropometria({id_prontuario: id_prontuario})">Novo Antropometria</a></li>
-  <li role="presentation"><a ui-sref="listar_antropometrias({id_prontuario: id_prontuario})">Antropometrias</a></li>
-
+  <li role="presentation" class="active"><a ui-sref="listar_antropometrias({id_prontuario: id_prontuario})">Antropometrias</a></li>
   <li role="presentation" ng-if="admin"><a ui-sref="exportar({id_prontuario: id_prontuario})">Exportar</a></li>
 </ul>
 
 <table class="table table-bordered table-hover table-striped">
   <thead>
     <tr>
-      <th>DATA</th>
+      <th>Data</th>
+      <th>Idade (meses)</th>
+      <th>USG</th>
+      <th>Peso (kg)</th>
+      <th>Perímetro Craniano</th>
+      <th>Circunferência Abdominal</th>
+      <th>Perímetro Torácico</th>
+      <th>Prega Tricipital</th>
+      <th>Prega Subescapular</th>
+      <th>Estatura</th>
       <th>&nbsp;</th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="gmfm in gmfms">
-      <td>{{gmfm.data | date: 'dd/MM/yyyy'}}</td>
+    <tr ng-repeat="antropometria in antropometrias">
+      <td>{{antropometria.data | date: 'dd/MM/yyyy'}}</td>
+      <td>{{antropometria.meses}}</td>
+      <td>{{antropometria.usg}}</td>
+      <td>{{antropometria.peso}}</td>
+      <td>{{antropometria.perimetroCraniano}}</td>
+      <td>{{antropometria.circunferenciaAbdominal}}</td>
+      <td>{{antropometria.perimetroToracico}}</td>
+      <td>{{antropometria.pregaTricipital}}</td>
+      <td>{{antropometria.pregaSubescapular}}</td>
+      <td>{{antropometria.estatura}}</td>
       <td>
-        <button class="btn btn-primary" ng-click="detalhe(gmfm)"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-        <button class="btn btn-danger" ng-click="excluir(gmfm)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+        <button class="btn btn-primary" ng-click="detalhe(antropometria)"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+        <button class="btn btn-danger" ng-click="excluir(antropometria)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
       </td>
     </tr>
   </tbody>
 </table>
 
-<div class="modal fade" tabindex="-1" role="dialog" id="modal_excluir_gmfm">
+<div class="modal fade" tabindex="-1" role="dialog" id="modal_excluir_antropometria">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -39,7 +56,7 @@
         <h4 class="modal-title">Tem certeza ?</h4>
       </div>
       <div class="modal-body">
-        <p>Tem certeza que quer excluir este GMFM ?</p>
+        <p>Tem certeza que quer excluir esta Antropometria ?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" ng-click="confirmaExcluir()">Excluir</button>

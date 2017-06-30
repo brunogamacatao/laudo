@@ -82,6 +82,25 @@ function setupRoutes($stateProvider, $urlRouterProvider) {
       controller: 'ListarGMFMSController',
       authenticate: true
     })
+    // Estados da antropometria
+    .state('novo_antropometria', {
+      url: '/prontuarios/:id_prontuario/novo_antropometria',
+      templateUrl: 'antropometria/form.html',
+      controller: 'NovoAntropometriaController',
+      authenticate: true
+    })
+    .state('editar_antropometria', {
+      url: '/prontuarios/:id_prontuario/editar_antropometria/:id_antropometria',
+      templateUrl: 'antropometria/form.html',
+      controller: 'EditarAntropometriaController',
+      authenticate: true
+    })
+    .state('listar_antropometrias', {
+      url: '/prontuarios/:id_prontuario/antropometrias',
+      templateUrl: 'antropometria/list.html',
+      controller: 'ListarAntropometriasController',
+      authenticate: true
+    })
     // Estados dos prontuários
     .state('prontuarios', {
       url: '/prontuarios',

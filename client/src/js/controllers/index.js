@@ -10,6 +10,7 @@ require('./security');
 require('./exame');
 require('./exportar');
 require('./gmfm');
+require('./antropometria');
 require('./laudo');
 require('./prontuario');
 require('./questionario');

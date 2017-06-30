@@ -8,6 +8,7 @@ var Prontuario = mongoose.model('Prontuario');
 var Exame = mongoose.model('Exame');
 var GMFM = mongoose.model('GMFM');
 var Questionario = mongoose.model('Questionario');
+var Antropometria = mongoose.model('Antropometria');
 
 // ----------------------------------------------------------------------------
 // PRONTUÁRIOS
@@ -301,6 +302,66 @@ router.put('/:prontuarioId/gmfms/:gmfmId', function(req, res, next) {
 // Remove um gmfm de um prontuário
 router.delete('/:prontuarioId/gmfms/:gmfmId', function(req, res) {
   GMFM.remove({_id: req.gmfm.id}, function(err) {
+    if(err) {
+      return next(err);
+    }
+
+    res.json({'status': 'ok'});
+  });
+});
+
+// ----------------------------------------------------------------------------
+// Antropometria
+// ----------------------------------------------------------------------------
+
+// Retorna todas as antropometrias de um prontuário
+router.get('/:prontuarioId/antropometrias', function(req, res, next) {
+  var filter = {'prontuario': req.prontuario};
+
+  Antropometria.find(filter).sort('-updatedAt').exec(function(err, antropometrias){
+    if (err) {
+      return next(err);
+    }
+
+    res.json(antropometrias);
+  });
+});
+
+// Retorna uma antropometria
+router.get('/:prontuarioId/antropometrias/:antropometriaId', function(req, res) {
+  res.json(req.antropometria);
+});
+
+// Adiciona uma antropometria a um prontuário
+router.post('/:prontuarioId/antropometrias', function(req, res, next) {
+  var antropometria = new Antropometria(req.body);
+
+  antropometria.prontuario = req.prontuario;
+  antropometria.user = req.user;
+
+  antropometria.save(function(err, antropometria){
+    if(err) {
+      return next(err);
+    }
+
+    res.json(antropometria);
+  });
+});
+
+// Atualiza uma antropometria
+router.put('/:prontuarioId/antropometrias/:antropometriaId', function(req, res, next) {
+  Antropometria.update({_id: req.antropometria._id}, req.body, {}, function(err, antropometria){
+    if(err) {
+      return next(err);
+    }
+
+    res.json(antropometria);
+  });
+});
+
+// Remove uma antropometria de um prontuário
+router.delete('/:prontuarioId/antropometrias/:antropometriaId', function(req, res) {
+  Antropometria.remove({_id: req.antropometria.id}, function(err) {
     if(err) {
       return next(err);
     }
