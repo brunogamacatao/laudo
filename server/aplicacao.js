@@ -67,7 +67,11 @@ Aplicacao.prototype.setupMiddleware = function() {
   var sessionParams = {
     secret: 'keyboard cat',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: { 
+      maxAge: 60000000,
+      _expires : 60000000
+    }
   };
   this.app.use(expressSession(sessionParams));
   this.app.use(passport.initialize());

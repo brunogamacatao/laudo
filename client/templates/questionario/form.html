@@ -154,20 +154,39 @@
       <div class="col-md-6"> <!-- Coluna -->
         <div class="form-group">
           <label>Ocorreu dano perinatal ?</label>
-          <select class="form-control" ng-model="questionario.recemNascido.danoPerinatal">
-            <option value="">Selecione</option>
-            <option value="nao">Não</option>
-            <option value="anoxico">Anóxico</option>
-            <option value="isquemico">Isquêmico</option>
-            <option value="hemorragico">Hemorrágico</option>
-            <option value="traumatico">Traumático</option>
-            <option value="outros">Outros</option>
-          </select>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="questionario.recemNascido.danoPerinatalAnoxico"> Anóxico 
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="questionario.recemNascido.danoPerinatalIsquemico"> Isquêmico 
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="questionario.recemNascido.danoPerinatalHemorragico"> Hemorrágico 
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="questionario.recemNascido.danoPerinatalTraumatico"> Traumático 
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="questionario.recemNascido.danoPerinatalOutro"> Outros 
+            </label>
+          </div>
         </div>
       </div> <!-- Fim da coluna -->
-      <div class="col-md-6" ng-show="questionario.recemNascido.danoPerinatal === 'outros'"> <!-- Coluna -->
+    </div> <!-- Fim da linha -->
+    <div class="row" ng-show="questionario.recemNascido.danoPerinatalOutro">
+      <div class="col-md-12"> <!-- Coluna -->
         <div class="form-group">
-          <label>Dano perinatal</label>
+          <label>Outro Dano perinatal</label>
           <input class="form-control" ng-model="questionario.recemNascido.outroDanoPerinatal">
         </div>
       </div> <!-- Fim da coluna -->
