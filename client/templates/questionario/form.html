@@ -998,7 +998,7 @@
           <div class="col-md-6" ng-show="questionario.recemNascido.exames[0].alteracao">
             <div class="form-group">
               <label>Especificar alteração</label>
-              <input type="date" class="form-control" ng-model="questionario.recemNascido.exames[0].descricao">
+              <input type="text" class="form-control" ng-model="questionario.recemNascido.exames[0].descricao">
             </div>
           </div>
         </div>
@@ -1037,7 +1037,7 @@
           <div class="col-md-6" ng-show="questionario.recemNascido.exames[1].alteracao">
             <div class="form-group">
               <label>Especificar alteração</label>
-              <input type="date" class="form-control" ng-model="questionario.recemNascido.exames[1].descricao">
+              <input type="text" class="form-control" ng-model="questionario.recemNascido.exames[1].descricao">
             </div>
           </div>
         </div>
@@ -1076,7 +1076,7 @@
           <div class="col-md-6" ng-show="questionario.recemNascido.exames[2].alteracao">
             <div class="form-group">
               <label>Especificar alteração</label>
-              <input type="date" class="form-control" ng-model="questionario.recemNascido.exames[2].descricao">
+              <input type="text" class="form-control" ng-model="questionario.recemNascido.exames[2].descricao">
             </div>
           </div>
         </div>
@@ -1115,11 +1115,93 @@
           <div class="col-md-6" ng-show="questionario.recemNascido.exames[3].alteracao">
             <div class="form-group">
               <label>Especificar alteração</label>
-              <input type="date" class="form-control" ng-model="questionario.recemNascido.exames[3].descricao">
+              <input type="text" class="form-control" ng-model="questionario.recemNascido.exames[3].descricao">
             </div>
           </div>
         </div>
         <!-- FIM - TESTE DA ORELHINHA -->
+
+        <hr>
+        <!-- RAIO X DE BACIA -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Raio X de Bacia</label>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.recemNascido.exames[4].possui"> Sim 
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" ng-show="questionario.recemNascido.exames[4].possui">
+            <div class="form-group">
+              <label>Data da realização</label>
+              <input type="date" class="form-control" ng-model="questionario.recemNascido.exames[4].data">
+            </div>
+          </div>
+        </div>
+        <div class="row" ng-show="questionario.recemNascido.exames[4].possui">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Encontrada alteração ?</label>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.recemNascido.exames[4].alteracao"> Sim 
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" ng-show="questionario.recemNascido.exames[4].alteracao">
+            <div class="form-group">
+              <label>Especificar alteração</label>
+              <input type="text" class="form-control" ng-model="questionario.recemNascido.exames[4].descricao">
+            </div>
+          </div>
+        </div>
+        <!-- FIM - RAIO X DE BACIA -->
+
+        <hr>
+        <!-- ELETROENCEFALOGRAMA -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Eletroencefalograma</label>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.recemNascido.exames[5].possui"> Sim 
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" ng-show="questionario.recemNascido.exames[5].possui">
+            <div class="form-group">
+              <label>Data da realização</label>
+              <input type="date" class="form-control" ng-model="questionario.recemNascido.exames[5].data">
+            </div>
+          </div>
+        </div>
+        <div class="row" ng-show="questionario.recemNascido.exames[5].possui">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Encontrada alteração ?</label>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.recemNascido.exames[5].alteracao"> Sim 
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" ng-show="questionario.recemNascido.exames[5].alteracao">
+            <div class="form-group">
+              <label>Especificar alteração</label>
+              <input type="text" class="form-control" ng-model="questionario.recemNascido.exames[5].descricao">
+            </div>
+          </div>
+        </div>
+        <!-- FIM - ELETROENCEFALOGRAMA -->
+
+
       </div> <!-- Panel body Exames de Imagem -->
     </div> <!-- Panel Exames de Imagem -->
   </div> <!-- Fim do panel body - Recém nascido -->

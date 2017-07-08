@@ -125,7 +125,9 @@ controllers.controller('NovoQuestionarioController', ['$rootScope', '$scope', '$
             {nome: 'Ultrassom abdominal'},
             {nome: 'Ecocardiograma'},
             {nome: 'Fundo do olho'},
-            {nome: 'Teste da orelhinha'}
+            {nome: 'Teste da orelhinha'},
+            {nome: 'Raio X de Bacia'},
+            {nome: 'Eletroencefalograma'}
           ]
         },
         mae: {
