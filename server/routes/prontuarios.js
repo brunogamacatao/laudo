@@ -375,7 +375,9 @@ router.delete('/:prontuarioId/antropometrias/:antropometriaId', function(req, re
 // ----------------------------------------------------------------------------
 // Retorna todos os questionários de um prontuário
 router.get('/:prontuarioId/questionarios', function(req, res, next) {
-  Questionario.find()
+  var filter = {'prontuario': req.prontuario};
+
+  Questionario.find(filter)
     .sort('-updatedAt')
     .populate('prontuario')
     .populate('owner')
@@ -393,6 +395,7 @@ router.post('/:prontuarioId/questionarios', function(req, res, next) {
   var q = new Questionario(req.body);
 
   q.owner = req.user;
+  q.prontuario = req.prontuario;
 
   q.save(function(err, post){
     if(err) {
