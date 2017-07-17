@@ -276,7 +276,7 @@
     </div> <!-- Presença de malformações -->
     <div class="form-group" ng-show="questionario.recemNascido.malformacoes.possui">
       <label>Descrição da malformação:</label>
-      <input class="form-control" ng-model="questionario.recemNascido.malformacoes.descricao">
+      <textarea class="form-control" rows="5" ng-model="questionario.recemNascido.malformacoes.descricao" ></textarea>
     </div>
 
     <div class="form-group">
@@ -357,7 +357,7 @@
 
     <div class="form-group" ng-show="questionario.recemNascido.outrosAchadosClinicos.possui">
       <label>Outros achados clínicos:</label>
-      <input class="form-control" ng-model="questionario.recemNascido.outrosAchadosClinicos.outras">
+      <textarea class="form-control" rows="5" ng-model="questionario.recemNascido.outrosAchadosClinicos.outras"></textarea>
     </div>
 
     <!-- Panel Exames Inespecíficos -->
@@ -721,6 +721,7 @@
               <th>IgM</th>
               <th>IgG</th>
               <th>PCR</th>
+              <th></th>
             </tr>
           </thead>
           <tbody ng-repeat="exame in questionario.recemNascido.examesEtiologicos">
@@ -731,6 +732,11 @@
               <td>{{exame.dados[0].igm}}</td>
               <td>{{exame.dados[0].igg}}</td>
               <td>{{exame.dados[0].pcr}}</td>
+              <td rowspan="10">
+                <button class="btn btn-danger btn-sm">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="excluirExameEtiologico($index)"></span>
+                </button>                
+              </td>
             </tr>
             <tr>
               <td>{{exame.dados[1].amostra}}</td>
@@ -2242,19 +2248,19 @@
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
-                <label>Número de consultas pre-natais</label>
+                <label>1º Trimestre - Núm. consultas pre-natais</label>
                 <input type="number" class="form-control" ng-model="questionario.mae.prenatal.consultasPrimeiroTrimestre">
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label>Número de consultas pre-natais</label>
+                <label>2º Trimestre - Núm. consultas pre-natais</label>
                 <input type="number" class="form-control" ng-model="questionario.mae.prenatal.consultasSegundoTrimestre">
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label>Número de consultas pre-natais</label>
+                <label>3º Trimestre - Núm. consultas pre-natais</label>
                 <input type="number" class="form-control" ng-model="questionario.mae.prenatal.consultasTerceiroTrimestre">
               </div>
             </div>
@@ -2345,6 +2351,7 @@
                 <th>Data da 1ª dose</th>
                 <th>Data da 2ª dose</th>
                 <th>Data da 3ª dose</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -2357,6 +2364,11 @@
                 </td>
                 <td>
                   {{vacina.numeroDeDoses >= 3 ? (vacina.dataDoses[2]|date: 'dd/MM/yyyy') : '-'}}
+                </td>
+                <td>
+                  <button class="btn btn-danger btn-sm">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="excluirVacina($index)"></span>
+                  </button>                  
                 </td>
               </tr>
             </tbody>
@@ -2573,6 +2585,7 @@
                 <th>Calcificações</th>
                 <th>Ventriculomegalia</th>
                 <th>Outros achados</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -2584,6 +2597,11 @@
                 <td>{{exame.calcificacoes ? 'Sim' : 'Não'}}</td>
                 <td>{{exame.ventriculomegalia ? 'Sim' : 'Não'}}</td>
                 <td>{{exame.outrosAchados}}</td>
+                <td>
+                  <button class="btn btn-danger btn-sm">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="excluirUltrassom($index)"></span>
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table> <!-- Tabela dos exames de ultrassonografia -->
@@ -2680,6 +2698,7 @@
                 <th colspan="3">Primeiro Trimestre</th>
                 <th colspan="3">Segundo Trimestre</th>
                 <th colspan="3">Terceiro Trimestre</th>
+                <th></th>
               </tr>
               <tr>
                 <th>Exame</th>
@@ -2692,6 +2711,7 @@
                 <th>Realizado</th>
                 <th>Data</th>
                 <th>Resultado</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -2706,6 +2726,11 @@
                 <td>{{exame.terceiroTrimestre.realizado ? 'Sim' : 'Não'}}</td>
                 <td>{{exame.terceiroTrimestre.data|date: 'dd/MM/yyyy'}}</td>
                 <td>{{exame.terceiroTrimestre.resultado}}</td>
+                <td>
+                  <button class="btn btn-danger btn-sm">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="excluirExame($index)"></span>
+                  </button>                  
+                </td>
               </tr>
             </tbody>
           </table>

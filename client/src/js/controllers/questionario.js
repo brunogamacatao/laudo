@@ -121,6 +121,10 @@ controllers.controller('NovoQuestionarioController', ['$rootScope', '$scope', '$
       $scope.temp.exameEtiologico = novoExameEtiologico();
     };
 
+    $scope.excluirExameEtiologico = function(i) {
+      $scope.questionario.recemNascido.examesEtiologicos.splice(i, 1);
+    };
+
     $scope.adicionarViagem = function() {
       $scope.questionario.mae.viagens.push($scope.temp.viagem);
       $scope.temp.viagem = {};
@@ -148,9 +152,17 @@ controllers.controller('NovoQuestionarioController', ['$rootScope', '$scope', '$
       };
     };
 
+    $scope.excluirVacina = function(i) {
+      $scope.questionario.mae.prenatal.historicoVacinal.splice(i, 1);
+    };
+
     $scope.adicionarUltrassom = function() {
       $scope.questionario.mae.prenatal.examesUltrassom.push($scope.temp.ultrassom);
       $scope.temp.ultrassom = {};
+    };
+
+    $scope.excluirUltrassom = function(i) {
+      $scope.questionario.mae.prenatal.examesUltrassom.splice(i, 1);
     };
 
     $scope.adicionarExame = function() {
@@ -162,6 +174,9 @@ controllers.controller('NovoQuestionarioController', ['$rootScope', '$scope', '$
       };
     };
 
+    $scope.excluirExame = function(i) {
+      $scope.questionario.mae.prenatal.exames.splice(i, 1);
+    };
 
     function novoExameEtiologico() {
       return {
