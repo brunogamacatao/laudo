@@ -8,6 +8,56 @@ controllers.controller('NovoQuestionarioController', ['$rootScope', '$scope', '$
     $scope.id_prontuario = $stateParams.id_prontuario;
     $scope.questionario = novoQuestionario();
 
+    $scope.opcoesExames = [
+      // questionario.recemNascido.examesCranianos
+      {nome: 'Tomografia craniana', tipo: 'craniano'},
+      {nome: 'Ressonância magnética craniana', tipo: 'craniano'},
+      {nome: 'Ultrassom transfontanela', tipo: 'craniano'},
+      {nome: 'Ultrassom abdominal', tipo: 'craniano'},
+      // questionario.recemNascido.exames
+      {nome: 'Ecocardiograma', tipo: 'outros'},
+      {nome: 'Fundo do olho', tipo: 'outros'},
+      {nome: 'Teste da orelhinha', tipo: 'outros'},
+      {nome: 'Raio X de Bacia', tipo: 'outros'},
+      {nome: 'Eletroencefalograma', tipo: 'outros'}
+    ];
+    $scope.exameSelecionado = {};
+
+    $scope.adicionarExameRecemNascido = function() {
+      if ($scope.exameSelecionado.tipo === 'craniano') {
+        $scope.questionario.recemNascido.examesCranianos.push($scope.exameSelecionado);
+      } else if ($scope.exameSelecionado.tipo === 'outros') {
+        $scope.questionario.recemNascido.exames.push($scope.exameSelecionado);
+      }
+
+      $scope.exameSelecionado = {};
+    };
+
+    $scope.getExamesRecemNascido = function() {
+      var retorno = [];
+
+      for (var i = 0; i < $scope.questionario.recemNascido.examesCranianos.length; i++) {
+        $scope.questionario.recemNascido.examesCranianos[i].tipo = 'craniano';
+        retorno.push($scope.questionario.recemNascido.examesCranianos[i]);
+      }
+
+      for (var i = 0; i < $scope.questionario.recemNascido.exames.length; i++) {
+        $scope.questionario.recemNascido.exames[i].tipo = 'outros';
+        retorno.push($scope.questionario.recemNascido.exames[i]);
+      }
+
+      return retorno;
+    };
+
+    $scope.excluirExameRecemNascido = function(i) {
+      if (i < $scope.questionario.recemNascido.examesCranianos.length) {
+        $scope.questionario.recemNascido.examesCranianos.splice(i, 1);
+      } else {
+        i -= $scope.questionario.recemNascido.examesCranianos.length;
+        $scope.questionario.recemNascido.exames.splice(i, 1);
+      }
+    };
+
     $http.get('/prontuarios/' + $stateParams.id_prontuario + '/questionarios').then(function(retorno) {
       if (retorno && retorno.data && retorno.data.length > 0) {
         var q = retorno.data[0];
@@ -223,19 +273,8 @@ controllers.controller('NovoQuestionarioController', ['$rootScope', '$scope', '$
           hemograma: {},
           puncaoLiquorica: {},
           examesEtiologicos: [],
-          examesCranianos: [
-            {nome: 'Tomografia craniana'},
-            {nome: 'Ressonância magnética craniana'},
-            {nome: 'Ultrassom transfontanela'}
-          ],
-          exames: [
-            {nome: 'Ultrassom abdominal'},
-            {nome: 'Ecocardiograma'},
-            {nome: 'Fundo do olho'},
-            {nome: 'Teste da orelhinha'},
-            {nome: 'Raio X de Bacia'},
-            {nome: 'Eletroencefalograma'}
-          ]
+          examesCranianos: [],
+          exames: []
         },
         mae: {
           enderecoAtual: {},
