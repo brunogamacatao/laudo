@@ -907,9 +907,9 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6" ng-show="exameSelecionado.alteracao">
+            <div class="col-md-6">
               <div class="form-group">
-                <label>Especificar alteração</label>
+                <label>Descrição</label>
                 <textarea class="form-control" rows="5" ng-model="exameSelecionado.descricao"></textarea>
               </div>
             </div>
@@ -932,6 +932,9 @@
               <td>{{exame.nome}}</td>
               <td>{{exame.data|date: 'dd/MM/yyyy'}}</td>
               <td>
+                <button class="btn btn-primary btn-sm">
+                  <span class="glyphicon glyphicon-search" aria-hidden="true" ng-click="selecionarExameRecemNascido($index)"></span>
+                </button>
                 <button class="btn btn-danger btn-sm">
                   <span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="excluirExameRecemNascido($index)"></span>
                 </button>
@@ -2547,3 +2550,124 @@
 <!-- FIM - DADOS DO INVESTIGADOR -->
 
 <button type="button" class="btn btn-primary" ng-click="salvar()">Salvar</button>
+
+<!-- Janelas modal -->
+
+<!-- Modal Editar Exame Craniano -->
+<div class="modal fade" id="modalExameCraniano" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">{{exameSelecionadoEditar.nome}}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>{{exameSelecionadoEditar.nome}}</label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Data da realização</label>
+              <input type="date" class="form-control" ng-model="exameSelecionadoEditar.data">
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="form-group">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="exameSelecionadoEditar.normal"> Normal
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="exameSelecionadoEditar.calcificacoes"> Calcificações
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="exameSelecionadoEditar.lisencefalia"> Lisencefalia
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="exameSelecionadoEditar.atrofiaCerebral"> Atrofia Cerebral
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="exameSelecionadoEditar.ventriculomegalia"> Ventriculomegalia
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="exameSelecionadoEditar.suturasCalcificadas"> Suturas Calcificadas
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Outras, especificar</label>
+            <textarea class="form-control" rows="5" ng-model="exameSelecionadoEditar.outras"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Editar Exame 'Outros' -->
+<div class="modal fade" id="modalExameOutros" tabindex="-1" role="dialog" aria-labelledby="myModalExameOutrosLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalExameOutrosLabel">{{exameSelecionadoEditar.nome}}</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>{{exameSelecionadoEditar.nome}}</label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Data da realização</label>
+              <input type="date" class="form-control" ng-model="exameSelecionadoEditar.data">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Encontrada alteração ?</label>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="exameSelecionadoEditar.alteracao"> Sim 
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Descrição</label>
+              <textarea class="form-control" rows="5" ng-model="exameSelecionadoEditar.descricao"></textarea>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

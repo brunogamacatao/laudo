@@ -22,6 +22,8 @@ controllers.controller('NovoQuestionarioController', ['$rootScope', '$scope', '$
       {nome: 'Eletroencefalograma', tipo: 'outros'}
     ];
     $scope.exameSelecionado = {};
+    $scope.exameSelecionadoEditarIdx = 0;
+    $scope.exameSelecionadoEditar = {};
 
     $scope.adicionarExameRecemNascido = function() {
       if ($scope.exameSelecionado.tipo === 'craniano') {
@@ -55,6 +57,19 @@ controllers.controller('NovoQuestionarioController', ['$rootScope', '$scope', '$
       } else {
         i -= $scope.questionario.recemNascido.examesCranianos.length;
         $scope.questionario.recemNascido.exames.splice(i, 1);
+      }
+    };
+
+    $scope.selecionarExameRecemNascido = function(i) {
+      $scope.exameSelecionadoEditarIdx = i;
+
+      if (i < $scope.questionario.recemNascido.examesCranianos.length) {
+        $scope.exameSelecionadoEditar = $scope.questionario.recemNascido.examesCranianos[i];
+        $('#modalExameCraniano').modal({show: true});
+      } else {
+        i -= $scope.questionario.recemNascido.examesCranianos.length;
+        $scope.exameSelecionadoEditar = $scope.questionario.recemNascido.exames[i];
+        $('#modalExameOutros').modal({show: true});
       }
     };
 
