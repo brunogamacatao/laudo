@@ -160,7 +160,8 @@ var ViagemSchema = new mongoose.Schema({
 var AntecedenteSchema = new mongoose.Schema({
   antecedente: String,
   possui: Boolean,
-  descricao: String
+  descricao: String,
+  mes: Number
 });
 
 var DoencaPreexistenteSchema = new mongoose.Schema({

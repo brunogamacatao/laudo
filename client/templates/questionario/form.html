@@ -1306,6 +1306,131 @@
           </div> <!-- fim col-md-4 -->
         </div> <!-- fim row -->
         <hr>
+
+        <!-- Vacina febre amarela -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Quando foi a última dose da vacina de febre amarela ? Mês</label>
+              <input type="number" class="form-control" min="1" step="1" ng-model="questionario.mae.antecedentes[4].mes">
+            </div>
+          </div> <!-- fim col-md-8 -->
+        </div> <!-- fim row -->
+        <hr>
+
+        <!-- Vacina VTV -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Quando foi a última dose da vacina de VTV ? Mês</label>
+              <input type="number" class="form-control" min="1" step="1" ng-model="questionario.mae.antecedentes[5].mes">
+            </div>
+          </div> <!-- fim col-md-8 -->
+        </div> <!-- fim row -->
+        <hr>
+
+        <!-- Vacina DTPa -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Quando foi a última dose da vacina de DTPa ? Mês</label>
+              <input type="number" class="form-control" min="1" step="1" ng-model="questionario.mae.antecedentes[6].mes">
+            </div>
+          </div> <!-- fim col-md-8 -->
+        </div> <!-- fim row -->
+        <hr>
+
+        <!-- Teve dengue ? -->
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <label>Teve dengue ?</label>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.mae.antecedentes[7].possui"> Sim 
+                </label>
+              </div>
+            </div>
+          </div> <!-- fim col-md-8 -->
+          <div class="col-md-4" ng-show="questionario.mae.antecedentes[7].possui">
+            <div class="form-group">
+              <label>Mês</label>
+              <input class="form-control" type="number" min="1" step="1" ng-model="questionario.mae.antecedentes[7].mes">
+            </div>
+          </div> <!-- fim col-md-4 -->
+        </div> <!-- fim row -->
+        <hr>
+
+        <!-- Teve chikungunya ? -->
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <label>Teve chikungunya ?</label>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.mae.antecedentes[8].possui"> Sim 
+                </label>
+              </div>
+            </div>
+          </div> <!-- fim col-md-8 -->
+          <div class="col-md-4" ng-show="questionario.mae.antecedentes[8].possui">
+            <div class="form-group">
+              <label>Mês</label>
+              <input class="form-control" type="number" min="1" step="1" ng-model="questionario.mae.antecedentes[8].mes">
+            </div>
+          </div> <!-- fim col-md-4 -->
+        </div> <!-- fim row -->
+        <hr>
+
+        <!-- Teve zika ? -->
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <label>Teve zika ?</label>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.mae.antecedentes[9].possui"> Sim 
+                </label>
+              </div>
+            </div>
+          </div> <!-- fim col-md-8 -->
+          <div class="col-md-4" ng-show="questionario.mae.antecedentes[9].possui">
+            <div class="form-group">
+              <label>Mês</label>
+              <input class="form-control" type="number" min="1" step="1" ng-model="questionario.mae.antecedentes[9].mes">
+            </div>
+          </div> <!-- fim col-md-4 -->
+        </div> <!-- fim row -->
+        <hr>
+
+        <!-- Outra virose ? -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Outra virose ?</label>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="questionario.mae.antecedentes[10].possui"> Sim 
+                </label>
+              </div>
+            </div>
+          </div> <!-- fim col-md-6 -->
+          <div class="col-md-3" ng-show="questionario.mae.antecedentes[10].possui">
+            <div class="form-group">
+              <label>Mês</label>
+              <input class="form-control" type="number" min="1" step="1" ng-model="questionario.mae.antecedentes[8].mes">
+            </div>
+          </div> <!-- fim col-md-3 -->
+          <div class="col-md-3" ng-show="questionario.mae.antecedentes[10].possui">
+            <div class="form-group">
+              <label>Qual</label>
+              <input class="form-control" type="text" ng-model="questionario.mae.antecedentes[8].descricao">
+            </div>
+          </div> <!-- fim col-md-3 -->
+        </div> <!-- fim row -->
+        <hr>
+
+
         <!-- DOENÇAS PRE-EXISTENTES -->
         <div class="form-group">
           <label>Teve diagnóstico de alguma doença pré-existente ?</label>

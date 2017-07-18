@@ -299,7 +299,14 @@ controllers.controller('NovoQuestionarioController', ['$rootScope', '$scope', '$
             {antecedente: 'parentesco com companheiro'},
             {antecedente: 'malformacao congenita'},
             {antecedente: 'microcefalia na familia'},
-            {antecedente: 'medicamento de uso continuo'}
+            {antecedente: 'medicamento de uso continuo'},
+            {antecedente: 'ultima dose da vacina de febre amarela'},
+            {antecedente: 'ultima dose da vacina de febre vtv'},
+            {antecedente: 'ultima dose da vacina de febre dtpa'},
+            {antecedente: 'teve dengue'},
+            {antecedente: 'teve chikungunya'},
+            {antecedente: 'teve zika'},
+            {antecedente: 'outra virose'}
           ],
           doencasPreexistentes: {},
           tratamentosDST: {},
