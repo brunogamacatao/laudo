@@ -28,6 +28,7 @@ require('../css/style.css');
 // Importa os componentes
 import './controllers';
 import './directives';
+import './components';
 import './services';
 import setupRoutes from './routes';
 
@@ -36,7 +37,8 @@ LiveReload.start();
 
 const app = angular.module('ipesq', 
   ['ui.router', 'ngResource', 'ngSanitize', 'angular-filepicker', 
-  'ipesq.controllers', 'ipesq.directives', 'ipesq.services']);
+   'ipesq.controllers', 'ipesq.directives', 'ipesq.components', 
+   'ipesq.services']);
 
 // Configuração das rotas
 app.config(
@@ -44,7 +46,7 @@ app.config(
     function($stateProvider, $urlRouterProvider, filepickerProvider) {
       setupRoutes($stateProvider, $urlRouterProvider);
 
-      const FILEPICKER_API_KEY = 'Aide40CT9QwyIdqDDksEfz';
+      const FILEPICKER_API_KEY    = 'Aide40CT9QwyIdqDDksEfz';
       const FILEPICKER_API_SECRET = 'RMXVVVF74RG7HKJ57BW66PUOS4';
 
       filepickerProvider.setKey(FILEPICKER_API_KEY);

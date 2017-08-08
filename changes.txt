@@ -1,0 +1,4 @@
+Antes de tudo, criar componentes !
+
+[server/models/prontuario.js]
+  ProntuarioSchema.crianca (CriancaSchema) => ProntuarioSchema.criancas ([CriancaSchema])

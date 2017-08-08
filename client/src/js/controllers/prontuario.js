@@ -108,7 +108,10 @@ controllers.controller('NovoProntuarioController', ['$rootScope', '$scope', '$ht
   function($rootScope, $scope, $http, $state, Prontuario) {
     $rootScope.currentMenu = 'novo_prontuario';
 
-    $scope.prontuario = {};
+    $scope.prontuario = {
+      mae: {},
+      crianca: {}
+    };
 
     $scope.salvar = function() {
       new Prontuario($scope.prontuario).$save(function() {
@@ -123,7 +126,11 @@ controllers.controller('EditarProntuarioController', ['$rootScope', '$scope', '$
     $rootScope.currentMenu = 'editar_prontuario';
 
     $scope.admin = AuthService.isAdmin();
-    $scope.prontuario = Prontuario.get({id: $stateParams.id});
+    Prontuario.get({id: $stateParams.id}, function(p) {
+      $scope.prontuario = p;
+      $scope.prontuario.mae = $scope.prontuario.mae || {};
+      $scope.prontuario.crianca = $scope.prontuario.crianca || {};
+    });
 
     $scope.salvar = function() {
       Prontuario.update({id: $stateParams.id}, $scope.prontuario).$promise.then(function() {

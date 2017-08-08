@@ -1,17 +1,4 @@
-<ul class="nav nav-tabs">
-  <li role="presentation"><a ui-sref="editar_prontuario({id: id_prontuario})">Prontuário</a></li>
-  <li role="presentation"><a ui-sref="novo_laudo({id_prontuario: id_prontuario})">Novo Laudo</a></li>
-  <li role="presentation" class="active"><a ui-sref="listar_laudos({id_prontuario: id_prontuario})">Laudos</a></li>
-  <li role="presentation"><a ui-sref="novo_exame({id_prontuario: id_prontuario})">Novo Exame</a></li>
-  <li role="presentation"><a ui-sref="listar_exames({id_prontuario: id_prontuario})">Exames</a></li>
-  <li role="presentation"><a ui-sref="novo_gmfm({id_prontuario: id_prontuario})">Novo GMFM</a></li>
-  <li role="presentation"><a ui-sref="listar_gmfms({id_prontuario: id_prontuario})">GMFMs</a></li>
-
-  <li role="presentation"><a ui-sref="novo_antropometria({id_prontuario: id_prontuario})">Novo Antropometria</a></li>
-  <li role="presentation"><a ui-sref="listar_antropometrias({id_prontuario: id_prontuario})">Antropometrias</a></li>
-
-  <li role="presentation" ng-if="admin"><a ui-sref="exportar({id_prontuario: id_prontuario})">Exportar</a></li>
-</ul>
+<menu-prontuario id-prontuario="id_prontuario" ativo="listar_laudos"></menu-prontuario>
 
 <table class="table table-bordered table-hover table-striped">
   <thead>

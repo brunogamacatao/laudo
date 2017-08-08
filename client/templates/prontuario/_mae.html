@@ -1,0 +1,86 @@
+<!-- Formulário Mãe -->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Mãe</h3>
+  </div>
+  <div class="panel-body">
+    <div class="form-group">
+      <label>Nome</label> <input type="text" class="form-control" ng-model="$ctrl.mae.nome">
+    </div>
+    <div class="form-group">
+      <label>Local Acompanhamento</label> <input type="text" class="form-control" ng-model="$ctrl.mae.localAcompanhamento">
+    </div>
+    <div class="form-group">
+      <label>Endereço</label> <input type="text" class="form-control" ng-model="$ctrl.mae.endereco">
+    </div>
+    <div class="form-group">
+      <label>Cidade</label> <input type="text" class="form-control" ng-model="$ctrl.mae.cidade">
+    </div>
+    <div class="form-group">
+      <label>Ponto de Referência</label> <input type="text" class="form-control" ng-model="$ctrl.mae.pontoDeReferencia">
+    </div>
+    <div class="form-group">
+      <label>Telefone</label> <input type="text" class="form-control" ng-model="$ctrl.mae.telefone">
+    </div>
+    <div class="form-group">
+      <label>Telefone de Contato</label> <input type="text" class="form-control" ng-model="$ctrl.mae.telefoneContato">
+    </div>
+    <div class="form-group">
+      <label>Data de Nascimento</label> <input type="text" class="form-control" ng-model="$ctrl.mae.dataDeNascimento">
+    </div>
+    <div class="form-group">
+      <label>Número de Gestações</label> <input type="number" step="1" min="0" class="form-control" ng-model="$ctrl.mae.gestacoes">
+    </div>
+    <div class="form-group">
+      <label>Número de Nascimentos</label> <input type="number" step="1" min="0" class="form-control" ng-model="$ctrl.mae.nascimentos">
+    </div>
+    <div class="form-group">
+      <label>Número de Abortos</label> <input type="number" step="1" min="0" class="form-control" ng-model="$ctrl.mae.abortos">
+    </div>
+    <div class="form-group">
+      <label>Peso</label> <input type="number" step="0.01" min="0" class="form-control" ng-model="$ctrl.mae.peso">
+    </div>
+    <div class="form-group">
+      <label>Altura</label> <input type="number" step="0.01" min="0" class="form-control" ng-model="$ctrl.mae.altura">
+    </div>
+    <div class="form-group">
+      <label>Quanto foi a primeira ultrassom</label> <input type="text" class="form-control" ng-model="$ctrl.mae.primeiraUltrassom">
+    </div>
+    <div class="form-group">
+      <label>Quanto foi a última ultrassom</label> <input type="text" class="form-control" ng-model="$ctrl.mae.ultimaUltrassom">
+    </div>
+    <div class="form-group">
+      <label>Idade gestacional na admissão do projeto</label> <input type="text" class="form-control" ng-model="$ctrl.mae.idadeGestacionalAdmissaoProjeto">
+    </div>
+  </div>
+</div>
+
+<!-- Formulário Enxantema -->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Enxantema</h3>
+  </div>
+  <div class="panel-body">
+    <div class="form-group">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="$ctrl.mae.enxatema.historiaEnxatema"> História de enxantema
+        </label>
+      </div>
+    </div>
+    <div ng-show="$ctrl.mae.enxatema.historiaEnxatema">
+      <div class="form-group">
+        <label>Trimestre</label> <input type="text" class="form-control" ng-model="$ctrl.mae.enxatema.trimestre">
+      </div>
+      <div class="form-group">
+        <label>Mês</label> <input type="text" class="form-control" ng-model="$ctrl.mae.enxatema.mes">
+      </div>
+      <div class="form-group">
+        <label>Idade gestacional enxantema (mês)</label> <input type="text" class="form-control" ng-model="$ctrl.mae.enxatema.idadeGestacionalEnxatemaMes">
+      </div>
+      <div class="form-group">
+        <label>Idade gestacional enxantema (trimestre)</label> <input type="text" class="form-control" ng-model="$ctrl.mae.enxatema.idadeGestacionalEnxatemaTrimestre">
+      </div>
+    </div>
+  </div>
+</div>
