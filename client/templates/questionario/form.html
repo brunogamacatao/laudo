@@ -9,21 +9,7 @@
   }  
 </style>
 
-<ul class="nav nav-tabs" ng-if="id_prontuario">
-  <li role="presentation"><a ui-sref="editar_prontuario({id: id_prontuario})">Prontuário</a></li>
-  <li role="presentation"><a ui-sref="novo_laudo({id_prontuario: id_prontuario})">Novo Laudo</a></li>
-  <li role="presentation"><a ui-sref="listar_laudos({id_prontuario: id_prontuario})">Laudos</a></li>
-  <li role="presentation"><a ui-sref="novo_exame({id_prontuario: id_prontuario})">Novo Exame</a></li>
-  <li role="presentation"><a ui-sref="listar_exames({id_prontuario: id_prontuario})">Exames</a></li>
-  <li role="presentation"><a ui-sref="novo_gmfm({id_prontuario: id_prontuario})">Novo GMFM</a></li>
-  <li role="presentation"><a ui-sref="listar_gmfms({id_prontuario: id_prontuario})">GMFMs</a></li>
-
-  <li role="presentation"><a ui-sref="novo_antropometria({id_prontuario: id_prontuario})">Novo Antropometria</a></li>
-  <li role="presentation"><a ui-sref="listar_antropometrias({id_prontuario: id_prontuario})">Antropometrias</a></li>
-
-  <li role="presentation" class="active"><a ui-sref="novo_questionario({id_prontuario: id_prontuario})">Questionário</a></li>
-  <li role="presentation" ng-if="admin"><a ui-sref="exportar({id_prontuario: id_prontuario})">Exportar</a></li>
-</ul>
+<menu-prontuario id-prontuario="id_prontuario" ativo="novo_questionario"></menu-prontuario>
 
 <!-- DADOS DO SERVIÇO DE SAÚDE -->
 <div class="panel panel-default">
@@ -44,7 +30,7 @@
     </div>
     <div class="form-group" ng-show="questionario.servicoSaude.tipo === 'outros'">
       <label>Tipo do Serviço de Saúde</label>
-      <input class="form-control" ng-model="questionario.servicoSaude.descricao">
+      <textarea class="form-control" rows="5" ng-model="questionario.servicoSaude.descricao"></textarea>
     </div>
     <div class="form-group">
       <label>Identificação do serviço de saúde</label>
@@ -187,7 +173,7 @@
       <div class="col-md-12"> <!-- Coluna -->
         <div class="form-group">
           <label>Outro Dano perinatal</label>
-          <input class="form-control" ng-model="questionario.recemNascido.outroDanoPerinatal">
+          <textarea class="form-control" rows="5" ng-model="questionario.recemNascido.outroDanoPerinatal"></textarea>
         </div>
       </div> <!-- Fim da coluna -->
     </div> <!-- Fim da linha -->
@@ -1228,7 +1214,7 @@
       <div class="panel-body">
         <!-- PARENTESCO COMPANHEIRO -->
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-12">
             <div class="form-group">
               <label>Há algum grau de parentesco com o seu companheiro ?</label>
               <div class="checkbox">
@@ -1237,18 +1223,16 @@
                 </label>
               </div>
             </div>
-          </div> <!-- fim col-md-8 -->
-          <div class="col-md-4" ng-show="questionario.mae.antecedentes[0].possui">
-            <div class="form-group">
+            <div class="form-group" ng-show="questionario.mae.antecedentes[0].possui">
               <label>Qual ?</label>
-              <input class="form-control" ng-model="questionario.mae.antecedentes[0].descricao">
+              <textarea class="form-control" rows="5" ng-model="questionario.mae.antecedentes[0].descricao"></textarea>
             </div>
-          </div> <!-- fim col-md-4 -->
+          </div> <!-- fim col-md-12 -->
         </div> <!-- fim row -->
         <hr>
         <!-- MALFORMAÇÃO CONGÊNITA -->
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-12">
             <div class="form-group">
               <label>Você possui alguma malformação congênita ?</label>
               <div class="checkbox">
@@ -1257,18 +1241,16 @@
                 </label>
               </div>
             </div>
-          </div> <!-- fim col-md-8 -->
-          <div class="col-md-4" ng-show="questionario.mae.antecedentes[1].possui">
-            <div class="form-group">
+            <div class="form-group" ng-show="questionario.mae.antecedentes[1].possui">
               <label>Qual ?</label>
-              <input class="form-control" ng-model="questionario.mae.antecedentes[1].descricao">
+              <textarea class="form-control" rows="5" ng-model="questionario.mae.antecedentes[1].descricao"></textarea>
             </div>
           </div> <!-- fim col-md-4 -->
         </div> <!-- fim row -->
         <hr>
         <!-- MICROCEFALIA NA FAMÍLIA -->
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-12">
             <div class="form-group">
               <label>Há alguém na sua família, ou na do seu companheiro, que nasceu com microcefalia ?</label>
               <div class="checkbox">
@@ -1277,18 +1259,16 @@
                 </label>
               </div>
             </div>
-          </div> <!-- fim col-md-8 -->
-          <div class="col-md-4" ng-show="questionario.mae.antecedentes[2].possui">
-            <div class="form-group">
+            <div class="form-group" ng-show="questionario.mae.antecedentes[2].possui">
               <label>Qual ?</label>
-              <input class="form-control" ng-model="questionario.mae.antecedentes[2].descricao">
+              <textarea class="form-control" rows="5" ng-model="questionario.mae.antecedentes[2].descricao"></textarea>
             </div>
           </div> <!-- fim col-md-4 -->
         </div> <!-- fim row -->
         <hr>
         <!-- MEDICAMENTO DE USO CONTÍNUO -->
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-12">
             <div class="form-group">
               <label>Você fazia uso de algum medicamento de uso contínuo ?</label>
               <div class="checkbox">
@@ -1297,11 +1277,9 @@
                 </label>
               </div>
             </div>
-          </div> <!-- fim col-md-8 -->
-          <div class="col-md-4" ng-show="questionario.mae.antecedentes[3].possui">
-            <div class="form-group">
+            <div class="form-group" ng-show="questionario.mae.antecedentes[3].possui">
               <label>Qual ?</label>
-              <input class="form-control" ng-model="questionario.mae.antecedentes[3].descricao">
+              <textarea class="form-control" rows="5" ng-model="questionario.mae.antecedentes[3].descricao"></textarea>
             </div>
           </div> <!-- fim col-md-4 -->
         </div> <!-- fim row -->
@@ -1493,7 +1471,7 @@
           </div>
           <div class="form-group">
             <label>Outras, especificar</label>
-            <input class="form-control" ng-model="questionario.mae.doencasPreexistentes.outras">
+            <textarea class="form-control" rows="5" ng-model="questionario.mae.doencasPreexistentes.outras"></textarea>
           </div>
         </div> <!-- FIM - DOENÇAS PRE-EXISTENTES -->
         <hr>
@@ -1539,7 +1517,7 @@
           </div>
           <div class="form-group">
             <label>Outras, especificar</label>
-            <input class="form-control" ng-model="questionario.mae.tratamentosDST.outras">
+            <textarea class="form-control" rows="5" ng-model="questionario.mae.tratamentosDST.outras"></textarea>
           </div>
         </div><!-- FIM - DST -->
       </div> <!-- fim panel-body -->
@@ -1873,7 +1851,7 @@
                 
                 <div class="form-group">
                   <label>Outros</label>
-                  <input class="form-control" ng-model="manchas.outros">
+                  <textarea class="form-control" rows="5" ng-model="manchas.outros"></textarea>
                 </div>
 
                 <div class="form-group">
@@ -2411,7 +2389,7 @@
           </div>
           <div class="form-group">
             <label>Outros achados</label>
-            <input class="form-control" ng-model="temp.ultrassom.outrosAchados">
+            <textarea class="form-control" rows="5" ng-model="temp.ultrassom.outrosAchados"></textarea>
           </div>
 
           <button type="button" class="btn btn-primary" ng-click="adicionarUltrassom()">Adicionar Exame de Ultrassonografia</button>
