@@ -98,9 +98,9 @@ class PrintToPdf {
     doc.text('NOME: ', {continued: true}).text(this.laudo.nome);
 
     doc.fontSize(FONT_SIZE);
-    doc.text('DATA INÍCIO SINTOMAS: ' + this.formatDate(this.laudo.dataInicioSintomas), RIGHT_MARGIN, 130);
-    doc.text('DATA COLETA: ' + this.formatDate(this.laudo.dataColeta), 260, 130);
-    doc.text('DATA RESULTADO: ' + this.formatDate(this.laudo.dataResultado), 400, 130);
+    //doc.text('DATA INÍCIO SINTOMAS: ' + this.formatDate(this.laudo.dataInicioSintomas), RIGHT_MARGIN, 130);
+    doc.text('DATA COLETA: ' + this.formatDate(this.laudo.dataColeta), RIGHT_MARGIN, 130);
+    doc.text('DATA RESULTADO: ' + this.formatDate(this.laudo.dataResultado), 260, 130);
     doc.moveDown();
 
     let caption = 'MATEIAL COLETADO:';
@@ -134,15 +134,15 @@ class PrintToPdf {
     doc.text('(' + (this.laudo.sintomas.dorArticulacoes ? 'X' : ' ') + ') Dor nas articulações', margin);
     doc.moveDown();
 
-    caption = 'METODOLOGIA:';
+    caption = 'METODOLOGIA: ' + this.laudo.metodologia;
     margin = OFFSET + RIGHT_MARGIN + doc.font(font).fontSize(TITLE_FONT_SIZE).widthOfString(caption);
 
     doc.fontSize(TITLE_FONT_SIZE);
     doc.text(caption, RIGHT_MARGIN, doc.y);
-    doc.moveDown(0.5);
+    // doc.moveDown(0.5);
 
-    doc.fontSize(FONT_SIZE);
-    doc.text(this.laudo.metodologia, margin);
+    // doc.fontSize(FONT_SIZE);
+    // doc.text(this.laudo.metodologia, margin);
     doc.moveDown();
 
     caption = 'RESULTADO:';
@@ -154,7 +154,7 @@ class PrintToPdf {
 
     doc.fontSize(FONT_SIZE);
     doc.text('(' + (this.laudo.resultado === 'INDETECTAVEL'  ? 'X' : ' ') + ') INDETECTÁVEL', margin);
-    doc.text('(' + (this.laudo.resultado === 'DETECTAVEL'    ? 'X' : ' ') + ') DETECTÁVEL – Amplificação do ácido nucléico observada até o ciclo 38 de detecção.', margin);
+    //doc.text('(' + (this.laudo.resultado === 'DETECTAVEL'    ? 'X' : ' ') + ') DETECTÁVEL – Amplificação do ácido nucléico observada até o ciclo 38 de detecção.', margin);
     doc.text('(' + (this.laudo.resultado === 'INDETERMINADO' ? 'X' : ' ') + ') INDETERMINADO – Amplificação residual do ácido nucléico observada após o ciclo 38.', margin);
     doc.moveDown();
 

@@ -2,19 +2,13 @@
 
 <form id="formulario">
   <div class="row">
-    <div class="col-md-4">
-      <div class="form-group">
-        <label>Data Início Sintomas</label>
-        <input type="date" class="form-control" ng-model="laudo.dataInicioSintomas">
-      </div>
-    </div> <!-- div data início sintomas -->
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div class="form-group">
         <label>Data Coleta</label>
         <input type="date" class="form-control" ng-model="laudo.dataColeta">
       </div>
     </div> <!-- div data coleta -->
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div class="form-group">
         <label>Data Resultado</label>
         <input type="date" class="form-control" ng-model="laudo.dataResultado">
@@ -84,18 +78,22 @@
   </div> <!-- checkboxes do material coletado -->
   <div class="form-group">
     <label>Metodologia</label>
-    <textarea class="form-control" rows="3" ng-model="laudo.metodologia"></textarea>
+    <div class="radio">
+      <label>
+        <input type="radio" name="metodologia" ng-model="laudo.metodologia" value="PCR"> PCR
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio" name="metodologia" ng-model="laudo.metodologia" value="Sorologia"> Sorologia
+      </label>
+    </div>
   </div> <!-- metodologia -->
   <div class="form-group">
     <label>Resultado</label>
     <div class="radio">
       <label>
         <input type="radio" name="resultado" ng-model="laudo.resultado" value="INDETECTAVEL"> INDETECTÁVEL
-      </label>
-    </div>
-    <div class="radio">
-      <label>
-        <input type="radio" name="resultado" ng-model="laudo.resultado" value="DETECTAVEL"> DETECTÁVEL - Amplificação do ácido nucléico observada até o ciclo 38 de detecção.
       </label>
     </div>
     <div class="radio">
