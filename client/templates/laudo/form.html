@@ -38,44 +38,7 @@
       </label>
     </div>
   </div> <!-- checkboxes do material coletado -->
-  <div class="form-group">
-    <label>Outros Sintomas</label>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" ng-model="laudo.sintomas.febre"> Febre
-      </label>
-    </div>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" ng-model="laudo.sintomas.dorDeCabeca"> Dor de cabeça
-      </label>
-    </div>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" ng-model="laudo.sintomas.exantema"> Exantema
-      </label>
-    </div>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" ng-model="laudo.sintomas.conjuntivite"> Conjuntivite
-      </label>
-    </div>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" ng-model="laudo.sintomas.dorCorpo"> Dor pelo corpo
-      </label>
-    </div>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" ng-model="laudo.sintomas.dorRetroOrbital"> Dor retro-orbital
-      </label>
-    </div>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" ng-model="laudo.sintomas.dorArticulacoes"> Dor nas articulações
-      </label>
-    </div>
-  </div> <!-- checkboxes do material coletado -->
+  
   <div class="form-group">
     <label>Metodologia</label>
     <div class="radio">
@@ -89,19 +52,7 @@
       </label>
     </div>
   </div> <!-- metodologia -->
-  <div class="form-group">
-    <label>Resultado</label>
-    <div class="radio">
-      <label>
-        <input type="radio" name="resultado" ng-model="laudo.resultado" value="INDETECTAVEL"> INDETECTÁVEL
-      </label>
-    </div>
-    <div class="radio">
-      <label>
-        <input type="radio" name="resultado" ng-model="laudo.resultado" value="INDETERMINADO"> INDETERMINADO - Amplificação residual do ácido nucléico observada após o ciclo 38.
-      </label>
-    </div>
-  </div> <!-- radios do resultado -->
+
   <div class="form-group">
     <label>Conclusão</label>
     <p>
@@ -121,6 +72,12 @@
       <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.chikv.lcr"/> LCR</label>
     </p>
   </div> <!-- conclusão -->
+
+  <div class="form-group">
+    <label>Notas</label>
+    <textarea class="form-control" rows="5" ng-model="laudo.notas"></textarea>
+  </div>
+
   <div class="form-group">
     <label>Imagem da Assinatura</label>
     <input class="form-control" filepicker type="filepicker" data-fp-services="computer,facebook,webcam,box" on-success="onUploadedAssinatura(event.fpfile)" data-fp-button-class="btn btn-success" data-fp-button-text="Escolher Arquivo" />

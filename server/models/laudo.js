@@ -41,6 +41,7 @@ var LaudoSchema = new mongoose.Schema({
   resultado: String,
   conclusao: ConclusaoSchema,
   assinatura: String,
+  notas: String,
   createdAt: Date,
   updatedAt: Date,
   prontuario: {

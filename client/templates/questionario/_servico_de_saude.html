@@ -1,0 +1,46 @@
+<!-- DADOS DO SERVIÇO DE SAÚDE -->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Dados do serviço de saúde</h3>
+  </div>
+  <div class="panel-body">
+    <div class="form-group">
+      <label>Tipo</label>
+      <select class="form-control" ng-model="questionario.servicoSaude.tipo">
+        <option value="">Selecione</option>
+        <option value="hospital publico">Hospital Público</option>
+        <option value="hospital particular">Hospital Particular</option>
+        <option value="hospital filantropico">Hospital Filantrópico</option>
+        <option value="domicilio">Domicílio</option>
+        <option value="outros">Outros</option>
+      </select>
+    </div>
+    <div class="form-group" ng-show="questionario.servicoSaude.tipo === 'outros'">
+      <label>Tipo do Serviço de Saúde</label>
+      <textarea class="form-control" rows="5" ng-model="questionario.servicoSaude.descricao"></textarea>
+    </div>
+    <div class="form-group">
+      <label>Identificação do serviço de saúde</label>
+      <input class="form-control" ng-model="questionario.servicoSaude.identificacao">
+    </div>
+    <div class="form-group">
+      <label>Município de ocorrência</label>
+      <input class="form-control" ng-model="questionario.servicoSaude.municipio">
+    </div>
+    <div class="row"> <!-- Início da linha -->
+      <div class="col-md-6"> <!-- Coluna -->
+        <div class="form-group">
+          <label>Prontuário</label>
+          <input class="form-control" ng-model="questionario.servicoSaude.prontuario">
+        </div>
+      </div>
+      <div class="col-md-6"> <!-- Coluna -->
+        <div class="form-group">
+          <label>Responsável</label>
+          <input class="form-control" ng-model="questionario.servicoSaude.responsavel">
+        </div>
+      </div>
+    </div> <!-- Fim da linha -->
+  </div>
+</div>
+<!-- FIM - DADOS DO SERVIÇO DE SAÚDE -->

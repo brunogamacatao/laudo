@@ -117,45 +117,11 @@ class PrintToPdf {
     doc.text('(' + (this.laudo.materialColetado.lcr ? 'X' : ' ') + ') LÍQUIDO CEFALORRAQUIDIANO-LCR', margin);
     doc.moveDown();
 
-    caption = 'SINTOMAS:';
-    margin = OFFSET + RIGHT_MARGIN + doc.font(font).fontSize(TITLE_FONT_SIZE).widthOfString(caption);
-
-    doc.fontSize(TITLE_FONT_SIZE);
-    doc.text(caption, RIGHT_MARGIN, doc.y);
-    doc.moveDown(0.5);
-
-    doc.fontSize(FONT_SIZE);
-    doc.text('(' + (this.laudo.sintomas.febre           ? 'X' : ' ') + ') Febre', margin);
-    doc.text('(' + (this.laudo.sintomas.dorDeCabeca     ? 'X' : ' ') + ') Dor de cabeça', margin);
-    doc.text('(' + (this.laudo.sintomas.exantema        ? 'X' : ' ') + ') Enxatema', margin);
-    doc.text('(' + (this.laudo.sintomas.conjuntivite    ? 'X' : ' ') + ') Conjuntivite', margin);
-    doc.text('(' + (this.laudo.sintomas.dorCorpo        ? 'X' : ' ') + ') Dor pelo corpo', margin);
-    doc.text('(' + (this.laudo.sintomas.dorRetroOrbital ? 'X' : ' ') + ') Dor retro-orbital', margin);
-    doc.text('(' + (this.laudo.sintomas.dorArticulacoes ? 'X' : ' ') + ') Dor nas articulações', margin);
-    doc.moveDown();
-
     caption = 'METODOLOGIA: ' + this.laudo.metodologia;
     margin = OFFSET + RIGHT_MARGIN + doc.font(font).fontSize(TITLE_FONT_SIZE).widthOfString(caption);
 
     doc.fontSize(TITLE_FONT_SIZE);
     doc.text(caption, RIGHT_MARGIN, doc.y);
-    // doc.moveDown(0.5);
-
-    // doc.fontSize(FONT_SIZE);
-    // doc.text(this.laudo.metodologia, margin);
-    doc.moveDown();
-
-    caption = 'RESULTADO:';
-    margin = OFFSET + RIGHT_MARGIN + doc.font(font).fontSize(TITLE_FONT_SIZE).widthOfString(caption);
-
-    doc.fontSize(TITLE_FONT_SIZE);
-    doc.text(caption, RIGHT_MARGIN, doc.y);
-    doc.moveDown(0.5);
-
-    doc.fontSize(FONT_SIZE);
-    doc.text('(' + (this.laudo.resultado === 'INDETECTAVEL'  ? 'X' : ' ') + ') INDETECTÁVEL', margin);
-    //doc.text('(' + (this.laudo.resultado === 'DETECTAVEL'    ? 'X' : ' ') + ') DETECTÁVEL – Amplificação do ácido nucléico observada até o ciclo 38 de detecção.', margin);
-    doc.text('(' + (this.laudo.resultado === 'INDETERMINADO' ? 'X' : ' ') + ') INDETERMINADO – Amplificação residual do ácido nucléico observada após o ciclo 38.', margin);
     doc.moveDown();
 
     doc.fontSize(TITLE_FONT_SIZE);
@@ -166,6 +132,16 @@ class PrintToPdf {
     doc.text('(' + (this.laudo.conclusao.zikv.positivo  ? 'X' : ' ') + ') ZIKV  Identificado em amostra de (' + (this.laudo.conclusao.zikv.sg  ? 'X' : ' ') + ')SG (' + (this.laudo.conclusao.zikv.ur  ? 'X' : ' ') + ')UR (' + (this.laudo.conclusao.zikv.la  ? 'X' : ' ') + ')LA (' + (this.laudo.conclusao.zikv.lcr  ? 'X' : ' ') + ')LCR', 120);
     doc.text('(' + (this.laudo.conclusao.chikv.positivo ? 'X' : ' ') + ') CHIKV Identificado em amostra de (' + (this.laudo.conclusao.chikv.sg ? 'X' : ' ') + ')SG (' + (this.laudo.conclusao.chikv.ur ? 'X' : ' ') + ')UR (' + (this.laudo.conclusao.chikv.la ? 'X' : ' ') + ')LA (' + (this.laudo.conclusao.chikv.lcr ? 'X' : ' ') + ')LCR', 120);
     doc.moveDown();
+
+    if (this.laudo.notas) {
+      doc.fontSize(TITLE_FONT_SIZE);
+      doc.text('NOTAS:', RIGHT_MARGIN, doc.y);
+      doc.moveDown(0.5);
+
+      doc.fontSize(FONT_SIZE);
+      doc.text(this.laudo.notas);
+      doc.moveDown();
+    }
 
     function finalizaDocumento() {
       doc.fontSize(TITLE_FONT_SIZE);

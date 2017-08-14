@@ -19,7 +19,8 @@ controllers.controller('NovoQuestionarioController', ['$rootScope', '$scope', '$
       {nome: 'Fundo do olho', tipo: 'outros'},
       {nome: 'Teste da orelhinha', tipo: 'outros'},
       {nome: 'Raio X de Bacia', tipo: 'outros'},
-      {nome: 'Eletroencefalograma', tipo: 'outros'}
+      {nome: 'Eletroencefalograma', tipo: 'outros'},
+      {nome: 'Outro', tipo: 'outros', personalizado: true}
     ];
     $scope.exameSelecionado = {};
     $scope.exameSelecionadoEditarIdx = 0;

@@ -871,8 +871,12 @@
         <div ng-if="exameSelecionado.tipo === 'outros'">
           <div class="row">
             <div class="col-md-6">
-              <div class="form-group">
+              <div class="form-group" ng-if="!exameSelecionado.personalizado">
                 <label>{{exameSelecionado.nome}}</label>
+              </div>
+              <div class="form-group" ng-if="exameSelecionado.personalizado">
+                <label>Nome</label>
+                <input type="text" class="form-control" ng-model="exameSelecionado.nome">
               </div>
             </div>
             <div class="col-md-6">
