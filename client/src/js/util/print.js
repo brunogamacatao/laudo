@@ -94,8 +94,10 @@ class PrintToPdf {
 
     doc.moveDown();
 
+    var referente = " (" + (this.laudo.referente == 'filho' ? 'Criança' : 'Mãe') + ")";
+
     doc.fontSize(TITLE_FONT_SIZE);
-    doc.text('NOME: ', {continued: true}).text(this.laudo.nome);
+    doc.text('NOME: ', {continued: true}).text(this.laudo.nome + referente);
 
     doc.fontSize(FONT_SIZE);
     //doc.text('DATA INÍCIO SINTOMAS: ' + this.formatDate(this.laudo.dataInicioSintomas), RIGHT_MARGIN, 130);
@@ -131,6 +133,22 @@ class PrintToPdf {
     doc.fontSize(FONT_SIZE);
     doc.text('(' + (this.laudo.conclusao.zikv.positivo  ? 'X' : ' ') + ') ZIKV  Identificado em amostra de (' + (this.laudo.conclusao.zikv.sg  ? 'X' : ' ') + ')SG (' + (this.laudo.conclusao.zikv.ur  ? 'X' : ' ') + ')UR (' + (this.laudo.conclusao.zikv.la  ? 'X' : ' ') + ')LA (' + (this.laudo.conclusao.zikv.lcr  ? 'X' : ' ') + ')LCR', 120);
     doc.text('(' + (this.laudo.conclusao.chikv.positivo ? 'X' : ' ') + ') CHIKV Identificado em amostra de (' + (this.laudo.conclusao.chikv.sg ? 'X' : ' ') + ')SG (' + (this.laudo.conclusao.chikv.ur ? 'X' : ' ') + ')UR (' + (this.laudo.conclusao.chikv.la ? 'X' : ' ') + ')LA (' + (this.laudo.conclusao.chikv.lcr ? 'X' : ' ') + ')LCR', 120);
+
+    if (!this.laudo.conclusao.sifilis) this.laudo.conclusao.sifilis = {};
+    if (!this.laudo.conclusao.rubeola) this.laudo.conclusao.rubeola = {};
+    if (!this.laudo.conclusao.toxoplasmose) this.laudo.conclusao.toxoplasmose = {};
+    if (!this.laudo.conclusao.citomegalovirus) this.laudo.conclusao.citomegalovirus = {};
+    if (!this.laudo.conclusao.herpes) this.laudo.conclusao.herpes = {};
+    if (!this.laudo.conclusao.dengue) this.laudo.conclusao.dengue = {};
+
+    doc.text('(' + (this.laudo.conclusao.sifilis.positivo ? 'X' : ' ') + ') Sífilis Identificado em amostra de (' + (this.laudo.conclusao.sifilis.sg ? 'X' : ' ') + ')SG (' + (this.laudo.conclusao.sifilis.ur ? 'X' : ' ') + ')UR (' + (this.laudo.conclusao.sifilis.la ? 'X' : ' ') + ')LA (' + (this.laudo.conclusao.sifilis.lcr ? 'X' : ' ') + ')LCR', 120);
+    doc.text('(' + (this.laudo.conclusao.rubeola.positivo ? 'X' : ' ') + ') Rubéola Identificado em amostra de (' + (this.laudo.conclusao.rubeola.sg ? 'X' : ' ') + ')SG (' + (this.laudo.conclusao.rubeola.ur ? 'X' : ' ') + ')UR (' + (this.laudo.conclusao.rubeola.la ? 'X' : ' ') + ')LA (' + (this.laudo.conclusao.rubeola.lcr ? 'X' : ' ') + ')LCR', 120);
+    doc.text('(' + (this.laudo.conclusao.toxoplasmose.positivo ? 'X' : ' ') + ') Toxoplasma Identificado em amostra de (' + (this.laudo.conclusao.toxoplasmose.sg ? 'X' : ' ') + ')SG (' + (this.laudo.conclusao.toxoplasmose.ur ? 'X' : ' ') + ')UR (' + (this.laudo.conclusao.toxoplasmose.la ? 'X' : ' ') + ')LA (' + (this.laudo.conclusao.toxoplasmose.lcr ? 'X' : ' ') + ')LCR', 120);
+    doc.text('(' + (this.laudo.conclusao.citomegalovirus.positivo ? 'X' : ' ') + ') Citomegalovírus Identificado em amostra de (' + (this.laudo.conclusao.citomegalovirus.sg ? 'X' : ' ') + ')SG (' + (this.laudo.conclusao.citomegalovirus.ur ? 'X' : ' ') + ')UR (' + (this.laudo.conclusao.citomegalovirus.la ? 'X' : ' ') + ')LA (' + (this.laudo.conclusao.citomegalovirus.lcr ? 'X' : ' ') + ')LCR', 120);
+    doc.text('(' + (this.laudo.conclusao.herpes.positivo ? 'X' : ' ') + ') Herpes 1/2 Identificado em amostra de (' + (this.laudo.conclusao.herpes.sg ? 'X' : ' ') + ')SG (' + (this.laudo.conclusao.herpes.ur ? 'X' : ' ') + ')UR (' + (this.laudo.conclusao.herpes.la ? 'X' : ' ') + ')LA (' + (this.laudo.conclusao.herpes.lcr ? 'X' : ' ') + ')LCR', 120);
+    doc.text('(' + (this.laudo.conclusao.dengue.positivo ? 'X' : ' ') + ') Dengue Identificado em amostra de (' + (this.laudo.conclusao.dengue.sg ? 'X' : ' ') + ')SG (' + (this.laudo.conclusao.dengue.ur ? 'X' : ' ') + ')UR (' + (this.laudo.conclusao.dengue.la ? 'X' : ' ') + ')LA (' + (this.laudo.conclusao.dengue.lcr ? 'X' : ' ') + ')LCR', 120);
+    
+
     doc.moveDown();
 
     if (this.laudo.notas) {

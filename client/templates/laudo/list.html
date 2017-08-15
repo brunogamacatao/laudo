@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>NOME</th>
+      <th></th>
       <th>RESULTADO</th>
       <th>DATA COLETA</th>
       <th>DATA RESULTADO</th>
@@ -11,8 +12,9 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="laudo in laudos">
+    <tr ng-repeat="laudo in laudos">      
       <td>{{laudo.nome}}</td>
+      <td>{{laudo.referente == 'filho' ? 'Criança' : 'Mãe'}}</td>
       <td>{{laudo.resultado}}</td>
       <td>{{laudo.dataColeta | date: 'dd/MM/yyyy'}}</td>
       <td>{{laudo.dataResultado | date: 'dd/MM/yyyy'}}</td>

@@ -27,11 +27,18 @@ var DadosConclusaoSchema = new mongoose.Schema({
 
 var ConclusaoSchema = new mongoose.Schema({
   zikv: DadosConclusaoSchema,
-  chikv: DadosConclusaoSchema
+  chikv: DadosConclusaoSchema,
+  sifilis: DadosConclusaoSchema,
+  rubeola: DadosConclusaoSchema,
+  toxoplasmose: DadosConclusaoSchema,
+  citomegalovirus: DadosConclusaoSchema,
+  herpes: DadosConclusaoSchema,
+  dengue: DadosConclusaoSchema
 });
 
 var LaudoSchema = new mongoose.Schema({
   nome: String,
+  referente: String,
   dataInicioSintomas: Date,
   dataColeta: Date,
   dataResultado: Date,

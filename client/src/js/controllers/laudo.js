@@ -18,19 +18,39 @@ function($rootScope, $scope, $http, $stateParams, Prontuario, AuthService) {
       resultado: null,
       conclusao: {
         zikv: {},
-        chikv: {}
+        chikv: {},
+        sifilis: {},
+        rubeola: {},
+        toxoplasmose: {},
+        citomegalovirus: {},
+        herpes: {},
+        dengue: {}
       }
     };
   }
 
+  $scope.mudaNome = function() {
+    if ($scope.prontuario) {
+      if ($scope.laudo.referente == 'mae') {
+        $scope.laudo.nome = $scope.prontuario.mae.nome;
+      } else if ($scope.laudo.referente == 'filho') {
+        $scope.laudo.nome = $scope.prontuario.crianca.nome;
+      }
+    }
+  };
+
   function carregaProntuario() {
     Prontuario.get({id: $scope.id_prontuario}, function(prontuario) {
-      $scope.laudo.nome = prontuario.mae.nome;
+      $scope.prontuario = prontuario;
     });
   }
 
   if ($stateParams.id_laudo) {
     $http.get('/prontuarios/' + $stateParams.id_prontuario + '/laudos/' + $stateParams.id_laudo).then(function(retorno) {
+      if (!retorno.data.referente) {
+        retorno.data.referente = 'mae';
+      }
+
       // Conversão das datas
       if (retorno.data.dataInicioSintomas) {
         retorno.data.dataInicioSintomas = new Date(retorno.data.dataInicioSintomas);

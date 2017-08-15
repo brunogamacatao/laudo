@@ -4,6 +4,24 @@
   <div class="row">
     <div class="col-md-6">
       <div class="form-group">
+        <label>Referente a</label>
+        <select class="form-control" ng-model="laudo.referente" ng-change="mudaNome()">
+          <option>Selecione</option>
+          <option value="filho">Filho</option>
+          <option value="mae">Mãe</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Nome</label>
+        <input class="form-control" ng-model="laudo.nome">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
         <label>Data Coleta</label>
         <input type="date" class="form-control" ng-model="laudo.dataColeta">
       </div>
@@ -70,6 +88,54 @@
       <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.chikv.ur"/> UR</label> 
       <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.chikv.la"/> LA</label> 
       <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.chikv.lcr"/> LCR</label>
+    </p>
+    <p>
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.sifilis.positivo"/> Sífilis</label> 
+      identificado em amostra de 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.sifilis.sg"/> SG</label> 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.sifilis.ur"/> UR</label> 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.sifilis.la"/> LA</label> 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.sifilis.lcr"/> LCR</label>
+    </p>
+    <p>
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.rubeola.positivo"/> Rubéola</label> 
+      identificado em amostra de 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.rubeola.sg"/> SG</label> 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.rubeola.ur"/> UR</label> 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.rubeola.la"/> LA</label> 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.rubeola.lcr"/> LCR</label>
+    </p>
+    <p>
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.toxoplasmose.positivo"/> Toxoplasma</label> 
+      identificado em amostra de 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.toxoplasmose.sg"/> SG</label> 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.toxoplasmose.ur"/> UR</label> 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.toxoplasmose.la"/> LA</label> 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.toxoplasmose.lcr"/> LCR</label>
+    </p>
+    <p>
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.citomegalovirus.positivo"/> Citomegalovírus</label> 
+      identificado em amostra de 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.citomegalovirus.sg"/> SG</label> 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.citomegalovirus.ur"/> UR</label> 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.citomegalovirus.la"/> LA</label> 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.citomegalovirus.lcr"/> LCR</label>
+    </p>
+    <p>
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.herpes.positivo"/> Herpes 1/2</label> 
+      identificado em amostra de 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.herpes.sg"/> SG</label> 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.herpes.ur"/> UR</label> 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.herpes.la"/> LA</label> 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.herpes.lcr"/> LCR</label>
+    </p>
+    <p>
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.dengue.positivo"/> Dengue</label> 
+      identificado em amostra de 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.dengue.sg"/> SG</label> 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.dengue.ur"/> UR</label> 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.dengue.la"/> LA</label> 
+      <label class="checkbox-inline"><input type="checkbox" ng-model="laudo.conclusao.dengue.lcr"/> LCR</label>
     </p>
   </div> <!-- conclusão -->
 
