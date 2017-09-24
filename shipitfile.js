@@ -33,7 +33,7 @@ module.exports = function (shipit) {
   });
 
   shipit.task('start-server', function () {
-    return shipit.remote('pm2 restart ecosystem.config.js --env production', {
+    return shipit.remote('pm2 start ecosystem.config.js --env production', {
       cwd: '/root/deploy/current'
     });
   });
