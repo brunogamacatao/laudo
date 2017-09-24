@@ -14,9 +14,6 @@ import 'angular-resource';
 // Importa o jQuery
 import 'jquery';
 
-// Importa o livereload
-import LiveReload from './util/livereload';
-
 // Importa o FilePicker
 import 'filepicker-js';
 import 'angular-filepicker/dist/angular_filepicker';
@@ -31,9 +28,6 @@ import './directives';
 import './components';
 import './services';
 import setupRoutes from './routes';
-
-// Inicia o live reload (sempre que o código mudar, o browser é recarregado)
-LiveReload.start();
 
 const app = angular.module('ipesq', 
   ['ui.router', 'ngResource', 'ngSanitize', 'angular-filepicker', 

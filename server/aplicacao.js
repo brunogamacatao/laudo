@@ -24,10 +24,6 @@ var Aplicacao = function() {
 
   this.setupMiddleware();
   this.setupAuthentication();
-
-  if (this.inDevelopment()) {
-    this.setupLiveReload();
-  }
 };
 
 Aplicacao.prototype.inDevelopment = function() {
@@ -127,24 +123,6 @@ export const token = ({ required, admin } = {}) => (req, res, next) =>
       next()
     })
   })(req, res, next);
-
-/**
- * Configura o live reload dos dados do cliente. Ou seja, sempre que páginas,
- * scripts ou folhas de estilo forem alteradas, o browser irá recarregar a 
- * aplicação.
- */
-Aplicacao.prototype.setupLiveReload = function() {
-  var livereload = require('livereload');
-
-  // This is different form http.createServer() or app.createServer()
-  var reloadServer = livereload.createServer();
-
-  reloadServer.config.exts.push('html');  // Enable live reload for html files
-  reloadServer.config.exts.push('css');  // Enable live reload for html files
-
-  // You can also enable watch on multiple folders:
-  reloadServer.watch([__dirname + '/' + constantes.STATICS_SRC_PATH]);
-};
 
 Aplicacao.prototype.pageForFoundErrorHandler = function(err, req, res, next) {
   // catch 404 and forward to error handler
