@@ -6,6 +6,7 @@ import favicon      from 'serve-favicon';
 import logger       from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser   from 'body-parser';
+import cors         from 'cors';
 import constantes   from './config/constantes';
 
 // Autenticação
@@ -41,6 +42,7 @@ Aplicacao.prototype.setupRoutes = function() {
   // Rotas
   this.app.use('/user', require('./routes/user'));
   this.app.use('/prontuarios', require('./routes/prontuarios'));
+  this.app.use('/estatisticas', require('./routes/estatisticas'));
 };
 
 /**
@@ -53,6 +55,7 @@ Aplicacao.prototype.setupMiddleware = function() {
   // Em primeiro lugar é feito o tratamento geral das requisições
   // uncomment after placing your favicon in /public
   //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+  this.app.use(cors());
   this.app.use(logger('dev'));
   this.app.use(bodyParser.json());
   this.app.use(bodyParser.urlencoded({ extended: false }));

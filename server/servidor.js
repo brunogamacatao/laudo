@@ -1,6 +1,7 @@
 var http    = require('http');
 var path    = require('path');
 var process = require('process');
+var compression = require('compression');
 
 /**
  * Criação do servidor HTTP que irá executar a aplicação.
