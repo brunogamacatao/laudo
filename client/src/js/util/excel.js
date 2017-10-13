@@ -172,35 +172,37 @@ export var examesToArray = function(exames) {
 
   for (var i = 0; i < exames.length; i++) {
     var e = exames[i];
-    resultado.push(
-      [
-        e.prontuario._id,
-        !e.prontuario.mae ? '' : e.prontuario.mae.nome,
-        !e.prontuario.crianca ? '' : e.prontuario.crianca.nome,
-        e.nome,
-        e.data,
-        e.idadeGestacional,
-        e.local,
-        e.imagemSalva,
-        e.reducaoVolumetrica,
-        e.paquigiria,
-        e.lisencefalia,
-        e.ventriculomegalia,
-        e.hidrocefalia,
-        e.ventriculomegaliaSevera,
-        e.calcificacoes,
-        e.localDasCalcificacoes,
-        e.corpoCaloso,
-        e.malformacoesCisticas,
-        e.localCistos,
-        e.hipoplasiaDoCerebelo,
-        e.hipoplasiaDoVermis,
-        e.hipoplasiaDoTronco,
-        e.hipoplasiaDaPonte,
-        e.hipoPlasiaDoHipotalamo,
-        e.reducaoDasFontanelas,
-        !e.owner ? '' : e.owner.nome
-      ]);
+    if (e.prontuario) {
+      resultado.push(
+        [
+          e.prontuario._id,
+          !e.prontuario.mae ? '' : e.prontuario.mae.nome,
+          !e.prontuario.crianca ? '' : e.prontuario.crianca.nome,
+          e.nome,
+          e.data,
+          e.idadeGestacional,
+          e.local,
+          e.imagemSalva,
+          e.reducaoVolumetrica,
+          e.paquigiria,
+          e.lisencefalia,
+          e.ventriculomegalia,
+          e.hidrocefalia,
+          e.ventriculomegaliaSevera,
+          e.calcificacoes,
+          e.localDasCalcificacoes,
+          e.corpoCaloso,
+          e.malformacoesCisticas,
+          e.localCistos,
+          e.hipoplasiaDoCerebelo,
+          e.hipoplasiaDoVermis,
+          e.hipoplasiaDoTronco,
+          e.hipoplasiaDaPonte,
+          e.hipoPlasiaDoHipotalamo,
+          e.reducaoDasFontanelas,
+          !e.owner ? '' : e.owner.nome
+        ]);
+    }
   }
 
   return resultado;
@@ -215,28 +217,29 @@ export var gmfmsToArray = function(gmfms)  {
 
   for (var i = 0; i < gmfms.length; i++) {
     var g = gmfms[i];
-
-    resultado.push([
-      g.prontuario._id,
-      g.prontuario.mae ? '' : g.prontuario.mae.nome,
-      g.prontuario.crianca ? '' : g.prontuario.crianca.nome,
-      g.data,
-      g.nivelI,
-      g.nivelII,
-      g.nivelIII,
-      g.nivelIV,
-      g.nivelV,
-      g.score88,
-      g.dimensaoA,
-      g.dimensaoB,
-      g.dimensaoC,
-      g.dimensaoD,
-      g.dimensaoE,
-      g.score66,
-      g.erroPadrao,
-      g.indiceDeConfianca,
-      !g.owner ? '' : g.owner.nome      
-    ]);
+    if (g.prontuario) {
+      resultado.push([
+        g.prontuario._id,
+        g.prontuario.mae ? '' : g.prontuario.mae.nome,
+        g.prontuario.crianca ? '' : g.prontuario.crianca.nome,
+        g.data,
+        g.nivelI,
+        g.nivelII,
+        g.nivelIII,
+        g.nivelIV,
+        g.nivelV,
+        g.score88,
+        g.dimensaoA,
+        g.dimensaoB,
+        g.dimensaoC,
+        g.dimensaoD,
+        g.dimensaoE,
+        g.score66,
+        g.erroPadrao,
+        g.indiceDeConfianca,
+        !g.owner ? '' : g.owner.nome      
+      ]);
+    }
   }
 
   return resultado;
