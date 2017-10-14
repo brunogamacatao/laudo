@@ -97,7 +97,16 @@ router.get('/gmfms', function(req, res, next) {
     res.json(gmfms);
   });
 });
+// Retorna todos os questionarios
+router.get('/questionarios', function(req, res, next) {
+  Questionario.find().sort('-updatedAt').populate('prontuario').populate('owner').exec(function(err, dados){
+    if (err) {
+      return next(err);
+    }
 
+    res.json(dados);
+  });
+});
 
 // Adiciona um prontuário
 router.post('/', function(req, res, next) {

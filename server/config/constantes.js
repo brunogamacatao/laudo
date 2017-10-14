@@ -2,7 +2,7 @@ import path from 'path'
 import _ from 'lodash'
 
 const constantes = {
-  DATABASE_URL_DEV: 'mongodb://localhost/laudo',
+  DATABASE_URL_DEV: 'mongodb://localhost/heroku_wkb9m7x7',
   DATABASE_URL_PROD: 'mongodb://localhost/heroku_wkb9m7x7',
   VIEW_ENGINE: 'ejs',
   VIEWS_PATH: '../client/dist',

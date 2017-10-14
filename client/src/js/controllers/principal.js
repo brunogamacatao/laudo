@@ -1,5 +1,5 @@
 import angular from 'angular';
-import Excel, {laudosToArray, prontuariosToArray, examesToArray, gmfmsToArray} from '../util/excel';
+import Excel, {laudosToArray, questionariosToArray, prontuariosToArray, examesToArray, gmfmsToArray} from '../util/excel';
 
 const controllers = angular.module('ipesq.controllers');
 
@@ -31,7 +31,13 @@ controllers.controller('MainController', ['$rootScope', '$scope', 'Prontuario', 
             $http.get('/prontuarios/gmfms').then(function(retorno) {
               var gmfms = retorno.data;
               excel.addSheet('GMFM', gmfmsToArray(gmfms));
-              excel.save('ipesq.xlsx');
+
+              // Carrega os questionários
+              $http.get('/prontuarios/questionarios').then(function(retorno) {
+                var questionarios = retorno.data;
+                excel.addSheet('Questionários', questionariosToArray(questionarios));
+                excel.save('ipesq.xlsx');
+              });
             });
           });
         });
